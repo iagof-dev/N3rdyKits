@@ -4,6 +4,8 @@ import com.n3rdydev.events.Listeners;
 import com.n3rdydev.events.soup;
 import com.n3rdydev.events.spawn;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,13 +23,13 @@ public class main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable(){
-
         plugin = this;
+
+        config.setup_run();
 
         Listeners basic_events = new Listeners();
         Listeners spawn = new spawn();
         Listeners sopa = new soup();
-
 
         //Event Listeners
         this.getServer().getPluginManager().registerEvents( sopa, this);
@@ -36,7 +38,7 @@ public class main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(this, this);
 
 
-        //getCommand("spawn").setExecutor(new spawn());
+        getCommand("kit").setExecutor(new com.n3rdydev.commands.kit());
 
 
         Bukkit.getConsoleSender().sendMessage("§a[N3rdyKits] | Plugin Habilitado!");
