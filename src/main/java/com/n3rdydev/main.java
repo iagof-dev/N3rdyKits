@@ -37,7 +37,7 @@ public class main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(spawn, this);
         this.getServer().getPluginManager().registerEvents(this, this);
 
-
+        getCommand("build").setExecutor(new com.n3rdydev.commands.build());
         getCommand("kit").setExecutor(new com.n3rdydev.commands.kit());
 
 

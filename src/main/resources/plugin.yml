@@ -6,5 +6,9 @@ main: com.n3rdydev.main
 commands:
   kit:
     description: Selecionar um kit.
-    permission-message: §cNão Possui permissão
+    permission-message: §cNão possui permissão.
     usage: /kit nome-do-kit
+  build:
+    description: modo construcao
+    permission-message: §cNão possui permissão.
+    usage: /build

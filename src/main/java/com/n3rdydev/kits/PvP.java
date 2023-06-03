@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -25,7 +26,6 @@ public class PvP {
         ItemMeta sopa = (ItemMeta) soup.getItemMeta();
 
         sopa.setDisplayName("§l§eSopa Mágica§7");
-        soup.setItemMeta(sopa);
 
 
         for (int z = 0; z <= 36; z++){
