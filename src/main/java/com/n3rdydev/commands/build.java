@@ -28,7 +28,6 @@ public class build implements CommandExecutor, Listener {
                 return true;
             }
         }
-
         return true;
     }
 }

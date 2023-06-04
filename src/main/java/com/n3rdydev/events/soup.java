@@ -6,10 +6,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class soup extends  Listeners{
+public class soup extends listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {

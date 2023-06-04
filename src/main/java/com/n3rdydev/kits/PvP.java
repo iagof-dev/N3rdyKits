@@ -13,7 +13,6 @@ import org.bukkit.material.MaterialData;
 
 public class PvP {
     public static void Receive(Player p){
-
         p.getInventory().clear();
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
@@ -22,11 +21,9 @@ public class PvP {
         ItemStack b_mushroom = new ItemStack(Material.BROWN_MUSHROOM, 64);
         ItemStack bowl = new ItemStack(Material.BOWL, 64);
         sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
-
         ItemMeta sopa = (ItemMeta) soup.getItemMeta();
-
-        sopa.setDisplayName("§l§eSopa Mágica§7");
-
+        sopa.setDisplayName("§eSopa Mágica");
+        soup.setItemMeta(sopa);
 
         for (int z = 0; z <= 36; z++){
 

@@ -12,3 +12,15 @@ commands:
     description: modo construcao
     permission-message: §cNão possui permissão.
     usage: /build
+  setarspawn:
+    description: definir um spawn.
+    permission-message: §cNão possui permissão.
+    usage: /setarspawn
+  kits:
+    description: abre menu de kits.
+    permission-message: §cNão possui permissão.
+    usage: /kits
+  n3rdykits:
+    description: plugin comandos.
+    permission-message: §cNão possui permissão.
+    usage: /n3rdykits <função>

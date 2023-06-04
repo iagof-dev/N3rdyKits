@@ -9,8 +9,16 @@ import org.bukkit.event.Listener;
 public class kit implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
         Player p = (Player) sender;
+
+        if(args.length == 0){
+            //quando o menu estiver pronto
+            // se não especificar o kit ele abre o menu
+            // de escolha de kits
+            p.sendMessage("§cEspecifique um kit");
+            return true;
+        }
+
         String kit = args[0].toLowerCase();
 
         switch(args[0]){

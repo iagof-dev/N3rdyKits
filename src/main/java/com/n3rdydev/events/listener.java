@@ -1,36 +1,39 @@
 package com.n3rdydev.events;
 
-import org.bukkit.Bukkit;
+import com.n3rdydev.config;
+import com.n3rdydev.settings.spawn;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import javax.imageio.stream.ImageInputStream;
-
-public class Listeners implements Listener {
+public class listener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = (Player) e.getPlayer();
         e.setJoinMessage("");
-        p.getInventory().clear();
-        p.updateInventory();
 
+        Location spawn_loc = new Location(p.getWorld(),  spawn.spawn_x, spawn.spawn_y, spawn.spawn_z);
+
+        p.teleport(spawn_loc);
+        p.setHealth(20);
+        com.n3rdydev.kits.spawn.Receive(p);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -40,14 +43,34 @@ public class Listeners implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent e) {
-        e.setDeathMessage("");
         Player p = (Player) e.getEntity().getPlayer();
-        if(e.getEntity().getKiller() == null){
+        e.setDeathMessage("");
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (ItemStack drop : e.getDrops()) {
+                    drop.setAmount(0);
+                }
+                e.getDrops().clear();
+                p.playSound(p.getLocation(), Sound.LAVA_POP, 1, 1);
+            }
+        }.runTaskLater(com.n3rdydev.main.getPlugin(), 60L);
+
+        e.getEntity().spigot().respawn();
+        p.getInventory().clear();
+        p.updateInventory();
+
+        Location spawn_loc = new Location(p.getWorld(),  spawn.spawn_x, spawn.spawn_y, spawn.spawn_z);
+        p.teleport(spawn_loc);
+
+        com.n3rdydev.kits.spawn.Receive(p);
+        p.updateInventory();
+
+        if (e.getEntity().getKiller() == null) {
             p.sendMessage("§cVocê morreu!");
-        }
-        else{
+        } else {
             Player pk = (Player) e.getEntity().getKiller().getPlayer();
-            e.getEntity().spigot().respawn();
             p.sendMessage("§cVocê morreu para " + pk.getDisplayName() + "! (-5 xp)");
             pk.sendMessage("§a Você matou " + p.getDisplayName() + "! (+5 xp)");
         }
@@ -58,6 +81,13 @@ public class Listeners implements Listener {
     public void onPlayerQuit(PlayerQuitEvent e) {
         Player p = (Player) e.getPlayer();
         e.setQuitMessage("");
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onplayerMove(PlayerMoveEvent e) {
+        Player p = e.getPlayer();
+        Location p_loc = p.getLocation();
+
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -73,17 +103,48 @@ public class Listeners implements Listener {
             e.setCancelled(true);
             p.playSound(p.getLocation(), Sound.ITEM_BREAK, 1, 1);
             p.sendMessage("§cCuidado guerreiro, não drope seu armamento...");
-        } else {
-            Item drop = e.getItemDrop();
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    drop.remove();
-                    p.playSound(p.getLocation(), Sound.LAVA_POP, 1, 1);
-                }
-            }.runTaskLater(com.n3rdydev.main.getPlugin(), 60L);
+            return;
+        }
+
+        if(item_drop == Material.CHEST){
+            e.setCancelled(true);
+            return;
+        }
+
+        Item drop = e.getItemDrop();
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                drop.remove();
+                p.playSound(p.getLocation(), Sound.LAVA_POP, 1, 1);
+            }
+        }.runTaskLater(com.n3rdydev.main.getPlugin(), 60L);
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void PlayerInteractEvent(PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+        if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
+            if (e.getItem() != null && e.getItem().getType().equals(Material.CHEST)) {
+                p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
+                e.setCancelled(false);
+            }
         }
     }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onInventoryClick(InventoryClickEvent e) {
+        Player p = (Player) e.getWhoClicked();
+        if (e.getView().getTitle().equals("Lista de Kits")) {
+            switch (e.getCurrentItem().getType()) {
+                case DIAMOND_SWORD:
+                    p.closeInventory();
+                    com.n3rdydev.kits.PvP.Receive(p);
+                    break;
+            }
+        }
+    }
+
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerTake(PlayerPickupItemEvent e) {
@@ -117,6 +178,7 @@ public class Listeners implements Listener {
         }
 
     }
+
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void MobsExplode(EntityExplodeEvent e) {
