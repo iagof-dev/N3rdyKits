@@ -23,6 +23,8 @@ public class kits extends JavaPlugin implements Listener {
         Inventory inv = Bukkit.createInventory(p, 9*3, "Lista de Kits");
 
         inv.setItem(0, createItem(new ItemStack(Material.DIAMOND_SWORD), "PvP", "Kit padrão", "§6Clique para selecionar!"));
+        inv.setItem(1, createItem(new ItemStack(Material.FIREWORK), "Kangaroo", "Foguetinho", "§6Clique para selecionar!"));
+
         return inv;
     }
     private static ItemStack createItem(ItemStack item, String nome, String ... descricao){
