@@ -24,3 +24,7 @@ commands:
     description: plugin comandos.
     permission-message: §cNão possui permissão.
     usage: /n3rdykits <função>
+  admin:
+    description: invisibilidade para outros jogadores.
+    permission-message: §cNão possui permissão.
+    usage: /admin
