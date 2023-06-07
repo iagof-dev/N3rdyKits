@@ -21,6 +21,7 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 public class listener implements Listener {
 
@@ -29,7 +30,7 @@ public class listener implements Listener {
         Player p = (Player) e.getPlayer();
         e.setJoinMessage("");
 
-        Location spawn_loc = new Location(p.getWorld(),  spawn.spawn_x, spawn.spawn_y, spawn.spawn_z);
+        Location spawn_loc = new Location(p.getWorld(), spawn.spawn_x, spawn.spawn_y, spawn.spawn_z);
         p.teleport(spawn_loc);
         p.setHealth(20);
         com.n3rdydev.kits.spawn.Receive(p);
@@ -41,9 +42,9 @@ public class listener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void PlayerRespawnEvent(PlayerRespawnEvent e){
+    public void PlayerRespawnEvent(PlayerRespawnEvent e) {
         Player p = e.getPlayer();
-        Location spawn_loc = new Location(p.getWorld(),  spawn.spawn_x, spawn.spawn_y, spawn.spawn_z);
+        Location spawn_loc = new Location(p.getWorld(), spawn.spawn_x, spawn.spawn_y, spawn.spawn_z);
         e.setRespawnLocation(spawn_loc);
     }
 
@@ -88,7 +89,7 @@ public class listener implements Listener {
 
         boolean is_sword = false;
 
-        switch(item_drop){
+        switch (item_drop) {
             case DIAMOND_SWORD:
                 is_sword = true;
                 break;
@@ -110,9 +111,12 @@ public class listener implements Listener {
             case COMPASS:
                 e.setCancelled(true);
                 break;
+            case FIREWORK:
+                e.setCancelled(true);
+                break;
         }
 
-        if(is_sword){
+        if (is_sword) {
             e.setCancelled(true);
             p.playSound(p.getLocation(), Sound.ITEM_BREAK, 1, 1);
             p.sendMessage("§cCuidado guerreiro, não drope seu armamento...");
@@ -132,15 +136,36 @@ public class listener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerInteractEvent(PlayerInteractEvent e) {
         Player p = e.getPlayer();
+        Material m = e.getItem().getType();
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
+
             if (e.getItem() != null && e.getItem().getType().equals(Material.CHEST)) {
                 p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
+                return;
             }
-            else{
-                e.setCancelled(false);
+            if (e.getItem() != null && e.getItem().getType().equals(Material.FIREWORK)) {
+                if (e.getItem().getItemMeta().getDisplayName().equals("§eKangaroo")) {
+                    e.setCancelled(true);
+                    if (p.isOnGround()) {
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Vector direction = p.getLocation().getDirection();
+                                direction.setY(0.25); // Adjust the jump height as needed
+                                direction.multiply(2.0); // Adjust the push force as needed
+                                p.setVelocity(direction);
+                            }
+                        }.runTaskLater(com.n3rdydev.main.getPlugin(), 5L);
+
+                    }
+
+                    return;
+                }
+
             }
-        }
-        else{
+
+            e.setCancelled(false);
+        } else {
             e.setCancelled(false);
         }
     }
@@ -160,8 +185,8 @@ public class listener implements Listener {
                     com.n3rdydev.kits.Kangaroo.Receive(p);
                     break;
             }
-        }
-        else{
+            p.teleport(arena_tp.random_tp(p));
+        } else {
             e.setCancelled(false);
         }
     }
@@ -206,7 +231,12 @@ public class listener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerTake(PlayerPickupItemEvent e) {
-        e.setCancelled(true);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                e.setCancelled(true);
+            }
+        }.runTaskLater(com.n3rdydev.main.getPlugin(), 60L);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -238,8 +268,6 @@ public class listener implements Listener {
         ItemStack item = e.getItem();
 
     }
-
-
 
 
     @EventHandler(priority = EventPriority.HIGHEST)

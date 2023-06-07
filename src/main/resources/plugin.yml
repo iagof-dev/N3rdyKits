@@ -28,7 +28,7 @@ commands:
     description: invisibilidade para outros jogadores.
     permission-message: §cNão possui permissão.
     usage: /admin
-  setararena:
+  setar:
     description: define as cordenadas para ser teleportado
     permission-message: §cNão possui permissão.
-    usage: /setararena (0-9)
+    usage: /setar args values

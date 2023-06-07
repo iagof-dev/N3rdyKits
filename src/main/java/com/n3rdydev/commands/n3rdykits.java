@@ -6,21 +6,41 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
+
+import java.util.List;
+import java.util.Random;
 
 public class n3rdykits implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
 
-        if (p.hasPermission("n3rdydev.command.reload") || p.hasPermission("n3rdydev.*")) {
+        if (p.hasPermission("n3rdydev.developer.test") || p.hasPermission("n3rdydev.*")) {
 
-            if (strings.length == 0) {
-                p.sendMessage("-reload");
+            switch(strings[0]){
+                case "reload":
+                    config.save();
+                    config.reload();
+                    com.n3rdydev.settings.spawn.load();
+                    p.sendMessage("§aN3rdyKits DEV | Recarregado");
+                    break;
+                case "rndnumber":
+                    Random rnd = new Random();
+                    int rndNumber = rnd.nextInt(0,10);
+                    p.sendMessage("§aNumero gerado: " + rndNumber);
+                    break;
+                case "estacomkit":
+                    List<MetadataValue> valor = p.getMetadata("kit");
+                    p.sendMessage("valor: " + valor);
+                    break;
+                case "setarkit":
+                    p.setMetadata("kit", new FixedMetadataValue(com.n3rdydev.main.getPlugin(),"1"));
+                    break;
+
             }
-            if (strings[0] == "reload"){
-                config.reload();
-                p.sendMessage("§aConfiguração reiniciada.");
-            }
+
         }
         else{
             p.sendMessage("§cSem permissão");

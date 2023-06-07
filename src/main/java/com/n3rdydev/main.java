@@ -1,12 +1,12 @@
 package com.n3rdydev;
 
+import com.n3rdydev.commands.setar;
+import com.n3rdydev.commands.setarspawn;
 import com.n3rdydev.events.listener;
 import com.n3rdydev.events.soup;
 import com.n3rdydev.events.spawn;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.n3rdydev.SQL.MySql;
 
@@ -55,13 +55,13 @@ public class main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(spawn, this);
         this.getServer().getPluginManager().registerEvents(this, this);
 
-        getCommand("setarspawn").setExecutor(new com.n3rdydev.commands.setarspawn());
+        getCommand("setarspawn").setExecutor(new setarspawn());
         getCommand("build").setExecutor(new com.n3rdydev.commands.build());
         getCommand("kit").setExecutor(new com.n3rdydev.commands.kit());
         getCommand("kits").setExecutor(new com.n3rdydev.commands.kits());
         getCommand("admin").setExecutor(new com.n3rdydev.commands.admin());
         getCommand("n3rdykits").setExecutor(new com.n3rdydev.commands.n3rdykits());
-        getCommand("setararena").setExecutor(new com.n3rdydev.commands.setar_arena());
+        getCommand("setar").setExecutor(new setar());
 
 
         com.n3rdydev.settings.spawn.load();
