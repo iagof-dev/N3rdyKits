@@ -156,6 +156,8 @@ public class listener implements Listener {
                     com.n3rdydev.kits.PvP.Receive(p);
                     break;
                 case FIREWORK:
+                    p.closeInventory();
+                    com.n3rdydev.kits.Kangaroo.Receive(p);
                     break;
             }
         }

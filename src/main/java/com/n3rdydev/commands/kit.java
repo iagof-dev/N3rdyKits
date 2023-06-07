@@ -12,10 +12,7 @@ public class kit implements CommandExecutor, Listener {
         Player p = (Player) sender;
 
         if(args.length == 0){
-            //quando o menu estiver pronto
-            // se não especificar o kit ele abre o menu
-            // de escolha de kits
-            p.sendMessage("§cEspecifique um kit");
+            p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
             return true;
         }
 
@@ -24,6 +21,9 @@ public class kit implements CommandExecutor, Listener {
         switch(args[0]){
             case "pvp":
                 com.n3rdydev.kits.PvP.Receive(p);
+                break;
+            case "kangaroo":
+                com.n3rdydev.kits.Kangaroo.Receive(p);
                 break;
             default:
                 p.sendMessage("§cKit inexistente!");

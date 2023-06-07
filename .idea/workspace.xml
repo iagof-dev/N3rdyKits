@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c3ec6bb-467a-44ef-b4f6-7ad664bf549d" name="Changes" comment="WIP test">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+    <list default="true" id="7c3ec6bb-467a-44ef-b4f6-7ad664bf549d" name="Changes" comment="test git ignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/commands/kit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/commands/kit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/listener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/packets/stop_admin_render.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/packets/stop_admin_render.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

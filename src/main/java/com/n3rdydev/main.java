@@ -29,6 +29,17 @@ public class main extends JavaPlugin implements Listener {
         config.get().addDefault("spawn.pos1", "0 0 0");
         config.get().addDefault("spawn.pos2", "0 0 0");
 
+        config.get().addDefault("arenas.arena0", "0 0 0");
+        config.get().addDefault("arenas.arena1", "0 0 0");
+        config.get().addDefault("arenas.arena2", "0 0 0");
+        config.get().addDefault("arenas.arena3", "0 0 0");
+        config.get().addDefault("arenas.arena4", "0 0 0");
+        config.get().addDefault("arenas.arena5", "0 0 0");
+        config.get().addDefault("arenas.arena6", "0 0 0");
+        config.get().addDefault("arenas.arena7", "0 0 0");
+        config.get().addDefault("arenas.arena8", "0 0 0");
+        config.get().addDefault("arenas.arena9", "0 0 0");
+
         config.get().options().copyDefaults(true);
         config.get().options().copyHeader(true);
         config.save();
@@ -50,6 +61,8 @@ public class main extends JavaPlugin implements Listener {
         getCommand("kits").setExecutor(new com.n3rdydev.commands.kits());
         getCommand("admin").setExecutor(new com.n3rdydev.commands.admin());
         getCommand("n3rdykits").setExecutor(new com.n3rdydev.commands.n3rdykits());
+        getCommand("setararena").setExecutor(new com.n3rdydev.commands.setar_arena());
+
 
         com.n3rdydev.settings.spawn.load();
 
