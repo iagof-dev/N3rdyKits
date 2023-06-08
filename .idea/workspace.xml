@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c3ec6bb-467a-44ef-b4f6-7ad664bf549d" name="Changes" comment="WIP | Arena TP">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/commands/setar.java" afterDir="false" />
+    <list default="true" id="7c3ec6bb-467a-44ef-b4f6-7ad664bf549d" name="Changes" comment="WIP | Spawn Protection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/commands/n3rdykits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/commands/n3rdykits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/commands/setar_arena.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/arena_tp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/arena_tp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/listener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/commands/setar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/commands/setar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/listener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/soup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/soup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/settings/arena_list.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,12 +82,36 @@
       <option name="project" value="LOCAL" />
       <updated>1686164345956</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="WIP | ARENA TP &amp; KIT KANGAROO">
+      <created>1686175876483</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686175876483</updated>
+    </task>
+    <task id="LOCAL-00005" summary="WIP | KIT KANGAROO FIX">
+      <created>1686245746240</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1686245746240</updated>
+    </task>
+    <task id="LOCAL-00006" summary="WIP | Spawn Protection">
+      <created>1686257253954</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1686257253954</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="WIP test" />
     <MESSAGE value="WIP | Arena TP" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP | Arena TP" />
+    <MESSAGE value="WIP | ARENA TP &amp; KIT KANGAROO" />
+    <MESSAGE value="WIP | KIT KANGAROO FIX" />
+    <MESSAGE value="WIP | Spawn Protection" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP | Spawn Protection" />
   </component>
 </project>

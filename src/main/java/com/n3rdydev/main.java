@@ -2,8 +2,7 @@ package com.n3rdydev;
 
 import com.n3rdydev.commands.setar;
 import com.n3rdydev.commands.setarspawn;
-import com.n3rdydev.events.listener;
-import com.n3rdydev.events.soup;
+import com.n3rdydev.events.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -46,13 +45,27 @@ public class main extends JavaPlugin implements Listener {
         config.get().options().copyHeader(true);
         config.save();
 
+         //Registrando Eventos
 
-        Listener basic_events = new listener();
+        Listener drop = new handleDrop();
+        Listener inventory = new handleInventory();
+        Listener pvp = new handlePvP();
+        Listener interact = new interaction();
+        Listener protection = new protections();
+        Listener respawn = new respawn();
+        Listener spawn = new spawn();
         Listener sopa = new soup();
 
         //Event Listeners
         this.getServer().getPluginManager().registerEvents( sopa, this);
-        this.getServer().getPluginManager().registerEvents( basic_events, this);
+        this.getServer().getPluginManager().registerEvents(drop, this);
+        this.getServer().getPluginManager().registerEvents(inventory, this);
+        this.getServer().getPluginManager().registerEvents(pvp, this);
+        this.getServer().getPluginManager().registerEvents(interact, this);
+        this.getServer().getPluginManager().registerEvents(protection, this);
+        this.getServer().getPluginManager().registerEvents(respawn , this);
+        this.getServer().getPluginManager().registerEvents(spawn, this);
+
         this.getServer().getPluginManager().registerEvents(this, this);
 
         getCommand("setarspawn").setExecutor(new setarspawn());

@@ -1,16 +1,12 @@
 package com.n3rdydev.commands;
 
 import com.n3rdydev.config;
-import com.sk89q.worldedit.extension.platform.Actor;
-import com.sk89q.worldedit.internal.annotation.Selection;
-import com.sk89q.worldedit.regions.RegionSelector;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import com.sk89q.worldedit.*;
 
 public class setar implements CommandExecutor {
 
