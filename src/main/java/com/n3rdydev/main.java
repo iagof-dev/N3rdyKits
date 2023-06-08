@@ -4,7 +4,6 @@ import com.n3rdydev.commands.setar;
 import com.n3rdydev.commands.setarspawn;
 import com.n3rdydev.events.listener;
 import com.n3rdydev.events.soup;
-import com.n3rdydev.events.spawn;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,6 +27,9 @@ public class main extends JavaPlugin implements Listener {
         config.get().addDefault("spawn.point", "0 0 0");
         config.get().addDefault("spawn.pos1", "0 0 0");
         config.get().addDefault("spawn.pos2", "0 0 0");
+        config.get().addDefault("spawn.protection.pos1", "0 0");
+        config.get().addDefault("spawn.protection.pos2", "0 0");
+
 
         config.get().addDefault("arenas.arena0", "0 0 0");
         config.get().addDefault("arenas.arena1", "0 0 0");
@@ -46,13 +48,11 @@ public class main extends JavaPlugin implements Listener {
 
 
         Listener basic_events = new listener();
-        Listener spawn = new spawn();
         Listener sopa = new soup();
 
         //Event Listeners
         this.getServer().getPluginManager().registerEvents( sopa, this);
         this.getServer().getPluginManager().registerEvents( basic_events, this);
-        this.getServer().getPluginManager().registerEvents(spawn, this);
         this.getServer().getPluginManager().registerEvents(this, this);
 
         getCommand("setarspawn").setExecutor(new setarspawn());
