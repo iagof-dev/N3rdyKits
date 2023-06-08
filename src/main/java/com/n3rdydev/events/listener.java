@@ -136,7 +136,6 @@ public class listener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerInteractEvent(PlayerInteractEvent e) {
         Player p = e.getPlayer();
-        Material m = e.getItem().getType();
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
 
             if (e.getItem() != null && e.getItem().getType().equals(Material.CHEST)) {
@@ -151,11 +150,11 @@ public class listener implements Listener {
                             @Override
                             public void run() {
                                 Vector direction = p.getLocation().getDirection();
-                                direction.setY(0.25); // Adjust the jump height as needed
+                                direction.setY(0.50); // Adjust the jump height as needed
                                 direction.multiply(2.0); // Adjust the push force as needed
                                 p.setVelocity(direction);
                             }
-                        }.runTaskLater(com.n3rdydev.main.getPlugin(), 5L);
+                        }.runTaskLater(com.n3rdydev.main.getPlugin(), 1L);
 
                     }
 
