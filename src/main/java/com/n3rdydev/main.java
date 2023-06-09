@@ -24,6 +24,7 @@ public class main extends JavaPlugin implements Listener {
 
         config.setup();
         config.get().addDefault("server.name", "§8[§l§2N3rdyKits§8]");
+        config.get().addDefault("server.ip", "§7localhost");
 
         config.get().addDefault("spawn.point", "0 0 0");
         config.get().addDefault("spawn.pos1", "0 0 0");

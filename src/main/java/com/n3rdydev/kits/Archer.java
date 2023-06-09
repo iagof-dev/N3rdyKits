@@ -3,6 +3,7 @@ package com.n3rdydev.kits;
 import com.n3rdydev.events.handleArenaTeleport;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,14 +18,20 @@ public class Archer {
             ItemStack r_mushroom = new ItemStack(Material.RED_MUSHROOM, 64);
             ItemStack b_mushroom = new ItemStack(Material.BROWN_MUSHROOM, 64);
             ItemStack bowl = new ItemStack(Material.BOWL, 64);
+            ItemStack player_track = new ItemStack(Material.COMPASS, 1);
 
             ItemStack bow = new ItemStack(Material.BOW, 1);
             bow.addEnchantment(Enchantment.ARROW_INFINITE, 1);
             ItemStack arrow = new ItemStack(Material.ARROW, 1);
+            ItemMeta ptrack_meta = (ItemMeta) player_track.getItemMeta();
+            ptrack_meta.setDisplayName("§eRastreador");
+            player_track.setItemMeta(ptrack_meta);
 
             ItemMeta sopa = (ItemMeta) soup.getItemMeta();
             sopa.setDisplayName("§eSopa Mágica");
             soup.setItemMeta(sopa);
+
+
 
             for (int z = 0; z <= 36; z++) {
 
@@ -44,8 +51,11 @@ public class Archer {
                     case 15:
                         p.getInventory().addItem(b_mushroom);
                         break;
-                    case 19:
+                    case 17:
                         p.getInventory().addItem(arrow);
+                        break;
+                    case 8:
+                        p.getInventory().addItem(player_track);
                         break;
                     default:
                         p.getInventory().addItem(soup);

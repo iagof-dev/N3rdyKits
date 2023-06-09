@@ -30,6 +30,8 @@ public class handleRespawn implements Listener {
             Player pk = (Player) e.getEntity().getKiller().getPlayer();
             p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
             pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
+            com.n3rdydev.scoreboard.sb_default.Set(pk);
+
         }
 
         e.getEntity().spigot().respawn();
@@ -37,6 +39,7 @@ public class handleRespawn implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
+                com.n3rdydev.scoreboard.sb_default.Set(p);
                 com.n3rdydev.kits.spawn.Receive(p);
             }
         }.runTaskLater(com.n3rdydev.main.getPlugin(), 1L);

@@ -14,6 +14,7 @@ import org.bukkit.potion.PotionEffect;
 public class handleSpawn implements Listener {
 
     public static void user_setup(Player p){
+        com.n3rdydev.scoreboard.sb_default.Set(p);
         p.setHealth(20);
         for (PotionEffect effect : p.getActivePotionEffects())
             p.removePotionEffect(effect.getType());
