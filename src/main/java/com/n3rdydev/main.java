@@ -55,6 +55,8 @@ public class main extends JavaPlugin implements Listener {
         Listener pvp = new handlePvP();
         Listener interact = new handleInteract();
         Listener protection = new protections();
+        Listener launchpad = new handleMove();
+        Listener fall_damage = new handleFallDamage();
         Listener respawn = new handleRespawn();
         Listener spawn = new handleSpawn();
         Listener sopa = new handleSoup();
@@ -69,7 +71,9 @@ public class main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(protection, this);
         this.getServer().getPluginManager().registerEvents(respawn , this);
         this.getServer().getPluginManager().registerEvents(spawn, this);
+        this.getServer().getPluginManager().registerEvents(launchpad, this);
         this.getServer().getPluginManager().registerEvents(chat, this);
+        this.getServer().getPluginManager().registerEvents(fall_damage, this);
         this.getServer().getPluginManager().registerEvents(this, this);
 
         getCommand("setarspawn").setExecutor(new setarspawn());

@@ -39,7 +39,7 @@ public class handleInteract implements Listener {
             //bussola rastreadora:
             if (e.getItem() != null && e.getItem().equals(p_tracker)) {
                 String nickname = "Ninguém";
-                Player target = getNearest(p, 50.0);
+                Player target = getNearest(p, 250.0);
                 float distance = 0;
 
                 //se a vitima for diferente de nula e não está no spawn

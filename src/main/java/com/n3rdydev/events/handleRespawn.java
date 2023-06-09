@@ -21,6 +21,7 @@ public class handleRespawn implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent e) {
         Player p = (Player) e.getEntity().getPlayer();
+        handleFallDamage.launchpad.put(p.getUniqueId(), false);
         e.setDeathMessage("");
         e.getDrops().clear();
 
