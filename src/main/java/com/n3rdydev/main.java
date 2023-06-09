@@ -76,7 +76,6 @@ public class main extends JavaPlugin implements Listener {
         getCommand("n3rdykits").setExecutor(new com.n3rdydev.commands.n3rdykits());
         getCommand("setar").setExecutor(new setar());
 
-
         com.n3rdydev.settings.spawn.load();
 
         Bukkit.getConsoleSender().sendMessage("§a[N3rdyKits] | Plugin Habilitado!");
