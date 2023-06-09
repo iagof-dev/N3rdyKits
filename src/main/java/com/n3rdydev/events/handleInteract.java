@@ -28,8 +28,8 @@ public class handleInteract implements Listener {
                             @Override
                             public void run() {
                                 Vector direction = p.getLocation().getDirection();
-                                direction.setY(0.50); // Adjust the jump height as needed
-                                direction.multiply(2.0); // Adjust the push force as needed
+                                direction.setY(0.40);
+                                direction.multiply(2.0);
                                 p.setVelocity(direction);
                             }
                         }.runTaskLater(com.n3rdydev.main.getPlugin(), 1L);

@@ -22,8 +22,6 @@ public class Archer {
             bow.addEnchantment(Enchantment.ARROW_INFINITE, 1);
             ItemStack arrow = new ItemStack(Material.ARROW, 1);
 
-            sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
-
             ItemMeta sopa = (ItemMeta) soup.getItemMeta();
             sopa.setDisplayName("§eSopa Mágica");
             soup.setItemMeta(sopa);

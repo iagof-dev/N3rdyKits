@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class admin implements CommandExecutor {
 
-    HashMap<UUID, Boolean> invis = new HashMap<>();
+    public static HashMap<UUID, Boolean> invis = new HashMap<>();
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -23,22 +23,35 @@ public class admin implements CommandExecutor {
 
             Collection<? extends Player> players = p.getServer().getOnlinePlayers();
 
-            if(invis.get(p.getUniqueId()) != false || invis.get(p.getUniqueId()) != null){
+            if(invis.get(p.getUniqueId()) != false){
                 for (Player p_list : players) {
                     if(!p_list.hasPermission("n3rdydev.command.admin")){
                         p_list.showPlayer(p);
                     }
+
                 }
-                p.sendMessage("§cVocê saiu do modo invisivel!");
+                p.setAllowFlight(false);
+                p.setFlying(false);
+                com.n3rdydev.kits.spawn.Receive(p);
+                p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §cVocê saiu do MODO ADMIN e está visivel!");
                 invis.put(p.getUniqueId(), false);
             }
             else{
                 for (Player p_list : players) {
-                    if(!p_list.hasPermission("n3rdydev.command.admin")){
+                    if(!p_list.hasPermission("n3rdydev.command.admin")) {
                         p_list.hidePlayer(p);
                     }
+                    else{
+                        if(p_list.getName() != p.getName()){
+                            p_list.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §eStaff "+ p.getName() + " entrou no modo ADMIN!");
+                            p_list.showPlayer(p);
+                        }
+                    }
                 }
-                p.sendMessage("§eVocê está no modo invisivel!");
+                com.n3rdydev.kits.Admin.Receive(p);
+                p.setAllowFlight(true);
+                p.setFlying(true);
+                p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aVocê entrou no MODO ADMIN e está invisivel!");
                 invis.put(p.getUniqueId(), true);
             }
 

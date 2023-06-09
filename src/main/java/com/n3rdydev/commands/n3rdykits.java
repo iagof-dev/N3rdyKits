@@ -24,7 +24,7 @@ public class n3rdykits implements CommandExecutor, Listener {
                     config.save();
                     config.reload();
                     com.n3rdydev.settings.spawn.load();
-                    p.sendMessage("§aN3rdyKits DEV | Recarregado");
+                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " DEV | Recarregado");
                     break;
                 case "rndnumber":
                     Random rnd = new Random();

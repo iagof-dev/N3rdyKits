@@ -23,6 +23,8 @@ public class main extends JavaPlugin implements Listener {
         plugin = this;
 
         config.setup();
+        config.get().addDefault("server.name", "§8[§l§2N3rdyKits§8]");
+
         config.get().addDefault("spawn.point", "0 0 0");
         config.get().addDefault("spawn.pos1", "0 0 0");
         config.get().addDefault("spawn.pos2", "0 0 0");
@@ -54,7 +56,8 @@ public class main extends JavaPlugin implements Listener {
         Listener protection = new protections();
         Listener respawn = new handleRespawn();
         Listener spawn = new handleSpawn();
-        Listener sopa = new soup();
+        Listener sopa = new handleSoup();
+        Listener chat = new handleChat();
 
         //Event Listeners
         this.getServer().getPluginManager().registerEvents( sopa, this);
@@ -65,7 +68,7 @@ public class main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(protection, this);
         this.getServer().getPluginManager().registerEvents(respawn , this);
         this.getServer().getPluginManager().registerEvents(spawn, this);
-
+        this.getServer().getPluginManager().registerEvents(chat, this);
         this.getServer().getPluginManager().registerEvents(this, this);
 
         getCommand("setarspawn").setExecutor(new setarspawn());

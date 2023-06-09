@@ -22,7 +22,7 @@ public class setarspawn implements CommandExecutor, Listener {
             config.save();
             config.reload();
             com.n3rdydev.settings.spawn.load();
-            p.sendMessage("§aVocê definiu o novo spawn! ("+ spawn_format + ")");
+            p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aVocê definiu o novo spawn! ("+ spawn_format + ")");
             return true;
         }
         else{

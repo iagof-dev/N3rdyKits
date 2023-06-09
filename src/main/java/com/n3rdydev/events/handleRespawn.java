@@ -28,8 +28,8 @@ public class handleRespawn implements Listener {
             p.sendMessage("§cVocê morreu!");
         } else {
             Player pk = (Player) e.getEntity().getKiller().getPlayer();
-            p.sendMessage("§cVocê morreu para " + pk.getDisplayName() + "! (-5 xp)");
-            pk.sendMessage("§a Você matou " + p.getDisplayName() + "! (+5 xp)");
+            p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
+            pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
         }
 
         e.getEntity().spigot().respawn();

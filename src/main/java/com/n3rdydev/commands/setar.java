@@ -56,7 +56,7 @@ public class setar implements CommandExecutor {
                     config.save();
                     config.reload();
                     com.n3rdydev.settings.spawn.load();
-                    p.sendMessage("[N3rdyKits] §aVocê definiu o novo spawn! (" + spawn_format + ")");
+                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aVocê definiu o novo spawn! (" + spawn_format + ")");
                     return true;
                 case "arena":
                     if (strings[1].equals("0") || strings[1].equals("1") || strings[1].equals("2") || strings[1].equals("3") || strings[1].equals("4") || strings[1].equals("5") || strings[1].equals("6") || strings[1].equals("7") || strings[1].equals("8") || strings[1].equals("9")) {
@@ -70,17 +70,17 @@ public class setar implements CommandExecutor {
                         config.reload();
                         com.n3rdydev.settings.spawn.load();
 
-                        p.sendMessage("[N3rdyKits] §aSucesso! você definiu arena " + strings[0] + "! (" + coords + ")");
+                        p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aSucesso! você definiu arena " + strings[0] + "! (" + coords + ")");
                     }
                     else{
-                        p.sendMessage("§c[N3rdyKits] você precisa escolher a arena (0-9)!");
+                        p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " você precisa escolher a arena (0-9)!");
                     }
 
                     return true;
                 case "warp":
                     break;
                 default:
-                    p.sendMessage("§a[N3rdyKits] Você precisa escolher qual arena deseja setar\n -arena (0-9)\n-warp");
+                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " Você precisa escolher qual arena deseja setar\n -arena (0-9)\n-warp");
                     break;
             }
 

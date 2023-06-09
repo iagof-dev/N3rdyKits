@@ -18,13 +18,13 @@ public class build implements CommandExecutor, Listener {
             if(p.hasPermission(perm)){
                 //remove
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset " + perm);
-                p.sendMessage("§cModo Construir DESABILITADO!");
+                p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §cModo Construir DESABILITADO!");
                 return true;
             }
             else{
                 //adiciona
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set " + perm);
-                p.sendMessage("§aModo Construir HABILITADO!");
+                p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aModo Construir HABILITADO!");
                 return true;
             }
         }

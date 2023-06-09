@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class soup implements Listener {
+public class handleSoup implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent e) {
