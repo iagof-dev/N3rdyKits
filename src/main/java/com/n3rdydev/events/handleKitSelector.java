@@ -6,24 +6,28 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-public class handleInventory implements Listener {
+public class handleKitSelector implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInventoryClick(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
         if (e.getView().getTitle().equals("Lista de Kits")) {
             e.setCancelled(true);
+            p.closeInventory();
             switch (e.getCurrentItem().getType()) {
                 case DIAMOND_SWORD:
-                    p.closeInventory();
                     com.n3rdydev.kits.PvP.Receive(p);
                     break;
                 case FIREWORK:
-                    p.closeInventory();
                     com.n3rdydev.kits.Kangaroo.Receive(p);
                     break;
                 case STONE_SWORD:
-                    p.closeInventory();
                     com.n3rdydev.kits.Boxer.Receive(p);
+                    break;
+                case BOW:
+                    com.n3rdydev.kits.Archer.Receive(p);
+                    break;
+                default:
+                    p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
                     break;
             }
         } else {

@@ -48,7 +48,7 @@ public class main extends JavaPlugin implements Listener {
          //Registrando Eventos
 
         Listener drop = new handleDrop();
-        Listener inventory = new handleInventory();
+        Listener inventory = new handleKitSelector();
         Listener pvp = new handlePvP();
         Listener interact = new handleInteract();
         Listener protection = new protections();

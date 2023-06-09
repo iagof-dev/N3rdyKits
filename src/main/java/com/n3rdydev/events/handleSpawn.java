@@ -17,6 +17,8 @@ public class handleSpawn implements Listener {
         for (PotionEffect effect : p.getActivePotionEffects())
             p.removePotionEffect(effect.getType());
 
+        p.setHealth(20);
+
         if (p.hasPermission("n3rdydev.cargo.vip")) {
             p.setDisplayName("§d[VIP] §f§d" + p.getName());
             p.setPlayerListName("§d[VIP] §f§d" + p.getName());
@@ -24,7 +26,6 @@ public class handleSpawn implements Listener {
         if (p.hasPermission("n3rdydev.cargo.admin")) {
             p.setDisplayName("§c[ADMIN] §f§c" + p.getName());
             p.setPlayerListName("§c[Admin] §f§c" + p.getName());
-
         }
         if (p.hasPermission("n3rdydev.cargo.developer")) {
             p.setDisplayName(ChatColor.BOLD + "" + ChatColor.GOLD + "DEV " + ChatColor.GOLD + p.getName());

@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c3ec6bb-467a-44ef-b4f6-7ad664bf549d" name="Changes" comment="WIP | Spawn Protection">
+    <list default="true" id="7c3ec6bb-467a-44ef-b4f6-7ad664bf549d" name="Changes" comment="WIP | FIXES">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/commands/setar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/commands/setar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/listener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/soup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/soup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/handleInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/handleKitSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/handleSpawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/events/handleSpawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/gui/kits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/gui/kits.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/n3rdydev/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/n3rdydev/main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +102,28 @@
       <option name="project" value="LOCAL" />
       <updated>1686257253954</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="WIP">
+      <created>1686264067176</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1686264067176</updated>
+    </task>
+    <task id="LOCAL-00008" summary="WIP | Separated Classes">
+      <created>1686264152508</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1686264152508</updated>
+    </task>
+    <task id="LOCAL-00009" summary="WIP | FIXES">
+      <created>1686270177622</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1686270177622</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -112,6 +132,9 @@
     <MESSAGE value="WIP | ARENA TP &amp; KIT KANGAROO" />
     <MESSAGE value="WIP | KIT KANGAROO FIX" />
     <MESSAGE value="WIP | Spawn Protection" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP | Spawn Protection" />
+    <MESSAGE value="WIP" />
+    <MESSAGE value="WIP | Separated Classes" />
+    <MESSAGE value="WIP | FIXES" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP | FIXES" />
   </component>
 </project>
