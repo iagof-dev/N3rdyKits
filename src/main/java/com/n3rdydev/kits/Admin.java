@@ -9,6 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Admin {
 
     public static void Receive(Player p) {
+
         p.getInventory().clear();
 
         ItemStack kb_stick = new ItemStack(Material.STICK, 1);

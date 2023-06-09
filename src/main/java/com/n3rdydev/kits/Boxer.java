@@ -19,7 +19,10 @@ public class Boxer {
             ItemStack r_mushroom = new ItemStack(Material.RED_MUSHROOM, 64);
             ItemStack b_mushroom = new ItemStack(Material.BROWN_MUSHROOM, 64);
             ItemStack bowl = new ItemStack(Material.BOWL, 64);
-
+            ItemStack player_track = new ItemStack(Material.COMPASS, 1);
+            ItemMeta ptrack_meta = (ItemMeta) player_track.getItemMeta();
+            ptrack_meta.setDisplayName("§eRastreador");
+            player_track.setItemMeta(ptrack_meta);
             sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 
             ItemMeta sopa = (ItemMeta) soup.getItemMeta();
@@ -40,6 +43,9 @@ public class Boxer {
                         break;
                     case 15:
                         p.getInventory().addItem(b_mushroom);
+                        break;
+                    case 8:
+                        p.getInventory().addItem(player_track);
                         break;
                     default:
                         p.getInventory().addItem(soup);

@@ -1,6 +1,9 @@
 package com.n3rdydev.events;
 
+import com.n3rdydev.config;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -31,14 +34,27 @@ public class handleInteract implements Listener {
             }
 
 
-
             //==========KITS==========
+
+            //bussola rastreadora:
             if (e.getItem() != null && e.getItem().equals(p_tracker)) {
-                p.sendMessage("Jogador mais próximo: NULL");
+                String nickname = "Ninguém";
+                Player target = getNearest(p, 50.0);
+                float distance = 0;
+
+                //se a vitima for diferente de nula e não está no spawn
+                //pegar nome, localização e calcular distancia de blocos
+                if (target != null && !is_safe_zone(target.getLocation())) {
+                    nickname = target.getPlayer().getName();
+                    p.setCompassTarget(target.getLocation());
+                    distance = Math.round(p.getLocation().distanceSquared(target.getLocation()));
+                }
+
+                p.sendMessage("Jogador mais próximo: " + nickname + "! (" + distance + " metros de distancia).");
                 return;
             }
 
-
+            //kit kangaroo:
             if (e.getItem() != null && e.getItem().getType().equals(Material.FIREWORK)) {
                 if (e.getItem().getItemMeta().getDisplayName().equals("§eKangaroo")) {
                     e.setCancelled(true);
@@ -64,5 +80,47 @@ public class handleInteract implements Listener {
         } else {
             e.setCancelled(false);
         }
+    }
+
+
+    public Player getNearest(Player p, Double range) {
+        double distance = Double.POSITIVE_INFINITY;
+        Player target = null;
+        for (Entity e : p.getNearbyEntities(range, range, range)) {
+            if (!(e instanceof Player))
+                continue;
+            if (e == p) continue;
+            double distanceto = p.getLocation().distance(e.getLocation());
+            if (distanceto > distance)
+                continue;
+            distance = distanceto;
+            target = (Player) e;
+        }
+        return target;
+    }
+
+
+    private boolean is_safe_zone(Location location) {
+
+        String spawn_pos1 = config.get().getString("spawn.protection.pos1");
+        String spawn_pos2 = config.get().getString("spawn.protection.pos2");
+        String[] spawn_sep_1 = spawn_pos1.split(" ");
+        String[] spawn_sep_2 = spawn_pos2.split(" ");
+
+        int x1 = Integer.parseInt(spawn_sep_1[0]);
+        int x2 = Integer.parseInt(spawn_sep_2[0]);
+
+        int z1 = Integer.parseInt(spawn_sep_1[1]);
+        int z2 = Integer.parseInt(spawn_sep_2[1]);
+
+        int minX = Math.min(x1, x2);
+        int minZ = Math.min(z1, z2);
+        int maxX = Math.max(x1, x2);
+        int maxZ = Math.max(z1, z2);
+
+        int locX = location.getBlockX();
+        int locZ = location.getBlockZ();
+
+        return locX >= minX && locX <= maxX && locZ >= minZ && locZ <= maxZ;
     }
 }

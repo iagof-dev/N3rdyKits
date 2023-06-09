@@ -24,6 +24,10 @@ public class PvP {
         ItemMeta sopa = (ItemMeta) soup.getItemMeta();
         sopa.setDisplayName("§eSopa Mágica");
         soup.setItemMeta(sopa);
+        ItemStack player_track = new ItemStack(Material.COMPASS, 1);
+        ItemMeta ptrack_meta = (ItemMeta) player_track.getItemMeta();
+        ptrack_meta.setDisplayName("§eRastreador");
+        player_track.setItemMeta(ptrack_meta);
 
         for (int z = 0; z <= 36; z++){
 
@@ -39,6 +43,9 @@ public class PvP {
                     break;
                 case 15:
                     p.getInventory().addItem(b_mushroom);
+                    break;
+                case 8:
+                    p.getInventory().addItem(player_track);
                     break;
                 default:
                     p.getInventory().addItem(soup);

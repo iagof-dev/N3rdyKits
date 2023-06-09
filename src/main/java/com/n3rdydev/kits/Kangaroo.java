@@ -20,7 +20,10 @@ public class Kangaroo {
             ItemStack b_mushroom = new ItemStack(Material.BROWN_MUSHROOM, 64);
             ItemStack bowl = new ItemStack(Material.BOWL, 64);
             ItemStack kangaroo = new ItemStack(Material.FIREWORK, 1);
-
+            ItemStack player_track = new ItemStack(Material.COMPASS, 1);
+            ItemMeta ptrack_meta = (ItemMeta) player_track.getItemMeta();
+            ptrack_meta.setDisplayName("§eRastreador");
+            player_track.setItemMeta(ptrack_meta);
 
             ItemMeta kangaroo_meta = (ItemMeta) kangaroo.getItemMeta();
             kangaroo_meta.setDisplayName("§eKangaroo");
@@ -48,6 +51,9 @@ public class Kangaroo {
                         break;
                     case 15:
                         p.getInventory().addItem(b_mushroom);
+                        break;
+                    case 8:
+                        p.getInventory().addItem(player_track);
                         break;
                     default:
                         p.getInventory().addItem(soup);
