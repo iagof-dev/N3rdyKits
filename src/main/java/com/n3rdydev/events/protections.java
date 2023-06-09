@@ -40,13 +40,6 @@ public class protections implements Listener {
 
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void PlayerItemDamage(PlayerItemDamageEvent e) {
-        ItemStack item = e.getItem();
-
-    }
-
-
-    @EventHandler(priority = EventPriority.HIGHEST)
     public void MobsExplode(EntityExplodeEvent e) {
         e.setCancelled(true);
     }

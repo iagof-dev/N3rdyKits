@@ -1,5 +1,6 @@
 package com.n3rdydev.kits;
 
+import com.n3rdydev.events.handleArenaTeleport;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -20,7 +21,6 @@ public class PvP {
         ItemStack r_mushroom = new ItemStack(Material.RED_MUSHROOM, 64);
         ItemStack b_mushroom = new ItemStack(Material.BROWN_MUSHROOM, 64);
         ItemStack bowl = new ItemStack(Material.BOWL, 64);
-        sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
         ItemMeta sopa = (ItemMeta) soup.getItemMeta();
         sopa.setDisplayName("§eSopa Mágica");
         soup.setItemMeta(sopa);
@@ -47,6 +47,7 @@ public class PvP {
             }
         }
         p.updateInventory();
+        p.teleport(handleArenaTeleport.random_tp(p));
     }
 
 

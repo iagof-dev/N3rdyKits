@@ -21,8 +21,11 @@ public class handleInventory implements Listener {
                     p.closeInventory();
                     com.n3rdydev.kits.Kangaroo.Receive(p);
                     break;
+                case STONE_SWORD:
+                    p.closeInventory();
+                    com.n3rdydev.kits.Boxer.Receive(p);
+                    break;
             }
-            p.teleport(arena_tp.random_tp(p));
         } else {
             e.setCancelled(false);
         }

@@ -59,7 +59,7 @@ public class setar implements CommandExecutor {
                     p.sendMessage("[N3rdyKits] §aVocê definiu o novo spawn! (" + spawn_format + ")");
                     return true;
                 case "arena":
-                    if (strings[1].equals("0") || strings[1].equals("1") || strings[1].equals("2") || strings[1].equals("3") || strings[1].equals("4") || strings[1].equals("5") || strings[1].equals("6") || strings[1].equals("7") || strings[1].equals("8")) {
+                    if (strings[1].equals("0") || strings[1].equals("1") || strings[1].equals("2") || strings[1].equals("3") || strings[1].equals("4") || strings[1].equals("5") || strings[1].equals("6") || strings[1].equals("7") || strings[1].equals("8") || strings[1].equals("9")) {
 
                         double player_x = p.getLocation().getX();
                         double player_y = p.getLocation().getY();

@@ -50,10 +50,10 @@ public class main extends JavaPlugin implements Listener {
         Listener drop = new handleDrop();
         Listener inventory = new handleInventory();
         Listener pvp = new handlePvP();
-        Listener interact = new interaction();
+        Listener interact = new handleInteract();
         Listener protection = new protections();
-        Listener respawn = new respawn();
-        Listener spawn = new spawn();
+        Listener respawn = new handleRespawn();
+        Listener spawn = new handleSpawn();
         Listener sopa = new soup();
 
         //Event Listeners

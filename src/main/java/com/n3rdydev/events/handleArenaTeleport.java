@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Random;
 
-public class arena_tp {
+public class handleArenaTeleport {
 
     public static Location random_tp(Player p) {
         Location coords;

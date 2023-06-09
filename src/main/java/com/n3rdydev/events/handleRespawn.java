@@ -10,7 +10,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class respawn implements Listener {
+public class handleRespawn implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerRespawnEvent(PlayerRespawnEvent e) {
         Player p = e.getPlayer();

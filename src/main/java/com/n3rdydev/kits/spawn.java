@@ -17,9 +17,9 @@ public class spawn {
         ItemMeta kits_meta = (ItemMeta) gui_kits.getItemMeta();
         ItemMeta warps_meta = (ItemMeta) gui_warps.getItemMeta();
 
-        kits_meta.setDisplayName("§eKits");
+        kits_meta.setDisplayName("§l§eKits");
         gui_kits.setItemMeta(kits_meta);
-        warps_meta.setDisplayName("§6Warps");
+        warps_meta.setDisplayName("§l§6Warps");
         gui_warps.setItemMeta(warps_meta);
         p.getInventory().setItem(4, gui_kits);
         p.getInventory().setItem(0, gui_warps);
