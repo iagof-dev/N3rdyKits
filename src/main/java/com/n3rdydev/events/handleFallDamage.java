@@ -18,7 +18,6 @@ public class handleFallDamage implements Listener {
 
     public static HashMap<UUID,Boolean> launchpad = new HashMap<>();
 
-
     @EventHandler(priority = EventPriority.HIGHEST)
     public static void onPlayerFall(EntityDamageEvent e){
         if (e.getEntity() instanceof Player && e.getCause() == EntityDamageEvent.DamageCause.FALL) {
@@ -39,10 +38,16 @@ public class handleFallDamage implements Listener {
                     if (entity instanceof Player) {
                         Player target = (Player) entity;
                         if (!target.isSneaking()) {
-                            target.setHealth(0);
-                            target.sendMessage("§cVocê morreu para " + p.getName() + "! (-5 xp)");
-                            p.sendMessage("§a Você matou " + target.getName() + "! (+5 xp)");
-                            com.n3rdydev.scoreboard.sb_default.Set(target);
+                            float fallDistance = p.getFallDistance();
+                            float damage = (fallDistance - 3) / 2;
+                            double health_calc = target.getHealth() - damage;
+                            target.damage(damage);
+                            if(health_calc < 1){
+                                target.sendMessage("§cVocê morreu para " + p.getName() + "! (-5 xp)");
+                                p.sendMessage("§a Você matou " + target.getName() + "! (+5 xp)");
+                                com.n3rdydev.scoreboard.sb_default.Set(target);
+                            }
+
                         }
                     }
                 }
