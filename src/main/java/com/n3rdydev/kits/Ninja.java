@@ -2,21 +2,16 @@ package com.n3rdydev.kits;
 
 import com.n3rdydev.entity.player;
 import com.n3rdydev.events.handleArenaTeleport;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
 
-public class PvP {
+public class Ninja {
+
     public static void Receive(Player p){
         p.getInventory().clear();
-        player.selected_kit.put(p.getUniqueId(), "pvp");
+        player.selected_kit.put(p.getUniqueId(), "ninja");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);
@@ -58,6 +53,5 @@ public class PvP {
         p.updateInventory();
         p.teleport(handleArenaTeleport.random_tp(p));
     }
-
 
 }

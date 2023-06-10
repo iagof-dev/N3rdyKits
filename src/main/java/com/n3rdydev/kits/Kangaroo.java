@@ -1,5 +1,6 @@
 package com.n3rdydev.kits;
 
+import com.n3rdydev.entity.player;
 import com.n3rdydev.events.handleArenaTeleport;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -13,6 +14,7 @@ public class Kangaroo {
     public static void Receive(Player p) {
         if (p.hasPermission("n3rdydev.kit.kangaroo") || p.hasPermission("n3rdydev.kit.*")) {
             p.getInventory().clear();
+            player.selected_kit.put(p.getUniqueId(), "kangaroo");
 
             ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
             ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);

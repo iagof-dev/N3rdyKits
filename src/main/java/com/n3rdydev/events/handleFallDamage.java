@@ -1,5 +1,10 @@
 package com.n3rdydev.events;
 
+import com.n3rdydev.entity.player;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,6 +23,8 @@ public class handleFallDamage implements Listener {
     public static void onPlayerFall(EntityDamageEvent e){
         if (e.getEntity() instanceof Player && e.getCause() == EntityDamageEvent.DamageCause.FALL) {
             Player p = (Player) e.getEntity();
+            Location landingLocation = p.getLocation().subtract(0, e.getDamage(), 0);
+            Block fallblock = landingLocation.getBlock();
             if(launchpad.get(p.getUniqueId()) != false){
                 e.setCancelled(true);
                 launchpad.put(p.getUniqueId(), false);
@@ -26,6 +33,20 @@ public class handleFallDamage implements Listener {
                 e.setCancelled(false);
             }
 
+            if(player.selected_kit.get(p.getUniqueId()) == "stomper"){
+                e.setDamage(0);
+                for (Entity entity : p.getNearbyEntities(3, 3, 3)) {
+                    if (entity instanceof Player) {
+                        Player target = (Player) entity;
+                        if (!target.isSneaking()) {
+                            target.setHealth(0);
+                            target.sendMessage("§cVocê morreu para " + p.getName() + "! (-5 xp)");
+                            p.sendMessage("§a Você matou " + target.getName() + "! (+5 xp)");
+                            com.n3rdydev.scoreboard.sb_default.Set(target);
+                        }
+                    }
+                }
+            }
         }
     }
 

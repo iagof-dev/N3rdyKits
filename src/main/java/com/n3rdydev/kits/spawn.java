@@ -1,6 +1,7 @@
 package com.n3rdydev.kits;
 
 
+import com.n3rdydev.entity.player;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -10,6 +11,7 @@ public class spawn {
 
     public static void Receive(Player p){
         p.getInventory().clear();
+        player.selected_kit.put(p.getUniqueId(), "Nenhum");
 
         ItemStack gui_kits = new ItemStack(Material.CHEST);
         ItemStack gui_warps = new ItemStack(Material.COMPASS);
@@ -25,6 +27,7 @@ public class spawn {
         p.getInventory().setItem(0, gui_warps);
 
         p.updateInventory();
+        com.n3rdydev.scoreboard.sb_default.Set(p);
 
     }
 

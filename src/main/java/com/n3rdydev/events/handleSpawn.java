@@ -1,6 +1,7 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.commands.admin;
+import com.n3rdydev.entity.player;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

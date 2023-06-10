@@ -26,10 +26,14 @@ public class handleKitSelector implements Listener {
                 case BOW:
                     com.n3rdydev.kits.Archer.Receive(p);
                     break;
+                case IRON_BOOTS:
+                    com.n3rdydev.kits.Stomper.Receive(p);
+                    break;
                 default:
                     p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
                     break;
             }
+            com.n3rdydev.scoreboard.sb_default.Set(p);
         } else {
             e.setCancelled(false);
         }
