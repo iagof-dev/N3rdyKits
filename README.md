@@ -4,7 +4,7 @@ Java | Plugin minigame KitPvP
 ## Comandos & Permissões
 /admin - n3rdydev.command.admin
 
-/build - n3rdydev.construir
+/build - n3rdydev.command.build
 
 /gm [0/1] - n3rdydev.command.gm
 
