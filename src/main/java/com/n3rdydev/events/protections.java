@@ -29,15 +29,6 @@ public class protections implements Listener {
         e.setCancelled(true);
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlayerPlaceBlocks(BlockPlaceEvent e) {
-        if (e.getPlayer().hasPermission("n3rdydev.0000.buildon")) {
-            e.setCancelled(false);
-        } else {
-            e.setCancelled(true);
-        }
-    }
-
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void MobsExplode(EntityExplodeEvent e) {

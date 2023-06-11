@@ -62,8 +62,12 @@ public class main extends JavaPlugin implements Listener {
         Listener spawn = new handleSpawn();
         Listener sopa = new handleSoup();
         Listener chat = new handleChat();
+        Listener blocks = new handlePlaceBlocks();
+        Listener placa_sopa = new handleSoupSign();
 
         //Event Listeners
+        this.getServer().getPluginManager().registerEvents(blocks, this);
+        this.getServer().getPluginManager().registerEvents(placa_sopa, this);
         this.getServer().getPluginManager().registerEvents( sopa, this);
         this.getServer().getPluginManager().registerEvents(drop, this);
         this.getServer().getPluginManager().registerEvents(inventory, this);

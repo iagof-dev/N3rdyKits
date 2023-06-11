@@ -3,6 +3,7 @@ package com.n3rdydev.events;
 import com.n3rdydev.config;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -31,6 +32,20 @@ public class handleInteract implements Listener {
             if (e.getItem() != null && e.getItem().getType().equals(Material.CHEST)) {
                 p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
                 return;
+            }
+
+            if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                if (e.getClickedBlock().getType().equals(Material.SIGN_POST) || e.getClickedBlock().getType().equals(Material.WALL_SIGN)) {
+                    Sign sign = (Sign) e.getClickedBlock().getState();
+
+                    if (sign.getLine(1).contains("Refil de sopa")) {
+                        p.openInventory(com.n3rdydev.gui.gui_SoupRefil.open(p));
+                    } else if (sign.getLine(1).contains("Refil de recraft")) {
+                        p.openInventory(com.n3rdydev.gui.gui_RecraftRefil.open(p));
+                    }
+
+                    return;
+                }
             }
 
 
