@@ -28,11 +28,15 @@ commands:
     description: invisibilidade para outros jogadores.
     permission-message: §cNão possui permissão.
     usage: /admin
-  setar:
+  definir:
     description: define as cordenadas para ser teleportado
     permission-message: §cNão possui permissão.
-    usage: /setar args values
+    usage: /definir [protecao/spawn/arena/warp] values
   gm:
     description: troca de gamemode.
     permission-message: §cNão possui permissão.
     usage: /gm [0/1]
+  ping:
+    description: retorna o ping do jogador.
+    permission-message: §cNão possui permissão.
+    usage: /ping

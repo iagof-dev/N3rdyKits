@@ -14,7 +14,7 @@ public class build implements CommandExecutor, Listener {
 
         Player p = (Player) sender;
         String perm = "n3rdydev.0000.buildon";
-        if(p.hasPermission("n3rdydev.construir") || p.hasPermission("n3rdydev.*")){
+        if(p.hasPermission("n3rdydev.command.build") || p.hasPermission("n3rdydev.*")){
             if(p.hasPermission(perm)){
                 //remove
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset " + perm);

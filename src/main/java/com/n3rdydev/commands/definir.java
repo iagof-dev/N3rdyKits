@@ -1,14 +1,12 @@
 package com.n3rdydev.commands;
 
 import com.n3rdydev.config;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class setar implements CommandExecutor {
+public class definir implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -16,7 +14,7 @@ public class setar implements CommandExecutor {
         boolean permission = false;
 
 
-        if (p.hasPermission("n3rdydev.command.arenaset") || p.hasPermission("n3rdydev.*")) {
+        if (p.hasPermission("n3rdydev.command.definir") || p.hasPermission("n3rdydev.*")) {
             permission = true;
         }
 

@@ -1,7 +1,8 @@
 package com.n3rdydev;
 
-import com.n3rdydev.commands.setar;
-import com.n3rdydev.commands.setarspawn;
+import com.n3rdydev.commands.definir;
+import com.n3rdydev.commands.gm;
+import com.n3rdydev.commands.ping;
 import com.n3rdydev.events.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -76,13 +77,14 @@ public class main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(fall_damage, this);
         this.getServer().getPluginManager().registerEvents(this, this);
 
-        getCommand("setarspawn").setExecutor(new setarspawn());
         getCommand("build").setExecutor(new com.n3rdydev.commands.build());
         getCommand("kit").setExecutor(new com.n3rdydev.commands.kit());
         getCommand("kits").setExecutor(new com.n3rdydev.commands.kits());
         getCommand("admin").setExecutor(new com.n3rdydev.commands.admin());
         getCommand("n3rdykits").setExecutor(new com.n3rdydev.commands.n3rdykits());
-        getCommand("setar").setExecutor(new setar());
+        getCommand("definir").setExecutor(new definir());
+        getCommand("gm").setExecutor(new gm());
+        getCommand("ping").setExecutor(new ping());
 
         com.n3rdydev.settings.spawn.load();
 
