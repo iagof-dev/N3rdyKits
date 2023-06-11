@@ -65,6 +65,7 @@ public class handleInteract implements Listener {
                                 Vector direction = p.getLocation().getDirection();
                                 direction.setY(0.40);
                                 direction.multiply(2.0);
+                                handleFallDamage.launchpad.put(p.getUniqueId(), true);
                                 p.setVelocity(direction);
                             }
                         }.runTaskLater(com.n3rdydev.main.getPlugin(), 1L);
