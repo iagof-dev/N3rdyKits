@@ -1,6 +1,6 @@
 package com.n3rdydev.events;
 
-import com.n3rdydev.config;
+import com.n3rdydev.settings.config;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 

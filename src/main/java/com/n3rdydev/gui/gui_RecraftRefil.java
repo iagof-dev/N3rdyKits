@@ -29,11 +29,11 @@ public class gui_RecraftRefil extends JavaPlugin implements Listener {
         int control = 0;
         for (int v = 1; v <= 9; v++) {
             inv.setItem(control, createItem(cogu_vermelho, "Cogumelo Vermelho"));
-            control++;
+            control+= 1;
             inv.setItem(control, createItem(pote, "Pote Vazio"));
-            control++;
+            control+= 1;
             inv.setItem(control, createItem(cogu_marrom, "Cogumelo Marrom"));
-            control++;
+            control+=1;
             break;
         }
 

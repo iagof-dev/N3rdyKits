@@ -1,7 +1,5 @@
 package com.n3rdydev.settings;
 
-import com.n3rdydev.config;
-
 public class spawn {
 
     public static double spawn_x;

@@ -26,11 +26,14 @@ public class handleRespawn implements Listener {
         e.getDrops().clear();
 
         if (e.getEntity().getKiller() == null) {
+            com.n3rdydev.entity.player.addDeaths(p);
             p.sendMessage("§cVocê morreu!");
         } else {
             Player pk = (Player) e.getEntity().getKiller().getPlayer();
             p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
             pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
+            com.n3rdydev.entity.player.addKills(pk);
+            com.n3rdydev.entity.player.addDeaths(p);
             com.n3rdydev.scoreboard.sb_default.Set(pk);
 
         }

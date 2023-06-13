@@ -39,6 +39,9 @@ public class kits extends JavaPlugin implements Listener {
                 case 4:
                     inv.setItem(v, createItem(new ItemStack(Material.IRON_BOOTS), "§lStomper", "Kit Stomper", " ", "§6Clique para selecionar!"));
                     break;
+                case 5:
+                    inv.setItem(v, createItem(new ItemStack(Material.NETHER_STAR), "§lNinja", "Kit Ninja", " ", "§6Clique para selecionar!"));
+                    break;
                 default:
                     inv.setItem(v, createItem(new ItemStack(Material.THIN_GLASS), "§cVazio", " ", " ", " "));
                     break;

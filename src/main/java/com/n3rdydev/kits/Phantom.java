@@ -7,15 +7,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Ninja {
+public class Phantom {
 
-
-
-    //KIT NINJA
-    //AINDA NÃO ESTÁ FUNCIONANDO :(
     public static void Receive(Player p){
         p.getInventory().clear();
-        player.selected_kit.put(p.getUniqueId(), "ninja");
+        player.selected_kit.put(p.getUniqueId(), "pvp");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);
@@ -29,12 +25,21 @@ public class Ninja {
         ItemMeta ptrack_meta = (ItemMeta) player_track.getItemMeta();
         ptrack_meta.setDisplayName("§eRastreador");
         player_track.setItemMeta(ptrack_meta);
+        ItemStack feather = new ItemStack(Material.FEATHER, 1);
+
+        ItemMeta feather_meta = feather.getItemMeta();
+        feather_meta.setDisplayName("§ePhantom");
+        feather.setItemMeta(feather_meta);
+
 
         for (int z = 0; z <= 36; z++){
 
             switch(z){
                 case 0:
                     p.getInventory().addItem(sword);
+                    break;
+                case 1:
+                    p.getInventory().addItem(feather);
                     break;
                 case 13:
                     p.getInventory().addItem(r_mushroom);
@@ -56,6 +61,9 @@ public class Ninja {
         }
         p.updateInventory();
         p.teleport(handleArenaTeleport.random_tp(p));
-    }
 
+
+
+
+    }
 }

@@ -1,6 +1,7 @@
 package com.n3rdydev.events;
 
-import com.n3rdydev.config;
+import com.n3rdydev.entity.player;
+import com.n3rdydev.settings.config;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,6 +20,11 @@ public class handlePvP implements Listener {
             if (is_safe_zone(e.getEntity().getLocation())) {
                 e.setCancelled(true);
             }
+
+            if(player.selected_kit.get(attacker.getUniqueId()) == "ninja" && player.selected_kit.get(attacker) == "Ninja"){
+                player.lastplayer_hit.put(attacker.getUniqueId(), target.getUniqueId());
+            }
+
         }
     }
 

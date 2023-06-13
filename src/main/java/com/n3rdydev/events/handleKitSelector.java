@@ -29,6 +29,9 @@ public class handleKitSelector implements Listener {
                 case IRON_BOOTS:
                     com.n3rdydev.kits.Stomper.Receive(p);
                     break;
+                case NETHER_STAR:
+                    com.n3rdydev.kits.Ninja.Receive(p);
+                    break;
                 default:
                     p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
                     break;

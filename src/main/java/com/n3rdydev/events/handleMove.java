@@ -27,23 +27,5 @@ public class handleMove implements Listener {
                 p.setVelocity(direction);
                 break;
         }
-
-        if(player.selected_kit.get(p.getUniqueId()) == "ninja" && p.isSneaking() != false){
-            //agachando
-            long lastTeleportTime = tp_cooldown.get(p.getUniqueId());
-            long currentTime = System.currentTimeMillis();
-            long timeDiff = currentTime - lastTeleportTime;
-            long cooldown = 10000; // Tempo de cooldown em milissegundos (10 segundos)
-
-            if (timeDiff < cooldown) {
-                p.sendMessage("Você só pode teleportar novamente após " + (cooldown - timeDiff) / 1000 + " segundos.");
-                event.setCancelled(true);
-                return;
-            }
-            else{
-                
-            }
-
-        }
     }
 }

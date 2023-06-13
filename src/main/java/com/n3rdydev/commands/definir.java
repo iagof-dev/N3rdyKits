@@ -1,6 +1,6 @@
 package com.n3rdydev.commands;
 
-import com.n3rdydev.config;
+import com.n3rdydev.settings.config;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

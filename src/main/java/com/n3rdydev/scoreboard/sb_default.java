@@ -30,8 +30,8 @@ public class sb_default {
         Score sel_kit = obj.getScore("Kit: §a" + selected_kit);
         Score vazio = obj.getScore(" ");
         Score title_1 = obj.getScore("§lSTATS");
-        Score p_kill = obj.getScore(" Kills: §a" + p.getStatistic(Statistic.PLAYER_KILLS));
-        Score p_death = obj.getScore(" Mortes: §a" + p.getStatistic(Statistic.DEATHS));
+        Score p_kill = obj.getScore(" Kills: §a" + com.n3rdydev.entity.player.getKills(p));
+        Score p_death = obj.getScore(" Mortes: §a" + com.n3rdydev.entity.player.getDeaths(p));
         Score xp = obj.getScore(" XP: §a0");
         Score vazio2 = obj.getScore("  ");
         Score serverip = obj.getScore(com.n3rdydev.settings.serverinfo.ip());

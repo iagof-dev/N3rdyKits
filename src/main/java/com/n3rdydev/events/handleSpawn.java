@@ -16,6 +16,9 @@ public class handleSpawn implements Listener {
 
     public static void user_setup(Player p){
         handleFallDamage.launchpad.put(p.getUniqueId(), false);
+
+        player.selected_kit.put(p.getUniqueId(), "Nenhum");
+
         com.n3rdydev.scoreboard.sb_default.Set(p);
         p.setHealth(20);
         for (PotionEffect effect : p.getActivePotionEffects())

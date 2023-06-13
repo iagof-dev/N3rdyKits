@@ -1,4 +1,4 @@
-package com.n3rdydev;
+package com.n3rdydev.settings;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;

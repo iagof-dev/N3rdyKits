@@ -1,6 +1,6 @@
 package com.n3rdydev.events;
 
-import com.n3rdydev.config;
+import com.n3rdydev.settings.config;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
@@ -67,6 +67,12 @@ public class handleInteract implements Listener {
 
                 p.sendMessage("Jogador mais próximo: " + nickname + "! (" + distance + " metros de distancia).");
                 return;
+            }
+
+            //kit feeather:
+            if(e.getItem() != null && e.getItem().getType().equals(Material.FEATHER) && e.getItem().getItemMeta().getDisplayName().equals("§ePhantom")){
+                p.setAllowFlight(true);
+
             }
 
             //kit kangaroo:

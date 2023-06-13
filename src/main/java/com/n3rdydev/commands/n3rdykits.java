@@ -1,19 +1,15 @@
 package com.n3rdydev.commands;
 
-import com.n3rdydev.config;
+import com.n3rdydev.settings.config;
 import com.n3rdydev.entity.player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.MetadataValue;
 
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 public class n3rdykits implements CommandExecutor, Listener {
@@ -38,11 +34,11 @@ public class n3rdykits implements CommandExecutor, Listener {
                 case "definircl":
                     LocalTime horario_atual = java.time.LocalTime.now();
                     LocalTime proximo_uso = horario_atual.plusSeconds(6);
-                    player.cooldown_ninja.put(p.getUniqueId(), proximo_uso);
+                    player.kit_cooldown.put(p.getUniqueId(), proximo_uso);
                     break;
                 case "possousar":
                     LocalTime horario_atual1 = java.time.LocalTime.now();
-                    LocalTime delay_player = player.cooldown_ninja.get(p.getUniqueId());
+                    LocalTime delay_player = player.kit_cooldown.get(p.getUniqueId());
                     if(horario_atual1.isAfter(delay_player)){
                         p.sendMessage("§aVocê pode utilizar novamente!!");
                     }
@@ -51,6 +47,16 @@ public class n3rdykits implements CommandExecutor, Listener {
                         long segs = tempo_restante.getSeconds();
                         p.sendMessage("§cVocê só podera utilizar daqui " + segs + " segundos.");
                     }
+                    break;
+                case "addkills":
+                    com.n3rdydev.entity.player.addKills(p);
+                    com.n3rdydev.scoreboard.sb_default.Set(p);
+                    p.sendMessage("§5Kill adicionada!");
+                    break;
+                case "addmortes":
+                    com.n3rdydev.entity.player.addDeaths(p);
+                    com.n3rdydev.scoreboard.sb_default.Set(p);
+                    p.sendMessage("§5morte adicionada!");
                     break;
 
             }
