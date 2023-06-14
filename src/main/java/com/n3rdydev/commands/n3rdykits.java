@@ -32,20 +32,12 @@ public class n3rdykits implements CommandExecutor, Listener {
                     p.sendMessage("§aNumero gerado: " + rndNumber);
                     break;
                 case "definircl":
-                    LocalTime horario_atual = java.time.LocalTime.now();
-                    LocalTime proximo_uso = horario_atual.plusSeconds(6);
-                    player.kit_cooldown.put(p.getUniqueId(), proximo_uso);
+                    player.setCooldown(p, 6);
                     break;
-                case "possousar":
-                    LocalTime horario_atual1 = java.time.LocalTime.now();
-                    LocalTime delay_player = player.kit_cooldown.get(p.getUniqueId());
-                    if(horario_atual1.isAfter(delay_player)){
-                        p.sendMessage("§aVocê pode utilizar novamente!!");
-                    }
-                    else{
-                        Duration tempo_restante = Duration.between(horario_atual1, delay_player);
-                        long segs = tempo_restante.getSeconds();
-                        p.sendMessage("§cVocê só podera utilizar daqui " + segs + " segundos.");
+                case "verificarcl":
+                    Boolean cooldown = com.n3rdydev.entity.player.getCooldown(p);
+                    if(cooldown != false){
+                        p.sendMessage(player.getCooldownTime(p));
                     }
                     break;
                 case "addkills":

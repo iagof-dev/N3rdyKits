@@ -9,33 +9,34 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import java.util.EventListener;
+import java.util.UUID;
 
 public class handleTeleport implements Listener {
 
     @EventHandler
-    public static void PlayerShift(PlayerToggleSneakEvent e){
+    public static void PlayerShift(PlayerToggleSneakEvent e) {
         Player p = e.getPlayer();
-        if(player.selected_kit.get(p.getUniqueId()) == null){
+        if (player.selected_kit.get(p.getUniqueId()) == null) {
             return;
         }
-
 
         //kit ninja
         String kit = player.selected_kit.get(p.getUniqueId());
         kit = kit.toLowerCase();
-        if(kit == "ninja"){
+        if (kit == "ninja") {
             Boolean cooldown = com.n3rdydev.entity.player.getCooldown(p);
-            if (cooldown != true){
-                if(player.lastplayer_hit.get(p) != null){
-                    Player victim = Bukkit.getPlayer(player.lastplayer_hit.get(p));
-                    Location tp = victim.getLocation();
-                    p.teleport(tp);
-                    com.n3rdydev.entity.player.setCooldown(p, 7);
-                }
+            if (cooldown != true) {
+                UUID vitima = player.lastplayer_hit.get(p.getUniqueId());
+                Player victim = Bukkit.getPlayer(vitima);
+                Location tp = victim.getLocation();
+                p.teleport(tp);
+                com.n3rdydev.entity.player.setCooldown(p, 7);
             }
-            else{
-                p.sendMessage(com.n3rdydev.entity.player.getCooldownTime(p));
+
+            if (cooldown != false) {
+                p.sendMessage(player.getCooldownTime(p));
             }
+
         }
 
     }

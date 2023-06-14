@@ -17,8 +17,6 @@ public class handleSpawn implements Listener {
     public static void user_setup(Player p){
         handleFallDamage.launchpad.put(p.getUniqueId(), false);
 
-        player.selected_kit.put(p.getUniqueId(), "Nenhum");
-
         com.n3rdydev.scoreboard.sb_default.Set(p);
         p.setHealth(20);
         for (PotionEffect effect : p.getActivePotionEffects())
@@ -50,6 +48,7 @@ public class handleSpawn implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = (Player) e.getPlayer();
+        player.selected_kit.put(p.getUniqueId(), "Nenhum");
         e.setJoinMessage("");
         user_setup(p);
         Location spawn_loc = new Location(p.getWorld(), com.n3rdydev.settings.spawn.spawn_x, com.n3rdydev.settings.spawn.spawn_y, com.n3rdydev.settings.spawn.spawn_z);

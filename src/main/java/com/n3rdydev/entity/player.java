@@ -24,27 +24,29 @@ public class player {
     public static Boolean getCooldown(Player p){
         UUID p_uid = p.getUniqueId();
 
-        if(player.kit_cooldown.get(p.getUniqueId()) == null){
+        if(player.kit_cooldown.get(p_uid) == null){
             return false;
         }
 
         LocalTime atual = LocalTime.now();
         LocalTime delay_player = player.kit_cooldown.get(p.getUniqueId());
 
+        //se tiver com delay
+        //retornar: true
         if(atual.isAfter(delay_player)){
-            return true;
+            kit_cooldown.put(p_uid, null);
+            return false;
         }
         else{
-            return false;
+            return true;
         }
     }
     public static String getCooldownTime(Player p){
         UUID p_uid = p.getUniqueId();
 
         if(player.kit_cooldown.get(p.getUniqueId()) == null){
-            return "";
+            return null;
         }
-
         LocalTime atual = java.time.LocalTime.now();
         LocalTime delay_player = player.kit_cooldown.get(p.getUniqueId());
         Duration tempo_restante = Duration.between(atual, delay_player);

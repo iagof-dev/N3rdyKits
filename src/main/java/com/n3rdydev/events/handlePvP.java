@@ -21,7 +21,9 @@ public class handlePvP implements Listener {
                 e.setCancelled(true);
             }
 
-            if(player.selected_kit.get(attacker.getUniqueId()) == "ninja" && player.selected_kit.get(attacker) == "Ninja"){
+            String selected_kit = player.selected_kit.get(attacker.getUniqueId());
+            selected_kit = selected_kit.toLowerCase();
+            if(selected_kit == "ninja"){
                 player.lastplayer_hit.put(attacker.getUniqueId(), target.getUniqueId());
             }
 
