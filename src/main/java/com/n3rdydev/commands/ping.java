@@ -15,10 +15,7 @@ public class ping implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
         Player p = (Player) commandSender;
-
-
         //p.sendMessage("§aSeu ping é de " + ping + "ms.");
-
 
         return true;
     }

@@ -17,8 +17,6 @@ public class admin implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
 
-        //Não finalizado
-
         if(p.hasPermission("n3rdydev.command.admin") || p.hasPermission("n3rdydev.*")){
 
             Collection<? extends Player> players = p.getServer().getOnlinePlayers();

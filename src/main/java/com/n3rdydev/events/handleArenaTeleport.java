@@ -5,14 +5,20 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class handleArenaTeleport {
 
     public static Location random_tp(Player p) {
         Location coords;
+        int min = 1;
+        int max = 10;
+        int rndNumber = ThreadLocalRandom.current().nextInt(min, max + 1);
 
-        Random rnd = new Random();
-        int rndNumber = rnd.nextInt(0, 10);
+
+        //Random rnd = new Random();
+        //int rndNumber = rnd.nextInt(0, 10);
+
 
         String arena0 = config.get().getString("arenas.arena"+rndNumber);
         String[] sp_cord_arena = arena0.split(" ");

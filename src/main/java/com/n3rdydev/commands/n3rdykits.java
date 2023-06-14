@@ -50,6 +50,11 @@ public class n3rdykits implements CommandExecutor, Listener {
                     com.n3rdydev.scoreboard.sb_default.Set(p);
                     p.sendMessage("§5morte adicionada!");
                     break;
+                case "mostrarkit":
+                    String kit = player.selected_kit.get(p.getUniqueId());
+
+                    p.sendMessage("§5Você está com o kit: "+ kit);
+                    break;
 
             }
 
