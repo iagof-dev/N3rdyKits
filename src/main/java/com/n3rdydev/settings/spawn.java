@@ -1,5 +1,7 @@
 package com.n3rdydev.settings;
 
+import org.bukkit.Location;
+
 public class spawn {
 
     public static double spawn_x;
@@ -12,6 +14,30 @@ public class spawn {
         spawn_x = Double.parseDouble(spawn_sep[0]);
         spawn_y = Double.parseDouble(spawn_sep[1]);
         spawn_z = Double.parseDouble(spawn_sep[2]);
+    }
+
+    public static boolean is_safe_zone(Location location) {
+
+        String spawn_pos1 = config.get().getString("spawn.protection.pos1");
+        String spawn_pos2 = config.get().getString("spawn.protection.pos2");
+        String[] spawn_sep_1 = spawn_pos1.split(" ");
+        String[] spawn_sep_2 = spawn_pos2.split(" ");
+
+        int x1 = Integer.parseInt(spawn_sep_1[0]);
+        int x2 = Integer.parseInt(spawn_sep_2[0]);
+
+        int z1 = Integer.parseInt(spawn_sep_1[1]);
+        int z2 = Integer.parseInt(spawn_sep_2[1]);
+
+        int minX = Math.min(x1, x2);
+        int minZ = Math.min(z1, z2);
+        int maxX = Math.max(x1, x2);
+        int maxZ = Math.max(z1, z2);
+
+        int locX = location.getBlockX();
+        int locZ = location.getBlockZ();
+
+        return locX >= minX && locX <= maxX && locZ >= minZ && locZ <= maxZ;
     }
 
 }

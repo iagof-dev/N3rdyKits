@@ -26,11 +26,15 @@ public class handleTeleport implements Listener {
         if (kit == "ninja") {
             Boolean cooldown = com.n3rdydev.entity.player.getCooldown(p);
             if (cooldown != true) {
+
                 UUID vitima = player.lastplayer_hit.get(p.getUniqueId());
                 Player victim = Bukkit.getPlayer(vitima);
                 Location tp = victim.getLocation();
-                p.teleport(tp);
-                com.n3rdydev.entity.player.setCooldown(p, 7);
+                if(com.n3rdydev.settings.spawn.is_safe_zone(tp) != true){
+                    p.teleport(tp);
+                    com.n3rdydev.entity.player.setCooldown(p, 7);
+                }
+
             }
 
             if (cooldown != false) {
