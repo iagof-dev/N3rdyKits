@@ -17,9 +17,9 @@ public class kit implements CommandExecutor, Listener {
             return true;
         }
 
-        String selected_kit = player.selected_kit.get(p.getUniqueId()).toLowerCase();
-
-        if(selected_kit != "nenhum" || selected_kit != null){
+        String skit = player.selected_kit.get(p.getUniqueId());
+        skit = skit.toLowerCase();
+        if(skit != "nenhum"){
             p.sendMessage("§cVocê já está com kit!");
             return true;
         }
