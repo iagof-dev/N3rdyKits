@@ -7,19 +7,21 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.UUID;
+
 public class score implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
+        UUID puid = p.getUniqueId();
 
-        if(com.n3rdydev.entity.player.is_scoreboard_enabled(p)){
-            player.scoreboard.put(p.getUniqueId(), false);
-            p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+        if (player.scoreboard.get(puid) != false) {
+            player.updateScoreboard(p);
             p.sendMessage("§cVocê desativou a scoreboard!");
-        }
-        else{
-            player.scoreboard.put(p.getUniqueId(), true);
+
+        } else {
+            player.updateScoreboard(p);
             p.sendMessage("§aVocê ativou a scoreboard!");
         }
 

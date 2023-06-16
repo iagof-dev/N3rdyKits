@@ -12,12 +12,25 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.potion.PotionEffect;
 
+import java.util.UUID;
+
+import static com.n3rdydev.entity.player.scoreboard;
+
 public class handleSpawn implements Listener {
 
     public static void user_setup(Player p){
+        player.selected_kit.put(p.getUniqueId(), "Nenhum");
+        UUID puid = p.getUniqueId();
         handleFallDamage.launchpad.put(p.getUniqueId(), false);
-        player.scoreboard.put(p.getUniqueId(), true);
-        com.n3rdydev.scoreboard.sb_default.Set(p);
+        if (scoreboard.get(puid) != true || scoreboard.get(puid) == null) {
+            scoreboard.put(puid, true);
+            com.n3rdydev.scoreboard.sb_default.Set(p);
+        } else {
+            scoreboard.put(puid, false);
+            p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+
+        }
+
         p.setHealth(20);
         for (PotionEffect effect : p.getActivePotionEffects())
             p.removePotionEffect(effect.getType());
@@ -48,7 +61,6 @@ public class handleSpawn implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = (Player) e.getPlayer();
-        player.selected_kit.put(p.getUniqueId(), "Nenhum");
         e.setJoinMessage("");
         user_setup(p);
         Location spawn_loc = new Location(p.getWorld(), com.n3rdydev.settings.spawn.spawn_x, com.n3rdydev.settings.spawn.spawn_y, com.n3rdydev.settings.spawn.spawn_z);

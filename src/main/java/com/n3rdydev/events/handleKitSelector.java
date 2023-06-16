@@ -37,9 +37,7 @@ public class handleKitSelector implements Listener {
                     p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
                     break;
             }
-            if(player.is_scoreboard_enabled(p) != false){
-                com.n3rdydev.scoreboard.sb_default.Set(p);
-            }
+            com.n3rdydev.entity.player.updateScoreboard(p);
         } else {
             e.setCancelled(false);
         }

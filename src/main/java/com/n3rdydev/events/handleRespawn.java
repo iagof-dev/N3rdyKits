@@ -2,6 +2,7 @@ package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
 import com.n3rdydev.settings.spawn;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,6 +23,7 @@ public class handleRespawn implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent e) {
         Player p = (Player) e.getEntity().getPlayer();
+        p.setFireTicks(0);
         handleFallDamage.launchpad.put(p.getUniqueId(), false);
         e.setDeathMessage("");
         e.getDrops().clear();
@@ -45,11 +47,10 @@ public class handleRespawn implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                if(player.is_scoreboard_enabled(p) != false){
-                    com.n3rdydev.scoreboard.sb_default.Set(p);
-                }
+                com.n3rdydev.entity.player.updateScoreboard(p);
                 com.n3rdydev.kits.spawn.Receive(p);
             }
         }.runTaskLater(com.n3rdydev.main.getPlugin(), 1L);
+
     }
 }

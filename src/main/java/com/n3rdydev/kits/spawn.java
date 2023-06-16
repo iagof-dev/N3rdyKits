@@ -27,8 +27,6 @@ public class spawn {
         p.getInventory().setItem(0, gui_warps);
 
         p.updateInventory();
-        com.n3rdydev.scoreboard.sb_default.Set(p);
-
     }
 
 }
