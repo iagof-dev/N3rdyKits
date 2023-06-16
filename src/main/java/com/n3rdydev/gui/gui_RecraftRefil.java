@@ -34,7 +34,6 @@ public class gui_RecraftRefil extends JavaPlugin implements Listener {
             control+= 1;
             inv.setItem(control, createItem(cogu_marrom, "Cogumelo Marrom"));
             control+=1;
-            break;
         }
 
 
