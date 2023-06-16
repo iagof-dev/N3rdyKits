@@ -1,5 +1,6 @@
 package com.n3rdydev.events;
 
+import com.n3rdydev.entity.player;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -36,7 +37,9 @@ public class handleKitSelector implements Listener {
                     p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
                     break;
             }
-            com.n3rdydev.scoreboard.sb_default.Set(p);
+            if(player.is_scoreboard_enabled(p) != false){
+                com.n3rdydev.scoreboard.sb_default.Set(p);
+            }
         } else {
             e.setCancelled(false);
         }

@@ -36,7 +36,7 @@ commands:
     description: troca de gamemode.
     permission-message: §cNão possui permissão.
     usage: /gm [0/1]
-  ping:
-    description: retorna o ping do jogador.
+  score:
+    description: Ativa/desativa scoreborad.
     permission-message: §cNão possui permissão.
-    usage: /ping
+    usage: /score

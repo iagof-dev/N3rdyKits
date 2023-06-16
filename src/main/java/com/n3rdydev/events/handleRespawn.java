@@ -1,5 +1,6 @@
 package com.n3rdydev.events;
 
+import com.n3rdydev.entity.player;
 import com.n3rdydev.settings.spawn;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -28,13 +29,14 @@ public class handleRespawn implements Listener {
         if (e.getEntity().getKiller() == null) {
             com.n3rdydev.entity.player.addDeaths(p);
             p.sendMessage("§cVocê morreu!");
+
+
         } else {
             Player pk = (Player) e.getEntity().getKiller().getPlayer();
             p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
             pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
             com.n3rdydev.entity.player.addKills(pk);
             com.n3rdydev.entity.player.addDeaths(p);
-            com.n3rdydev.scoreboard.sb_default.Set(pk);
 
         }
 
@@ -43,7 +45,9 @@ public class handleRespawn implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                com.n3rdydev.scoreboard.sb_default.Set(p);
+                if(player.is_scoreboard_enabled(p) != false){
+                    com.n3rdydev.scoreboard.sb_default.Set(p);
+                }
                 com.n3rdydev.kits.spawn.Receive(p);
             }
         }.runTaskLater(com.n3rdydev.main.getPlugin(), 1L);

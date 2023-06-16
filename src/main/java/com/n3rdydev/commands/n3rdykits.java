@@ -52,6 +52,7 @@ public class n3rdykits implements CommandExecutor, Listener {
                     break;
                 case "mostrarkit":
                     String kit = player.selected_kit.get(p.getUniqueId());
+                    kit = kit.toLowerCase();
 
                     p.sendMessage("§5Você está com o kit: "+ kit);
                     break;

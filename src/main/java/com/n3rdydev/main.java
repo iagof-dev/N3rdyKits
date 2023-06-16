@@ -2,6 +2,7 @@ package com.n3rdydev;
 
 import com.n3rdydev.commands.definir;
 import com.n3rdydev.commands.gm;
+import com.n3rdydev.commands.score;
 import com.n3rdydev.events.*;
 import com.n3rdydev.settings.config;
 import org.bukkit.Bukkit;
@@ -90,6 +91,7 @@ public class main extends JavaPlugin implements Listener {
         getCommand("n3rdykits").setExecutor(new com.n3rdydev.commands.n3rdykits());
         getCommand("definir").setExecutor(new definir());
         getCommand("gm").setExecutor(new gm());
+        getCommand("score").setExecutor(new score());
 
         com.n3rdydev.settings.spawn.load();
 

@@ -12,6 +12,7 @@ public class player {
     public static HashMap<UUID, UUID> lastplayer_hit = new HashMap();
     public static HashMap<UUID, String> selected_kit = new HashMap();
     public static HashMap<UUID, Integer> kills = new HashMap();
+    public static HashMap<UUID, Boolean> scoreboard = new HashMap();
     public static HashMap<UUID, Integer> deaths = new HashMap();
     public static HashMap<UUID, LocalTime> kit_cooldown = new HashMap();
 
@@ -100,6 +101,11 @@ public class player {
         }
         Integer p_deaths = deaths.get(p.getUniqueId());
         return p_deaths;
+    }
+
+
+    public static boolean is_scoreboard_enabled(Player p){
+        return scoreboard.get(p.getUniqueId());
     }
 
 
