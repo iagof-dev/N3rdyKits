@@ -22,13 +22,12 @@ public class handleSpawn implements Listener {
         player.selected_kit.put(p.getUniqueId(), "Nenhum");
         UUID puid = p.getUniqueId();
         handleFallDamage.launchpad.put(p.getUniqueId(), false);
-        if (scoreboard.get(puid) != true || scoreboard.get(puid) == null) {
+        if (scoreboard.get(puid) == null || scoreboard.get(puid) != true ) {
             scoreboard.put(puid, true);
             com.n3rdydev.scoreboard.sb_default.Set(p);
         } else {
             scoreboard.put(puid, false);
             p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
-
         }
 
         p.setHealth(20);

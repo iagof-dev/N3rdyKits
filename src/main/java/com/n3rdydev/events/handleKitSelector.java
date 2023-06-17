@@ -1,11 +1,16 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+
+import java.util.UUID;
+
+import static com.n3rdydev.entity.player.scoreboard;
 
 public class handleKitSelector implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -37,7 +42,10 @@ public class handleKitSelector implements Listener {
                     p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
                     break;
             }
-            com.n3rdydev.entity.player.updateScoreboard(p);
+            UUID puid = p.getUniqueId();
+            if (scoreboard.get(puid) != false ) {
+                com.n3rdydev.scoreboard.sb_default.Set(p);
+            }
         } else {
             e.setCancelled(false);
         }

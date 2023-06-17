@@ -12,6 +12,10 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.UUID;
+
+import static com.n3rdydev.entity.player.scoreboard;
+
 public class handleRespawn implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerRespawnEvent(PlayerRespawnEvent e) {
@@ -22,32 +26,36 @@ public class handleRespawn implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent e) {
-        Player p = (Player) e.getEntity().getPlayer();
-        p.setFireTicks(0);
-        handleFallDamage.launchpad.put(p.getUniqueId(), false);
-        e.setDeathMessage("");
-        e.getDrops().clear();
-
-        if (e.getEntity().getKiller() == null) {
-            com.n3rdydev.entity.player.addDeaths(p);
-            p.sendMessage("§cVocê morreu!");
-
-
-        } else {
-            Player pk = (Player) e.getEntity().getKiller().getPlayer();
-            p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
-            pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
-            com.n3rdydev.entity.player.addKills(pk);
-            com.n3rdydev.entity.player.addDeaths(p);
-
-        }
-
-        e.getEntity().spigot().respawn();
-
         new BukkitRunnable() {
             @Override
             public void run() {
-                com.n3rdydev.entity.player.updateScoreboard(p);
+                Player p = (Player) e.getEntity().getPlayer();
+                p.setFireTicks(0);
+                handleFallDamage.launchpad.put(p.getUniqueId(), false);
+                e.setDeathMessage("");
+                e.getDrops().clear();
+
+                if (e.getEntity().getKiller() == null) {
+                    com.n3rdydev.entity.player.addDeaths(p);
+                    p.sendMessage("§cVocê morreu!");
+
+
+                } else {
+                    Player pk = (Player) e.getEntity().getKiller().getPlayer();
+                    p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
+                    pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
+                    com.n3rdydev.entity.player.addKills(pk);
+                    com.n3rdydev.entity.player.addDeaths(p);
+
+                }
+
+                e.getEntity().spigot().respawn();
+                UUID puid = p.getUniqueId();
+
+
+                if (scoreboard.get(puid) != false ) {
+                    com.n3rdydev.scoreboard.sb_default.Set(p);
+                }
                 com.n3rdydev.kits.spawn.Receive(p);
             }
         }.runTaskLater(com.n3rdydev.main.getPlugin(), 1L);
