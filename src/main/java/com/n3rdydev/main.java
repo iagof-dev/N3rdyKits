@@ -96,8 +96,6 @@ public class main extends JavaPlugin implements Listener {
         config.get().addDefault("database.mysql.table", "estatistica");
 
         config.get().addDefault("spawn.point", "0 0 0");
-        config.get().addDefault("spawn.pos1", "0 0 0");
-        config.get().addDefault("spawn.pos2", "0 0 0");
         config.get().addDefault("spawn.protection.pos1", "0 0");
         config.get().addDefault("spawn.protection.pos2", "0 0");
 

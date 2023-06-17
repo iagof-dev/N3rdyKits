@@ -18,17 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class kits extends JavaPlugin implements Listener {
-    public static Inventory list_kits(Player p){
+    public static Inventory list_kits(Player p) {
         //                                  Player | tamanho 3 linhas com 9 colunas | Nome que aparece em cima
-        Inventory inv = Bukkit.createInventory(p, 9*3, "Lista de Kits");
+        Inventory inv = Bukkit.createInventory(p, 9 * 3, "Lista de Kits");
 
-        for(int v = 0; v <= 26; v++){
-            switch(v){
+        for (int v = 0; v <= 26; v++) {
+            switch (v) {
                 case 0:
                     inv.setItem(v, createItem(new ItemStack(Material.DIAMOND_SWORD), "§lPvP", "Kit padrão", " ", "§6Clique para selecionar!"));
                     break;
                 case 1:
-                    inv.setItem(v, createItem(new ItemStack(Material.FIREWORK), "§lKangaroo", "Foguetinho", " ","§6Clique para selecionar!"));
+                    inv.setItem(v, createItem(new ItemStack(Material.FIREWORK), "§lKangaroo", "Foguetinho", " ", "§6Clique para selecionar!"));
                     break;
                 case 2:
                     inv.setItem(v, createItem(new ItemStack(Material.STONE_SWORD), "§lBoxer", "Kit Boxer", " ", "§6Clique para selecionar!"));
@@ -42,6 +42,9 @@ public class kits extends JavaPlugin implements Listener {
                 case 5:
                     inv.setItem(v, createItem(new ItemStack(Material.NETHER_STAR), "§lNinja", "Kit Ninja", " ", "§6Clique para selecionar!"));
                     break;
+                case 6:
+                    inv.setItem(v, createItem(new ItemStack(Material.FEATHER), "§lPhantom", "Kit Phantom", " ", "§6Clique para selecionar!"));
+                    break;
                 default:
                     inv.setItem(v, createItem(new ItemStack(Material.THIN_GLASS), "§cVazio", " ", " ", " "));
                     break;
@@ -49,22 +52,21 @@ public class kits extends JavaPlugin implements Listener {
         }
 
 
-
         return inv;
     }
-    private static ItemStack createItem(ItemStack item, String nome, String ... descricao){
+
+    private static ItemStack createItem(ItemStack item, String nome, String... descricao) {
 
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', nome));
         List<String> lores = new ArrayList<>();
-        for (String s : descricao){
+        for (String s : descricao) {
             lores.add(ChatColor.translateAlternateColorCodes('&', s));
         }
         meta.setLore(lores);
         item.setItemMeta(meta);
         return item;
     }
-
 
 
 }

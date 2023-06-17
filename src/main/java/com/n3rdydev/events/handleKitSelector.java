@@ -1,6 +1,9 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.gui.kits;
+import com.n3rdydev.kits.*;
+import com.n3rdydev.scoreboard.sb_default;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,30 +24,33 @@ public class handleKitSelector implements Listener {
             p.closeInventory();
             switch (e.getCurrentItem().getType()) {
                 case DIAMOND_SWORD:
-                    com.n3rdydev.kits.PvP.Receive(p);
+                    PvP.Receive(p);
                     break;
                 case FIREWORK:
-                    com.n3rdydev.kits.Kangaroo.Receive(p);
+                    Kangaroo.Receive(p);
                     break;
                 case STONE_SWORD:
-                    com.n3rdydev.kits.Boxer.Receive(p);
+                    Boxer.Receive(p);
                     break;
                 case BOW:
-                    com.n3rdydev.kits.Archer.Receive(p);
+                    Archer.Receive(p);
                     break;
                 case IRON_BOOTS:
-                    com.n3rdydev.kits.Stomper.Receive(p);
+                    Stomper.Receive(p);
                     break;
                 case NETHER_STAR:
-                    com.n3rdydev.kits.Ninja.Receive(p);
+                    Ninja.Receive(p);
+                    break;
+                case FEATHER:
+                    Phantom.Receive(p);
                     break;
                 default:
-                    p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
+                    p.openInventory(kits.list_kits(p));
                     break;
             }
             UUID puid = p.getUniqueId();
             if (scoreboard.get(puid) != false ) {
-                com.n3rdydev.scoreboard.sb_default.Set(p);
+                sb_default.Set(p);
             }
         } else {
             e.setCancelled(false);
