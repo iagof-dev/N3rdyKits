@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import com.n3rdydev.kits.*;
 
 public class kit implements CommandExecutor, Listener {
     @Override
@@ -19,7 +20,7 @@ public class kit implements CommandExecutor, Listener {
 
         String skit = player.selected_kit.get(p.getUniqueId());
         skit = skit.toLowerCase();
-        if(skit != "nenhum"){
+        if (!skit.equals("nenhum")) {
             p.sendMessage("§cVocê já está com kit!");
             return true;
         }
@@ -28,22 +29,25 @@ public class kit implements CommandExecutor, Listener {
 
         switch(args[0]){
             case "pvp":
-                com.n3rdydev.kits.PvP.Receive(p);
+                PvP.Receive(p);
                 break;
             case "kangaroo":
-                com.n3rdydev.kits.Kangaroo.Receive(p);
+                Kangaroo.Receive(p);
                 break;
             case "archer":
-                com.n3rdydev.kits.Archer.Receive(p);
+                Archer.Receive(p);
                 break;
             case "ninja":
-                com.n3rdydev.kits.Ninja.Receive(p);
+                Ninja.Receive(p);
                 break;
             case "boxer":
-                com.n3rdydev.kits.Boxer.Receive(p);
+                Boxer.Receive(p);
                 break;
             case "stomper":
-                com.n3rdydev.kits.Stomper.Receive(p);
+                Stomper.Receive(p);
+                break;
+            case "phantom":
+                Phantom.Receive(p);
                 break;
             default:
                 p.sendMessage("§cKit inexistente!");

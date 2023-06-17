@@ -1,7 +1,6 @@
 package com.n3rdydev.kits;
 
 import com.n3rdydev.entity.player;
-import com.n3rdydev.events.handleArenaTeleport;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -55,7 +54,8 @@ public class Ninja {
             }
         }
         p.updateInventory();
-        p.teleport(handleArenaTeleport.random_tp(p));
+        player.randomTpArena(p);
+
     }
 
 }

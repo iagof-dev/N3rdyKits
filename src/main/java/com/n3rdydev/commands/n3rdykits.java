@@ -21,7 +21,6 @@ public class n3rdykits implements CommandExecutor, Listener {
 
             switch(strings[0]){
                 case "reload":
-                    config.save();
                     config.reload();
                     com.n3rdydev.settings.spawn.load();
                     p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " DEV | Recarregado");

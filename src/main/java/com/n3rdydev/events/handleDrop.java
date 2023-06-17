@@ -1,5 +1,6 @@
 package com.n3rdydev.events;
 
+import com.n3rdydev.settings.spawn;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Item;
@@ -65,6 +66,11 @@ public class handleDrop implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerTake(PlayerPickupItemEvent e) {
+
+        if(spawn.is_safe_zone(e.getItem().getLocation())){
+            e.setCancelled(true);
+        }
+
         new BukkitRunnable() {
             @Override
             public void run() {

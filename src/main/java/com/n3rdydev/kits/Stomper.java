@@ -1,23 +1,11 @@
 package com.n3rdydev.kits;
 
 import com.n3rdydev.entity.player;
-import com.n3rdydev.events.handleArenaTeleport;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import com.n3rdydev.entity.player;
-import com.n3rdydev.events.handleArenaTeleport;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
+
 public class Stomper {
         public static void Receive(Player p){
             p.getInventory().clear();
@@ -61,6 +49,7 @@ public class Stomper {
                 }
             }
             p.updateInventory();
-            p.teleport(handleArenaTeleport.random_tp(p));
+            player.randomTpArena(p);
+
         }
 }

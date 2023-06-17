@@ -14,14 +14,6 @@ public class gm implements CommandExecutor {
         if(p.hasPermission("n3rdydev.command.gm") || p.hasPermission("n3rdydev.*")){
             switch(strings[0]){
                 case "1":
-                    p.setGameMode(GameMode.CREATIVE);
-                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aModo de jogo alterado para CRIATIVO");
-                    return true;
-                case "0":
-                    p.setGameMode(GameMode.SURVIVAL);
-                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aModo de jogo alterado para SURVIVAL");
-                    return true;
-
                 case "C":
                 case "c":
                     p.setGameMode(GameMode.CREATIVE);
@@ -29,6 +21,7 @@ public class gm implements CommandExecutor {
                     return true;
 
                 case "s":
+                case "0":
                 case "S":
                     p.setGameMode(GameMode.SURVIVAL);
                     p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aModo de jogo alterado para SURVIVAL");

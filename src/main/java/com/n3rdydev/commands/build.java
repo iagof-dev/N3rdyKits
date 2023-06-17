@@ -7,23 +7,25 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
+import static com.n3rdydev.entity.player.can_build;
+import static com.n3rdydev.entity.player.toggleBuild;
+
 public class build implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Player p = (Player) sender;
-        String perm = "n3rdydev.0000.buildon";
         if(p.hasPermission("n3rdydev.command.build") || p.hasPermission("n3rdydev.*")){
-            if(p.hasPermission(perm)){
+            if(can_build(p)){
                 //remove
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset " + perm);
+                toggleBuild(p);
                 p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §cModo Construir DESABILITADO!");
                 return true;
             }
             else{
                 //adiciona
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set " + perm);
+                toggleBuild(p);
                 p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aModo Construir HABILITADO!");
                 return true;
             }

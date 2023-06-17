@@ -14,21 +14,17 @@ import org.bukkit.potion.PotionEffect;
 
 import java.util.UUID;
 
+import static com.n3rdydev.entity.player.can_build;
 import static com.n3rdydev.entity.player.scoreboard;
 
 public class handleSpawn implements Listener {
 
-    public static void user_setup(Player p){
+    public static void user_setup(Player p) {
         player.selected_kit.put(p.getUniqueId(), "Nenhum");
         UUID puid = p.getUniqueId();
         handleFallDamage.launchpad.put(p.getUniqueId(), false);
-        if (scoreboard.get(puid) == null || scoreboard.get(puid) != true ) {
-            scoreboard.put(puid, true);
-            com.n3rdydev.scoreboard.sb_default.Set(p);
-        } else {
-            scoreboard.put(puid, false);
-            p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
-        }
+        scoreboard.put(puid, true);
+        com.n3rdydev.scoreboard.sb_default.Set(p);
 
         p.setHealth(20);
         for (PotionEffect effect : p.getActivePotionEffects())
@@ -49,10 +45,10 @@ public class handleSpawn implements Listener {
         p.setDisplayName(prefix);
         p.setPlayerListName(prefix);
 
-        if(p.hasPermission("n3rdydev.0000.buildon")){
+        if (p.hasPermission("n3rdydev.0000.buildon")) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset n3rdydev.0000.buildon");
         }
-        if(p.hasPermission("n3rdydev.command.admin")){
+        if (p.hasPermission("n3rdydev.command.admin")) {
             admin.invis.put(p.getUniqueId(), false);
         }
     }

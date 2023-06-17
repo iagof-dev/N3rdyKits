@@ -1,5 +1,6 @@
 package com.n3rdydev.events;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -14,11 +15,16 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
 
+import static com.n3rdydev.entity.player.can_build;
+
 public class protections implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerBreak(BlockBreakEvent e) {
-        if (e.getPlayer().hasPermission("n3rdydev.0000.buildon")) {
+        Player p = e.getPlayer();
+
+        if (can_build(p) != false) {
             e.setCancelled(false);
+
         } else {
             e.setCancelled(true);
         }

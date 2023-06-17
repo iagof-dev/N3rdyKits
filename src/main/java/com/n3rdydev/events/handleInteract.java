@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+import com.n3rdydev.entity.player;
 
 public class handleInteract implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -71,8 +72,27 @@ public class handleInteract implements Listener {
 
             //kit feeather:
             if(e.getItem() != null && e.getItem().getType().equals(Material.FEATHER) && e.getItem().getItemMeta().getDisplayName().equals("§ePhantom")){
-                p.setAllowFlight(true);
+                if(p.getAllowFlight() != true && player.getCooldown(p) != true){
+                    p.setAllowFlight(true);
+                    p.sendMessage("§aPhantom ativado! desativando em 6 segundos...");
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            p.setAllowFlight(false);
+                            p.sendMessage("§cPhantom desativado!");
+                            player.setCooldown(p, 6);
 
+                        }
+                    }.runTaskLater(com.n3rdydev.main.getPlugin(), 100L);
+                }
+                else{
+                    if(player.getCooldown(p) != false){
+                        p.sendMessage(player.getCooldownTime(p));
+                    }
+                    else{
+                        p.sendMessage("§cVocê já está com phantom ativado!");
+                    }
+                }
             }
 
             //kit kangaroo:

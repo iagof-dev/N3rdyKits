@@ -1,13 +1,18 @@
 package com.n3rdydev.entity;
 
+import com.n3rdydev.settings.config;
+import jdk.javadoc.internal.doclets.toolkit.util.NewAPIBuilder;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class player {
     public static HashMap<UUID, UUID> lastplayer_hit = new HashMap();
@@ -16,6 +21,7 @@ public class player {
     public static HashMap<UUID, Boolean> scoreboard = new HashMap();
     public static HashMap<UUID, Integer> deaths = new HashMap();
     public static HashMap<UUID, LocalTime> kit_cooldown = new HashMap();
+    public static HashMap<UUID, Boolean> can_build = new HashMap();
 
     public static void setCooldown(Player p, long Seconds) {
         LocalTime time_now = LocalTime.now();
@@ -55,6 +61,27 @@ public class player {
         Duration tempo_restante = Duration.between(atual, delay_player);
         long segs = tempo_restante.getSeconds();
         return ("§cVocê só podera utilizar daqui " + segs + " segundos.");
+    }
+
+    public static boolean can_build(Player p){
+        UUID puid = p.getUniqueId();
+        if(can_build.get(puid) != null){
+            return can_build.get(puid);
+        }
+        else{
+            can_build.put(puid, false);
+            return false;
+        }
+    }
+
+    public static void toggleBuild(Player p){
+        UUID puid = p.getUniqueId();
+        if(can_build(p) != true){
+            can_build.put(puid, true);
+        }
+        else{
+            can_build.put(puid, false);
+        }
     }
 
     public static void addKills(Player p) {
@@ -117,6 +144,31 @@ public class player {
             p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
 
         }
+    }
+
+    public static void randomTpArena(Player p) {
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Double[] spawn = new Double[3];
+
+                int min = 1;
+                int max = 10;
+                int rndNumber = ThreadLocalRandom.current().nextInt(min, max + 1);
+                //Random rnd = new Random();
+                //int rndNumber = rnd.nextInt(min, max);
+                String arena0 = config.get().getString("arenas.arena" + rndNumber);
+                String[] sp_cord_arena = arena0.split(" ");
+                spawn[0] = Double.parseDouble(sp_cord_arena[0]);
+                spawn[1] = Double.parseDouble(sp_cord_arena[1]);
+                spawn[2] = Double.parseDouble(sp_cord_arena[2]);
+                Location spawn_loc = new Location(p.getWorld(), spawn[0], spawn[1], spawn[2]);
+                p.teleport(spawn_loc);
+            }
+
+        }.runTaskLater(com.n3rdydev.main.getPlugin(), 1L);
+
     }
 
 

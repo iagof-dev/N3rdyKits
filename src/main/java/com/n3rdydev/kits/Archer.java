@@ -1,10 +1,8 @@
 package com.n3rdydev.kits;
 
 import com.n3rdydev.entity.player;
-import com.n3rdydev.events.handleArenaTeleport;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -68,7 +66,7 @@ public class Archer {
                 }
             }
             p.updateInventory();
-            p.teleport(handleArenaTeleport.random_tp(p));
+            player.randomTpArena(p);
         } else {
             p.sendMessage("§cVocê não possui o kit Archer.");
             return;
