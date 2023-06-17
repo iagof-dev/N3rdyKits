@@ -12,6 +12,8 @@ Java | Plugin minigame KitPvP
 
 /kits - X
 
+/score - X
+
 /n3rdykits [args] - n3rdydev.developer.test
 
 /definir [protecao/spawn/arena/warp] - n3rdydev.command.definir
