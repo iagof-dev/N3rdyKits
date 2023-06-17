@@ -19,7 +19,7 @@ public class n3rdykits implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
-        String mensagem = serverinfo.name() + " | &a";
+        String mensagem = serverinfo.name() + " | ";
 
         if (p.hasPermission("n3rdydev.developer.test") || p.hasPermission("n3rdydev.*")) {
 

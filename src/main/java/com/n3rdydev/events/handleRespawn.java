@@ -52,13 +52,15 @@ public class handleRespawn implements Listener {
                 }
 
                 e.getEntity().spigot().respawn();
+
+                com.n3rdydev.kits.spawn.Receive(p);
+
                 UUID puid = p.getUniqueId();
 
 
                 if (scoreboard.get(puid) != false ) {
                     sb_default.Set(p);
                 }
-                com.n3rdydev.kits.spawn.Receive(p);
             }
         }.runTaskLater(main.getPlugin(), 1L);
 

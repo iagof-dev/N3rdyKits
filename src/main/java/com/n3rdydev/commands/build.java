@@ -21,12 +21,12 @@ public class build implements CommandExecutor, Listener {
         if(p.hasPermission("n3rdydev.command.build") || p.hasPermission("n3rdydev.*")){
             toggleBuild(p);
             if(can_build(p)){
-                //remove
-                p.sendMessage(nome + " §cModo Construir DESABILITADO!");
-            }
-            else{
                 //adiciona
                 p.sendMessage(nome + " §aModo Construir HABILITADO!");
+            }
+            else{
+                //remove
+                p.sendMessage(nome + " §cModo Construir DESABILITADO!");
             }
             return true;
         }

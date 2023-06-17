@@ -20,10 +20,11 @@ import static com.n3rdydev.entity.player.scoreboard;
 public class handleSpawn implements Listener {
 
     public static void user_setup(Player p) {
-        player.selected_kit.put(p.getUniqueId(), "Nenhum");
         UUID puid = p.getUniqueId();
-        handleFallDamage.launchpad.put(p.getUniqueId(), false);
+        player.selected_kit.put(puid, "Nenhum");
+        handleFallDamage.launchpad.put(puid, false);
         scoreboard.put(puid, true);
+        can_build.put(puid, false);
         com.n3rdydev.scoreboard.sb_default.Set(p);
 
         p.setHealth(20);
