@@ -1,5 +1,6 @@
 package com.n3rdydev.commands;
 
+import com.n3rdydev.settings.serverinfo;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,7 +32,7 @@ public class admin implements CommandExecutor {
                 p.setAllowFlight(false);
                 p.setFlying(false);
                 com.n3rdydev.kits.spawn.Receive(p);
-                p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §cVocê saiu do MODO ADMIN e está visivel!");
+                p.sendMessage(serverinfo.name() + " §cVocê saiu do MODO ADMIN e está visivel!");
                 invis.put(p.getUniqueId(), false);
             }
             else{
@@ -41,7 +42,7 @@ public class admin implements CommandExecutor {
                     }
                     else{
                         if(p_list.getName() != p.getName()){
-                            p_list.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §eStaff "+ p.getName() + " entrou no modo ADMIN!");
+                            p_list.sendMessage(serverinfo.name() + " §e "+ p.getName() + " entrou no modo ADMIN!");
                             p_list.showPlayer(p);
                         }
                     }
@@ -49,7 +50,7 @@ public class admin implements CommandExecutor {
                 com.n3rdydev.kits.Admin.Receive(p);
                 p.setAllowFlight(true);
                 p.setFlying(true);
-                p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aVocê entrou no MODO ADMIN e está invisivel!");
+                p.sendMessage(serverinfo.name() + " §aVocê entrou no MODO ADMIN e está invisivel!");
                 invis.put(p.getUniqueId(), true);
             }
 

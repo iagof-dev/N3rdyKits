@@ -1,5 +1,6 @@
 package com.n3rdydev.commands;
 
+import com.n3rdydev.settings.serverinfo;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,20 +16,19 @@ public class build implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
+        String nome = serverinfo.name();
         Player p = (Player) sender;
         if(p.hasPermission("n3rdydev.command.build") || p.hasPermission("n3rdydev.*")){
+            toggleBuild(p);
             if(can_build(p)){
                 //remove
-                toggleBuild(p);
-                p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §cModo Construir DESABILITADO!");
-                return true;
+                p.sendMessage(nome + " §cModo Construir DESABILITADO!");
             }
             else{
                 //adiciona
-                toggleBuild(p);
-                p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aModo Construir HABILITADO!");
-                return true;
+                p.sendMessage(nome + " §aModo Construir HABILITADO!");
             }
+            return true;
         }
         return true;
     }

@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
+import static com.n3rdydev.gui.kits.*;
+
 public class kits implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -19,7 +21,7 @@ public class kits implements CommandExecutor, Listener {
             p.sendMessage("§cVocê ja está com kit!");
             return true;
         }
-        p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
+        p.openInventory(list_kits(p));
 
         return true;
     }

@@ -24,32 +24,6 @@ public class main extends JavaPlugin implements Listener {
     public void onEnable(){
         plugin = this;
 
-        config.setup();
-        config.get().addDefault("server.name", "§8[§l§2N3rdyKits§8]");
-        config.get().addDefault("server.ip", "§7localhost");
-
-        config.get().addDefault("spawn.point", "0 0 0");
-        config.get().addDefault("spawn.pos1", "0 0 0");
-        config.get().addDefault("spawn.pos2", "0 0 0");
-        config.get().addDefault("spawn.protection.pos1", "0 0");
-        config.get().addDefault("spawn.protection.pos2", "0 0");
-
-
-        config.get().addDefault("arenas.arena0", "0 0 0");
-        config.get().addDefault("arenas.arena1", "0 0 0");
-        config.get().addDefault("arenas.arena2", "0 0 0");
-        config.get().addDefault("arenas.arena3", "0 0 0");
-        config.get().addDefault("arenas.arena4", "0 0 0");
-        config.get().addDefault("arenas.arena5", "0 0 0");
-        config.get().addDefault("arenas.arena6", "0 0 0");
-        config.get().addDefault("arenas.arena7", "0 0 0");
-        config.get().addDefault("arenas.arena8", "0 0 0");
-        config.get().addDefault("arenas.arena9", "0 0 0");
-
-        config.get().options().copyDefaults(true);
-        config.get().options().copyHeader(true);
-        config.save();
-
          //Registrando Eventos
 
         Listener drop = new handleDrop();
@@ -107,8 +81,45 @@ public class main extends JavaPlugin implements Listener {
 
     @Override
     public void onLoad(){
-        Connection DB = MySql.start();
         Bukkit.getConsoleSender().sendMessage("§e[N3rdyKits] | Plugin carregando...");
+
+        config.setup();
+        config.get().addDefault("server.name", "§8[§l§2N3rdyKits§8]");
+        config.get().addDefault("server.ip", "§7localhost");
+
+        config.get().addDefault("database.mysql.enable", false);
+        config.get().addDefault("database.mysql.address", "localhost");
+        config.get().addDefault("database.mysql.port", 3306);
+        config.get().addDefault("database.mysql.user", "root");
+        config.get().addDefault("database.mysql.password", "132490Kj@br=");
+        config.get().addDefault("database.mysql.database", "N3rdyKits");
+        config.get().addDefault("database.mysql.table", "estatistica");
+
+        config.get().addDefault("spawn.point", "0 0 0");
+        config.get().addDefault("spawn.pos1", "0 0 0");
+        config.get().addDefault("spawn.pos2", "0 0 0");
+        config.get().addDefault("spawn.protection.pos1", "0 0");
+        config.get().addDefault("spawn.protection.pos2", "0 0");
+
+
+        config.get().addDefault("arenas.arena0", "0 0 0");
+        config.get().addDefault("arenas.arena1", "0 0 0");
+        config.get().addDefault("arenas.arena2", "0 0 0");
+        config.get().addDefault("arenas.arena3", "0 0 0");
+        config.get().addDefault("arenas.arena4", "0 0 0");
+        config.get().addDefault("arenas.arena5", "0 0 0");
+        config.get().addDefault("arenas.arena6", "0 0 0");
+        config.get().addDefault("arenas.arena7", "0 0 0");
+        config.get().addDefault("arenas.arena8", "0 0 0");
+        config.get().addDefault("arenas.arena9", "0 0 0");
+
+        config.get().options().copyDefaults(true);
+        config.get().options().copyHeader(true);
+        config.save();
+
+        if(config.get().getBoolean("database.mysql.enable") != false){
+            Connection DB = MySql.start();
+        }
     }
 
 

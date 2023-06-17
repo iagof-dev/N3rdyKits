@@ -1,6 +1,7 @@
 package com.n3rdydev.commands;
 
 import com.n3rdydev.settings.config;
+import com.n3rdydev.settings.serverinfo;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,7 +25,7 @@ public class definir implements CommandExecutor {
         }
 
         if (strings.length == 0) {
-            p.sendMessage("[N3rdyKits] §cErro! Sintaxe incorreta\n§eExemplo:\n§e/setar [arena/spawn/protecao] <valor>\n§7(Observação: o valor do proteção é apenas x e y de 2 posições)");
+            p.sendMessage(serverinfo.name()+" §cErro! Sintaxe incorreta\n§eExemplo:\n§e/setar [arena/spawn/protecao] <valor>\n§7(Observação: o valor do proteção é apenas x e y de 2 posições)");
         }
 
         if (strings.length > 1 && strings.length >= 2) {
@@ -54,7 +55,7 @@ public class definir implements CommandExecutor {
                     config.save();
                     config.reload();
                     com.n3rdydev.settings.spawn.load();
-                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aVocê definiu o novo spawn! (" + spawn_format + ")");
+                    p.sendMessage(serverinfo.name() + " §aVocê definiu o novo spawn! (" + spawn_format + ")");
                     return true;
                 case "arena":
                     if (strings[1].equals("0") || strings[1].equals("1") || strings[1].equals("2") || strings[1].equals("3") || strings[1].equals("4") || strings[1].equals("5") || strings[1].equals("6") || strings[1].equals("7") || strings[1].equals("8") || strings[1].equals("9")) {
@@ -68,17 +69,17 @@ public class definir implements CommandExecutor {
                         config.reload();
                         com.n3rdydev.settings.spawn.load();
 
-                        p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aSucesso! você definiu arena " + strings[0] + "! (" + coords + ")");
+                        p.sendMessage(serverinfo.name() + " §aSucesso! você definiu arena " + strings[0] + "! (" + coords + ")");
                     }
                     else{
-                        p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " você precisa escolher a arena (0-9)!");
+                        p.sendMessage(serverinfo.name() + " você precisa escolher a arena (0-9)!");
                     }
 
                     return true;
                 case "warp":
                     break;
                 default:
-                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " Você precisa escolher qual arena deseja setar\n -arena (0-9)\n-warp");
+                    p.sendMessage(serverinfo.name() + " Você precisa escolher qual arena deseja setar\n -arena (0-9)\n-warp");
                     break;
             }
 

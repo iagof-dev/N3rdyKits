@@ -1,5 +1,6 @@
 package com.n3rdydev.commands;
 
+import com.n3rdydev.settings.serverinfo;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,14 +18,14 @@ public class gm implements CommandExecutor {
                 case "C":
                 case "c":
                     p.setGameMode(GameMode.CREATIVE);
-                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aModo de jogo alterado para CRIATIVO");
+                    p.sendMessage(serverinfo.name() + " §aModo de jogo alterado para CRIATIVO");
                     return true;
 
                 case "s":
                 case "0":
                 case "S":
                     p.setGameMode(GameMode.SURVIVAL);
-                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aModo de jogo alterado para SURVIVAL");
+                    p.sendMessage(serverinfo.name() + " §aModo de jogo alterado para SURVIVAL");
                     return true;
 
             }

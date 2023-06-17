@@ -1,5 +1,6 @@
 package com.n3rdydev.commands;
 
+import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.entity.player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,7 +22,7 @@ public class kit implements CommandExecutor, Listener {
         String skit = player.selected_kit.get(p.getUniqueId());
         skit = skit.toLowerCase();
         if (!skit.equals("nenhum")) {
-            p.sendMessage("§cVocê já está com kit!");
+            p.sendMessage(serverinfo.name() + " §cVocê já está com kit!");
             return true;
         }
 

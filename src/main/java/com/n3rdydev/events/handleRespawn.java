@@ -1,6 +1,8 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.main;
+import com.n3rdydev.scoreboard.sb_default;
 import com.n3rdydev.settings.spawn;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -26,6 +28,7 @@ public class handleRespawn implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent e) {
+
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -33,10 +36,9 @@ public class handleRespawn implements Listener {
                 p.setFireTicks(0);
                 handleFallDamage.launchpad.put(p.getUniqueId(), false);
                 e.setDeathMessage("");
-                e.getDrops().clear();
 
                 if (e.getEntity().getKiller() == null) {
-                    com.n3rdydev.entity.player.addDeaths(p);
+                    player.addDeaths(p);
                     p.sendMessage("§cVocê morreu!");
 
 
@@ -44,8 +46,8 @@ public class handleRespawn implements Listener {
                     Player pk = (Player) e.getEntity().getKiller().getPlayer();
                     p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
                     pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
-                    com.n3rdydev.entity.player.addKills(pk);
-                    com.n3rdydev.entity.player.addDeaths(p);
+                    player.addKills(pk);
+                    player.addDeaths(p);
 
                 }
 
@@ -54,11 +56,11 @@ public class handleRespawn implements Listener {
 
 
                 if (scoreboard.get(puid) != false ) {
-                    com.n3rdydev.scoreboard.sb_default.Set(p);
+                    sb_default.Set(p);
                 }
                 com.n3rdydev.kits.spawn.Receive(p);
             }
-        }.runTaskLater(com.n3rdydev.main.getPlugin(), 1L);
+        }.runTaskLater(main.getPlugin(), 1L);
 
     }
 }
