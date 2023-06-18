@@ -1,9 +1,9 @@
 package com.n3rdydev.events;
 
-import com.n3rdydev.commands.admin;
+import com.n3rdydev.commands.Admin;
 import com.n3rdydev.entity.player;
+import com.n3rdydev.settings.statistics;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,6 +25,7 @@ public class handleSpawn implements Listener {
         handleFallDamage.launchpad.put(puid, false);
         scoreboard.put(puid, true);
         can_build.put(puid, false);
+        player.loadStats(p);
         com.n3rdydev.scoreboard.sb_default.Set(p);
 
         p.setHealth(20);
@@ -50,7 +51,7 @@ public class handleSpawn implements Listener {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset n3rdydev.0000.buildon");
         }
         if (p.hasPermission("n3rdydev.command.admin")) {
-            admin.invis.put(p.getUniqueId(), false);
+            Admin.invis.put(p.getUniqueId(), false);
         }
     }
 

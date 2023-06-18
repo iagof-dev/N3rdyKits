@@ -57,8 +57,5 @@ public class protections implements Listener {
         e.setCancelled(true);
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlayerQuit(PlayerQuitEvent e) {
-        e.setQuitMessage("");
-    }
+
 }

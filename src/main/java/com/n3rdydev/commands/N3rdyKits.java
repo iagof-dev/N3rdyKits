@@ -5,17 +5,16 @@ import com.n3rdydev.settings.config;
 import com.n3rdydev.entity.player;
 import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.settings.spawn;
+import com.n3rdydev.settings.statistics;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import java.time.Duration;
-import java.time.LocalTime;
-import java.util.Random;
+import java.util.UUID;
 
-public class n3rdykits implements CommandExecutor, Listener {
+public class N3rdyKits implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
@@ -23,9 +22,11 @@ public class n3rdykits implements CommandExecutor, Listener {
 
         if (p.hasPermission("n3rdydev.developer.test") || p.hasPermission("n3rdydev.*")) {
 
+            UUID p_uid = p.getUniqueId();
             switch(strings[0]){
                 case "reload":
                     config.reload();
+                    statistics.reload();
                     spawn.load();
                     mensagem += ("§5Recarregado");
                     break;
@@ -54,7 +55,11 @@ public class n3rdykits implements CommandExecutor, Listener {
                     kit = kit.toLowerCase();
                     mensagem += ("§5Você está com o kit: "+ kit);
                     break;
-                case"score":
+                case "save":
+                    statistics.get().set(p_uid+".kills", player.getKills(p));
+                    statistics.get().set(p_uid+".deaths", player.getDeaths(p));
+                    statistics.get().set(p_uid+".xp", 0);
+                    statistics.save();
                     break;
 
             }

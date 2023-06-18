@@ -1,10 +1,9 @@
 package com.n3rdydev;
 
-import com.n3rdydev.commands.definir;
-import com.n3rdydev.commands.gm;
-import com.n3rdydev.commands.score;
+import com.n3rdydev.commands.*;
 import com.n3rdydev.events.*;
 import com.n3rdydev.settings.config;
+import com.n3rdydev.settings.statistics;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -40,6 +39,7 @@ public class main extends JavaPlugin implements Listener {
         Listener blocks = new handlePlaceBlocks();
         Listener placa_sopa = new handleSoupSign();
         Listener player_shift = new handleTeleport();
+        Listener player_quit = new handlePlayerQuit();
 
         //Event Listeners
         this.getServer().getPluginManager().registerEvents(blocks, this);
@@ -56,16 +56,17 @@ public class main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(chat, this);
         this.getServer().getPluginManager().registerEvents(fall_damage, this);
         this.getServer().getPluginManager().registerEvents(player_shift, this);
+        this.getServer().getPluginManager().registerEvents(player_quit, this);
         this.getServer().getPluginManager().registerEvents(this, this);
 
-        getCommand("build").setExecutor(new com.n3rdydev.commands.build());
-        getCommand("kit").setExecutor(new com.n3rdydev.commands.kit());
-        getCommand("kits").setExecutor(new com.n3rdydev.commands.kits());
-        getCommand("admin").setExecutor(new com.n3rdydev.commands.admin());
-        getCommand("n3rdykits").setExecutor(new com.n3rdydev.commands.n3rdykits());
-        getCommand("definir").setExecutor(new definir());
-        getCommand("gm").setExecutor(new gm());
-        getCommand("score").setExecutor(new score());
+        getCommand("build").setExecutor(new Build());
+        getCommand("kit").setExecutor(new Kit());
+        getCommand("kits").setExecutor(new Kits());
+        getCommand("admin").setExecutor(new Admin());
+        getCommand("n3rdykits").setExecutor(new N3rdyKits());
+        getCommand("definir").setExecutor(new Definir());
+        getCommand("gm").setExecutor(new GameMode());
+        getCommand("score").setExecutor(new Score());
 
         com.n3rdydev.settings.spawn.load();
 
@@ -75,6 +76,7 @@ public class main extends JavaPlugin implements Listener {
     @Override
     public void onDisable(){
         config.save();
+        statistics.save();
         Bukkit.getConsoleSender().sendMessage("§c[N3rdyKits] | Plugin Desabilitado!");
 
     }
@@ -82,6 +84,9 @@ public class main extends JavaPlugin implements Listener {
     @Override
     public void onLoad(){
         Bukkit.getConsoleSender().sendMessage("§e[N3rdyKits] | Plugin carregando...");
+
+        statistics.setup();
+        statistics.save();
 
         config.setup();
         config.get().addDefault("server.name", "§8[§l§2N3rdyKits§8]");

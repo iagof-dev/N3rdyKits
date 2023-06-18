@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class admin implements CommandExecutor {
+public class Admin implements CommandExecutor {
 
     public static HashMap<UUID, Boolean> invis = new HashMap<>();
 

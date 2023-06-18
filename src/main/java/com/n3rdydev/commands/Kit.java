@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import com.n3rdydev.kits.*;
 
-public class kit implements CommandExecutor, Listener {
+public class Kit implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player p = (Player) sender;

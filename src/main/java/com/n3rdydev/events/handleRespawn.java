@@ -28,14 +28,15 @@ public class handleRespawn implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent e) {
-
+        e.setDeathMessage("");
+        e.getDrops().clear();
         new BukkitRunnable() {
             @Override
             public void run() {
                 Player p = (Player) e.getEntity().getPlayer();
                 p.setFireTicks(0);
                 handleFallDamage.launchpad.put(p.getUniqueId(), false);
-                e.setDeathMessage("");
+                UUID puid = p.getUniqueId();
 
                 if (e.getEntity().getKiller() == null) {
                     player.addDeaths(p);
@@ -48,6 +49,12 @@ public class handleRespawn implements Listener {
                     pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
                     player.addKills(pk);
                     player.addDeaths(p);
+                    UUID pkuid = pk.getUniqueId();
+
+                    if (scoreboard.get(pkuid) != false ) {
+                        sb_default.Set(pk);
+                    }
+
 
                 }
 
@@ -55,12 +62,8 @@ public class handleRespawn implements Listener {
 
                 com.n3rdydev.kits.spawn.Receive(p);
 
-                UUID puid = p.getUniqueId();
 
 
-                if (scoreboard.get(puid) != false ) {
-                    sb_default.Set(p);
-                }
             }
         }.runTaskLater(main.getPlugin(), 1L);
 

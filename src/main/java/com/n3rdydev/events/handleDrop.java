@@ -37,12 +37,10 @@ public class handleDrop implements Listener {
                 is_sword = true;
                 break;
             case CHEST:
-                e.setCancelled(true);
-                break;
-            case COMPASS:
-                e.setCancelled(true);
-                break;
             case FIREWORK:
+            case COMPASS:
+            case BOW:
+            case FEATHER:
                 e.setCancelled(true);
                 break;
         }

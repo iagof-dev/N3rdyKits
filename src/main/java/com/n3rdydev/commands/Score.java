@@ -1,7 +1,6 @@
 package com.n3rdydev.commands;
 
 import com.n3rdydev.entity.player;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class score implements CommandExecutor {
+public class Score implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {

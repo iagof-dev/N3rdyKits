@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 
 import static com.n3rdydev.gui.kits.*;
 
-public class kits implements CommandExecutor, Listener {
+public class Kits implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 

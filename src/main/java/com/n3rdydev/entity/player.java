@@ -1,6 +1,7 @@
 package com.n3rdydev.entity;
 
 import com.n3rdydev.settings.config;
+import com.n3rdydev.settings.statistics;
 import jdk.javadoc.internal.doclets.toolkit.util.NewAPIBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -18,8 +19,9 @@ public class player {
     public static HashMap<UUID, UUID> lastplayer_hit = new HashMap();
     public static HashMap<UUID, String> selected_kit = new HashMap();
     public static HashMap<UUID, Integer> kills = new HashMap();
-    public static HashMap<UUID, Boolean> scoreboard = new HashMap();
     public static HashMap<UUID, Integer> deaths = new HashMap();
+
+    public static HashMap<UUID, Boolean> scoreboard = new HashMap();
     public static HashMap<UUID, LocalTime> kit_cooldown = new HashMap();
     public static HashMap<UUID, Boolean> can_build = new HashMap();
 
@@ -95,6 +97,21 @@ public class player {
             kills.put(p.getUniqueId(), 1);
         }
 
+
+    }
+
+    public static void loadStats(Player p){
+        UUID puid = p.getUniqueId();
+        player.kills.put(puid, statistics.get().getInt(puid+".kills"));
+        player.deaths.put(puid, statistics.get().getInt(puid+".deaths"));
+    }
+
+    public static void saveStats(Player p){
+        UUID puid = p.getUniqueId();
+        statistics.get().set(puid+".kills", player.getKills(p));
+        statistics.get().set(puid+".deaths", player.getDeaths(p));
+        statistics.get().set(puid+".xp", 0);
+        statistics.save();
     }
 
     public static void addDeaths(Player p) {
@@ -167,7 +184,7 @@ public class player {
                 p.teleport(spawn_loc);
             }
 
-        }.runTaskLater(com.n3rdydev.main.getPlugin(), 1L);
+        }.runTaskLater(com.n3rdydev.main.getPlugin(), 10L);
 
     }
 
