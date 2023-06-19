@@ -65,23 +65,21 @@ public class player {
         return ("§cVocê só podera utilizar daqui " + segs + " segundos.");
     }
 
-    public static boolean can_build(Player p){
+    public static boolean can_build(Player p) {
         UUID puid = p.getUniqueId();
-        if(can_build.get(puid) != null){
+        if (can_build.get(puid) != null) {
             return can_build.get(puid);
-        }
-        else{
+        } else {
             can_build.put(puid, false);
             return false;
         }
     }
 
-    public static void toggleBuild(Player p){
+    public static void toggleBuild(Player p) {
         UUID puid = p.getUniqueId();
-        if(can_build(p) != true){
+        if (can_build(p) != true) {
             can_build.put(puid, true);
-        }
-        else{
+        } else {
             can_build.put(puid, false);
         }
     }
@@ -100,17 +98,17 @@ public class player {
 
     }
 
-    public static void loadStats(Player p){
+    public static void loadStats(Player p) {
         UUID puid = p.getUniqueId();
-        player.kills.put(puid, statistics.get().getInt(puid+".kills"));
-        player.deaths.put(puid, statistics.get().getInt(puid+".deaths"));
+        player.kills.put(puid, statistics.get().getInt(puid + ".kills"));
+        player.deaths.put(puid, statistics.get().getInt(puid + ".deaths"));
     }
 
-    public static void saveStats(Player p){
+    public static void saveStats(Player p) {
         UUID puid = p.getUniqueId();
-        statistics.get().set(puid+".kills", player.getKills(p));
-        statistics.get().set(puid+".deaths", player.getDeaths(p));
-        statistics.get().set(puid+".xp", 0);
+        statistics.get().set(puid + ".kills", player.getKills(p));
+        statistics.get().set(puid + ".deaths", player.getDeaths(p));
+        statistics.get().set(puid + ".xp", 0);
         statistics.save();
     }
 
@@ -165,26 +163,27 @@ public class player {
 
     public static void randomTpArena(Player p) {
 
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                Double[] spawn = new Double[3];
+        try {
 
-                int min = 1;
-                int max = 10;
-                int rndNumber = ThreadLocalRandom.current().nextInt(min, max + 1);
-                //Random rnd = new Random();
-                //int rndNumber = rnd.nextInt(min, max);
-                String arena0 = config.get().getString("arenas.arena" + rndNumber);
-                String[] sp_cord_arena = arena0.split(" ");
-                spawn[0] = Double.parseDouble(sp_cord_arena[0]);
-                spawn[1] = Double.parseDouble(sp_cord_arena[1]);
-                spawn[2] = Double.parseDouble(sp_cord_arena[2]);
-                Location spawn_loc = new Location(p.getWorld(), spawn[0], spawn[1], spawn[2]);
-                p.teleport(spawn_loc);
-            }
+            Double[] spawn = new Double[3];
 
-        }.runTaskLater(com.n3rdydev.main.getPlugin(), 10L);
+            int min = 1;
+            int max = 10;
+            int rndNumber = ThreadLocalRandom.current().nextInt(min, max + 1);
+            //Random rnd = new Random();
+            //int rndNumber = rnd.nextInt(min, max);
+            String arena0 = config.get().getString("arenas.arena" + rndNumber);
+            String[] sp_cord_arena = arena0.split(" ");
+            spawn[0] = Double.parseDouble(sp_cord_arena[0]);
+            spawn[1] = Double.parseDouble(sp_cord_arena[1]);
+            spawn[2] = Double.parseDouble(sp_cord_arena[2]);
+            Location spawn_loc = new Location(p.getWorld(), spawn[0], spawn[1], spawn[2]);
+            p.teleport(spawn_loc);
+        }
+        catch (Exception ex){
+            randomTpArena(p);
+        }
+
 
     }
 

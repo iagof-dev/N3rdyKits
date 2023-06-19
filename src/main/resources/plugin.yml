@@ -12,10 +12,6 @@ commands:
     description: modo construcao
     permission-message: §cNão possui permissão.
     usage: /build
-  setarspawn:
-    description: definir um spawn.
-    permission-message: §cNão possui permissão.
-    usage: /setarspawn
   kits:
     description: abre menu de kits.
     permission-message: §cNão possui permissão.
@@ -40,3 +36,7 @@ commands:
     description: Ativa/desativa scoreborad.
     permission-message: §cNão possui permissão.
     usage: /score
+  chat:
+    description: limpar mensagem dos chat.
+    permission-message: §cNão possui permissão.
+    usage: /chat [ativar/desativar/limpar]

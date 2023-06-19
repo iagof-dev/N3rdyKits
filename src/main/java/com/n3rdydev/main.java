@@ -69,6 +69,7 @@ public class main extends JavaPlugin implements Listener {
         getCommand("definir").setExecutor(new Definir());
         getCommand("gm").setExecutor(new GameMode());
         getCommand("score").setExecutor(new Score());
+        getCommand("chat").setExecutor(new ClearChat());
 
         com.n3rdydev.settings.spawn.load();
 
