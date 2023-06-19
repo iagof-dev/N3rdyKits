@@ -14,6 +14,8 @@ Java | Plugin minigame KitPvP
 
 /score - X
 
+/chat [ativar/desativar/limpar] - n3rdydev.command.clearchat
+
 /n3rdykits [args] - n3rdydev.developer.test
 
 /definir [protecao/spawn/arena/warp] - n3rdydev.command.definir
