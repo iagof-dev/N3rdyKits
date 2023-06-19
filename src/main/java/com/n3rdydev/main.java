@@ -40,6 +40,7 @@ public class main extends JavaPlugin implements Listener {
         Listener placa_sopa = new handleSoupSign();
         Listener player_shift = new handleTeleport();
         Listener player_quit = new handlePlayerQuit();
+        Listener handleMotd = new handleMotd();
 
         //Event Listeners
         this.getServer().getPluginManager().registerEvents(blocks, this);
@@ -57,6 +58,7 @@ public class main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(fall_damage, this);
         this.getServer().getPluginManager().registerEvents(player_shift, this);
         this.getServer().getPluginManager().registerEvents(player_quit, this);
+        this.getServer().getPluginManager().registerEvents(handleMotd, this);
         this.getServer().getPluginManager().registerEvents(this, this);
 
         getCommand("build").setExecutor(new Build());
@@ -70,6 +72,7 @@ public class main extends JavaPlugin implements Listener {
 
         com.n3rdydev.settings.spawn.load();
 
+        Bukkit.getServer().getMotd();
         Bukkit.getConsoleSender().sendMessage("§a[N3rdyKits] | Plugin Habilitado!");
     }
 
@@ -91,6 +94,8 @@ public class main extends JavaPlugin implements Listener {
         config.setup();
         config.get().addDefault("server.name", "§8[§l§2N3rdyKits§8]");
         config.get().addDefault("server.ip", "§7localhost");
+        config.get().addDefault("server.motd.1.line1", "                §2§l§nN3rdyKits§r §c[1.8.x]");
+        config.get().addDefault("server.motd.1.line2", "                §eAdquira VIP: &§loja.servidor.com");
 
         config.get().addDefault("database.mysql.enable", false);
         config.get().addDefault("database.mysql.address", "localhost");
