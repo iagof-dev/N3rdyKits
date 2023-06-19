@@ -1,5 +1,6 @@
 package com.n3rdydev.commands;
 
+import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.settings.serverinfo;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -31,7 +32,7 @@ public class Admin implements CommandExecutor {
                 }
                 p.setAllowFlight(false);
                 p.setFlying(false);
-                com.n3rdydev.kits.spawn.Receive(p);
+                Spawn.Receive(p);
                 p.sendMessage(serverinfo.name() + " §cVocê saiu do MODO ADMIN e está visivel!");
                 invis.put(p.getUniqueId(), false);
             }

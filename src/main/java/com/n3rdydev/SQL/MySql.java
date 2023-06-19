@@ -1,9 +1,13 @@
 package com.n3rdydev.SQL;
 
+import com.n3rdydev.entity.player;
 import org.bukkit.Bukkit;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Map;
+import java.util.UUID;
 
 public class MySql {
 
@@ -24,6 +28,25 @@ public class MySql {
         catch(Exception e){
             Bukkit.getConsoleSender().sendMessage("N3rdyKits | §cErro!\n" + e);
             return null;
+        }
+    }
+
+    public static void SaveAll(){
+        try {
+            //Connection con = start();
+            String send = "use N3rdykits;";
+            for (Map.Entry<UUID, Integer> kills : player.kills.entrySet()) {
+                    send += "insert into deaths values (default, '" + kills.getKey() + "', " + kills.getValue() + ", " + player.deaths.get(kills.getKey()) +");";
+                    System.out.println("UUID: " + kills.getKey() + " | Kills: " + kills.getValue() + "| Mortes: " + player.deaths.get(kills.getKey()));
+            }
+
+            //PreparedStatement st = con.prepareStatement(send);
+            //st.executeUpdate();
+            System.out.println(com.n3rdydev.settings.serverinfo.name() + " | Estatisticas salvas no mysql");
+
+        }
+        catch (Exception ex){
+            System.out.println("§cErro!\n" + ex.getMessage());
         }
     }
 

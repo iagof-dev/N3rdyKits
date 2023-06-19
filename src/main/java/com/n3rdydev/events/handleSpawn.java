@@ -2,7 +2,7 @@ package com.n3rdydev.events;
 
 import com.n3rdydev.commands.Admin;
 import com.n3rdydev.entity.player;
-import com.n3rdydev.settings.statistics;
+import com.n3rdydev.kits.Spawn;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -63,7 +63,7 @@ public class handleSpawn implements Listener {
         Location spawn_loc = new Location(p.getWorld(), com.n3rdydev.settings.spawn.spawn_x, com.n3rdydev.settings.spawn.spawn_y, com.n3rdydev.settings.spawn.spawn_z);
         p.teleport(spawn_loc);
         p.setHealth(20);
-        com.n3rdydev.kits.spawn.Receive(p);
+        Spawn.Receive(p);
     }
 
 }

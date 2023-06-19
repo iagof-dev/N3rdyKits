@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class spawn {
+public class Spawn {
 
     public static void Receive(Player p){
         p.getInventory().clear();

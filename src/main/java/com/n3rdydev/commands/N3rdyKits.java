@@ -1,5 +1,6 @@
 package com.n3rdydev.commands;
 
+import com.n3rdydev.SQL.MySql;
 import com.n3rdydev.scoreboard.sb_default;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.entity.player;
@@ -60,6 +61,9 @@ public class N3rdyKits implements CommandExecutor, Listener {
                     statistics.get().set(p_uid+".deaths", player.getDeaths(p));
                     statistics.get().set(p_uid+".xp", 0);
                     statistics.save();
+                    break;
+                case "teste":
+                    MySql.SaveAll();
                     break;
 
             }

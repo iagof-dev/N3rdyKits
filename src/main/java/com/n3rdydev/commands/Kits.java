@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import static com.n3rdydev.gui.kits.*;
+import static com.n3rdydev.gui.Kits.*;
 
 public class Kits implements CommandExecutor, Listener {
     @Override

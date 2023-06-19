@@ -80,6 +80,8 @@ public class main extends JavaPlugin implements Listener {
     public void onDisable(){
         config.save();
         statistics.save();
+
+        MySql.SaveAll();
         Bukkit.getConsoleSender().sendMessage("§c[N3rdyKits] | Plugin Desabilitado!");
 
     }

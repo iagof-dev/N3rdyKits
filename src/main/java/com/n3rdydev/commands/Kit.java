@@ -1,5 +1,6 @@
 package com.n3rdydev.commands;
 
+import com.n3rdydev.gui.Kits;
 import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.entity.player;
 import org.bukkit.command.Command;
@@ -15,7 +16,7 @@ public class Kit implements CommandExecutor, Listener {
         Player p = (Player) sender;
 
         if(args.length == 0){
-            p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
+            p.openInventory(Kits.list_kits(p));
             return true;
         }
 

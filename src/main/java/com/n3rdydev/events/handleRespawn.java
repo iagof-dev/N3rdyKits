@@ -1,10 +1,10 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.main;
 import com.n3rdydev.scoreboard.sb_default;
 import com.n3rdydev.settings.spawn;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -60,7 +60,7 @@ public class handleRespawn implements Listener {
 
                 e.getEntity().spigot().respawn();
 
-                com.n3rdydev.kits.spawn.Receive(p);
+                Spawn.Receive(p);
 
 
 

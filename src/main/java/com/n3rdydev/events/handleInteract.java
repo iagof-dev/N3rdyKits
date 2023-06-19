@@ -1,5 +1,8 @@
 package com.n3rdydev.events;
 
+import com.n3rdydev.gui.Kits;
+import com.n3rdydev.gui.RecraftRefil;
+import com.n3rdydev.gui.SoupRefil;
 import com.n3rdydev.settings.config;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -31,7 +34,7 @@ public class handleInteract implements Listener {
 
             //=========MENUS===========
             if (e.getItem() != null && e.getItem().getType().equals(Material.CHEST)) {
-                p.openInventory(com.n3rdydev.gui.kits.list_kits(p));
+                p.openInventory(Kits.list_kits(p));
                 return;
             }
 
@@ -40,9 +43,9 @@ public class handleInteract implements Listener {
                     Sign sign = (Sign) e.getClickedBlock().getState();
 
                     if (sign.getLine(1).contains("Refil de sopa")) {
-                        p.openInventory(com.n3rdydev.gui.gui_SoupRefil.open(p));
+                        p.openInventory(SoupRefil.open(p));
                     } else if (sign.getLine(1).contains("Refil de recraft")) {
-                        p.openInventory(com.n3rdydev.gui.gui_RecraftRefil.open(p));
+                        p.openInventory(RecraftRefil.open(p));
                     }
 
                     return;

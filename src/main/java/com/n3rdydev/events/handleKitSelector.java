@@ -1,10 +1,8 @@
 package com.n3rdydev.events;
 
-import com.n3rdydev.entity.player;
-import com.n3rdydev.gui.kits;
+import com.n3rdydev.gui.Kits;
 import com.n3rdydev.kits.*;
 import com.n3rdydev.scoreboard.sb_default;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -45,7 +43,7 @@ public class handleKitSelector implements Listener {
                     Phantom.Receive(p);
                     break;
                 default:
-                    p.openInventory(kits.list_kits(p));
+                    p.openInventory(Kits.list_kits(p));
                     break;
             }
             UUID puid = p.getUniqueId();
