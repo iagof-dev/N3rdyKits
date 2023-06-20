@@ -14,6 +14,9 @@ import java.util.UUID;
 import static com.n3rdydev.entity.player.scoreboard;
 
 public class handleKitSelector implements Listener {
+
+    //Essa classe determina qual kit o jogador clica, e oq o jogador irá receber no inventario antes do teleporte
+
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInventoryClick(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();

@@ -4,6 +4,7 @@ import com.n3rdydev.gui.Kits;
 import com.n3rdydev.gui.RecraftRefil;
 import com.n3rdydev.gui.SoupRefil;
 import com.n3rdydev.settings.config;
+import com.n3rdydev.settings.spawn;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
@@ -26,15 +27,18 @@ public class handleInteract implements Listener {
         Player p = e.getPlayer();
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
 
-
-
-
             //=========MENUS===========
+
+            //se o jogador clicar em QUALQUER baú, ele vai abrir o menu de kit
+            //preciso verificar se o baú está nomeado...
             if (e.getItem() != null && e.getItem().getType().equals(Material.CHEST)) {
                 p.openInventory(Kits.list_kits(p));
                 return;
             }
 
+            //Se o jogador clicar com o botão direito em uma placa
+            //com o nome do servidor e escrito refil/recraft
+            //ele vai abrir um gui com sopa ou recraft
             if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (e.getClickedBlock().getType().equals(Material.SIGN_POST) || e.getClickedBlock().getType().equals(Material.WALL_SIGN)) {
                     Sign sign = (Sign) e.getClickedBlock().getState();
@@ -50,7 +54,7 @@ public class handleInteract implements Listener {
             }
 
             //Warp
-            //inventário
+            //Ao clicar na bussola ele vai abrir o gui de warps
             ItemStack gui_warps = new ItemStack(Material.COMPASS);
             ItemMeta warps_meta = (ItemMeta) gui_warps.getItemMeta();
             warps_meta.setDisplayName("§l§6Warps");
@@ -62,6 +66,8 @@ public class handleInteract implements Listener {
             }
 
             //==========KITS==========
+
+            //Bussola rastreadora
             ItemStack p_tracker = new ItemStack(Material.COMPASS, 1);
             ItemMeta p_tracker_meta = (ItemMeta) p_tracker.getItemMeta();
             p_tracker_meta.setDisplayName("§eRastreador");
@@ -74,7 +80,7 @@ public class handleInteract implements Listener {
 
                 //se a vitima for diferente de nula e não está no spawn
                 //pegar nome, localização e calcular distancia de blocos
-                if (target != null && !is_safe_zone(target.getLocation())) {
+                if (target != null && !spawn.is_safe_zone(target.getLocation())) {
                     nickname = target.getPlayer().getName();
                     p.setCompassTarget(target.getLocation());
                     distance = Math.round(p.getLocation().distanceSquared(target.getLocation()));
@@ -84,9 +90,10 @@ public class handleInteract implements Listener {
                 return;
             }
 
-            //kit feeather:
-            if(e.getItem() != null && e.getItem().getType().equals(Material.FEATHER) && e.getItem().getItemMeta().getDisplayName().equals("§ePhantom")){
-                if(p.getAllowFlight() != true && player.getCooldown(p) != true){
+            //kit feather:
+            //se clicar na pena, ele ativa o fly
+            if (e.getItem() != null && e.getItem().getType().equals(Material.FEATHER) && e.getItem().getItemMeta().getDisplayName().equals("§ePhantom")) {
+                if (p.getAllowFlight() != true && player.getCooldown(p) != true) {
                     p.setAllowFlight(true);
                     p.sendMessage("§aPhantom ativado! desativando em 6 segundos...");
                     new BukkitRunnable() {
@@ -98,12 +105,10 @@ public class handleInteract implements Listener {
 
                         }
                     }.runTaskLater(com.n3rdydev.main.getPlugin(), 100L);
-                }
-                else{
-                    if(player.getCooldown(p) != false){
+                } else {
+                    if (player.getCooldown(p) != false) {
                         p.sendMessage(player.getCooldownTime(p));
-                    }
-                    else{
+                    } else {
                         p.sendMessage("§cVocê já está com phantom ativado!");
                     }
                 }
@@ -129,16 +134,14 @@ public class handleInteract implements Listener {
 
                     return;
                 }
-
             }
-
-            e.setCancelled(false);
-        } else {
-            e.setCancelled(false);
         }
+        //independente, ele vai cancelar a interação...
+        e.setCancelled(false);
     }
 
-
+    //pegar o jogador mais perto...
+    //usado na bussola rastreadora
     public Player getNearest(Player p, Double range) {
         double distance = Double.POSITIVE_INFINITY;
         Player target = null;
@@ -155,28 +158,4 @@ public class handleInteract implements Listener {
         return target;
     }
 
-
-    private boolean is_safe_zone(Location location) {
-
-        String spawn_pos1 = config.get().getString("spawn.protection.pos1");
-        String spawn_pos2 = config.get().getString("spawn.protection.pos2");
-        String[] spawn_sep_1 = spawn_pos1.split(" ");
-        String[] spawn_sep_2 = spawn_pos2.split(" ");
-
-        int x1 = Integer.parseInt(spawn_sep_1[0]);
-        int x2 = Integer.parseInt(spawn_sep_2[0]);
-
-        int z1 = Integer.parseInt(spawn_sep_1[1]);
-        int z2 = Integer.parseInt(spawn_sep_2[1]);
-
-        int minX = Math.min(x1, x2);
-        int minZ = Math.min(z1, z2);
-        int maxX = Math.max(x1, x2);
-        int maxZ = Math.max(z1, z2);
-
-        int locX = location.getBlockX();
-        int locZ = location.getBlockZ();
-
-        return locX >= minX && locX <= maxX && locZ >= minZ && locZ <= maxZ;
-    }
 }
