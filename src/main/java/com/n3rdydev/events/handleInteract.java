@@ -26,10 +26,7 @@ public class handleInteract implements Listener {
         Player p = e.getPlayer();
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
 
-            ItemStack p_tracker = new ItemStack(Material.COMPASS, 1);
-            ItemMeta p_tracker_meta = (ItemMeta) p_tracker.getItemMeta();
-            p_tracker_meta.setDisplayName("§eRastreador");
-            p_tracker.setItemMeta(p_tracker_meta);
+
 
 
             //=========MENUS===========
@@ -52,9 +49,23 @@ public class handleInteract implements Listener {
                 }
             }
 
+            //Warp
+            //inventário
+            ItemStack gui_warps = new ItemStack(Material.COMPASS);
+            ItemMeta warps_meta = (ItemMeta) gui_warps.getItemMeta();
+            warps_meta.setDisplayName("§l§6Warps");
+            gui_warps.setItemMeta(warps_meta);
+
+            if (e.getItem() != null && e.getItem().equals(gui_warps)) {
+                com.n3rdydev.gui.Warps.open(p);
+                return;
+            }
 
             //==========KITS==========
-
+            ItemStack p_tracker = new ItemStack(Material.COMPASS, 1);
+            ItemMeta p_tracker_meta = (ItemMeta) p_tracker.getItemMeta();
+            p_tracker_meta.setDisplayName("§eRastreador");
+            p_tracker.setItemMeta(p_tracker_meta);
             //bussola rastreadora:
             if (e.getItem() != null && e.getItem().equals(p_tracker)) {
                 String nickname = "Ninguém";
