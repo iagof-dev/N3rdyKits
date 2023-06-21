@@ -7,11 +7,13 @@ import com.n3rdydev.entity.player;
 import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.settings.spawn;
 import com.n3rdydev.settings.statistics;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
@@ -25,6 +27,9 @@ public class N3rdyKits implements CommandExecutor, Listener {
 
             UUID p_uid = p.getUniqueId();
             switch(strings[0]){
+                case "config":
+                    p.openInventory(com.n3rdydev.gui.Config.start(p));
+                    break;
                 case "reload":
                     config.reload();
                     statistics.reload();
@@ -62,11 +67,21 @@ public class N3rdyKits implements CommandExecutor, Listener {
                     statistics.get().set(p_uid+".xp", 0);
                     statistics.save();
                     break;
-                case "teste":
+                case "mysql":
                     MySql.SaveAll();
+                    break;
+                case "setfps":
+                    String format = p.getLocation().getX() + " " + p.getLocation().getY() + " " + p.getLocation().getZ();
+                    config.get().set("warps.fps.active", true);
+                    config.get().set("warps.fps.spawnpos", format);
+                    config.save();
+                    mensagem += "Definido warp FPS em (" + format + ")";
                     break;
                 case "fps":
                     com.n3rdydev.kits.FPS.Receive(p);
+                    break;
+                case "teste":
+                    mensagem+="Pos1: " + player.config_position_1.get(p.getUniqueId()) + "\nPos2: " + player.config_position_2.get(p.getUniqueId()) ;
                     break;
 
             }

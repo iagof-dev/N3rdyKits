@@ -71,6 +71,7 @@ public class config {
         get().addDefault("spawn.protection.pos2", "0 0");
 
         //WARPS
+        get().addDefault("warps.fps.active", false);
         get().addDefault("warps.fps.spawnpos", "0 0 0");
         get().addDefault("warps.fps.spawnprotection.pos1", "0 0 0");
         get().addDefault("warps.fps.spawnprotection.pos2", "0 0 0");

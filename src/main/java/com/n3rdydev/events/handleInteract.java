@@ -4,7 +4,9 @@ import com.n3rdydev.gui.Kits;
 import com.n3rdydev.gui.RecraftRefil;
 import com.n3rdydev.gui.SoupRefil;
 import com.n3rdydev.settings.config;
+import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.settings.spawn;
+import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
@@ -20,6 +22,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import com.n3rdydev.entity.player;
+
+import java.util.UUID;
 
 public class handleInteract implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -135,8 +139,53 @@ public class handleInteract implements Listener {
                     return;
                 }
             }
+
+            if (e.getItem() != null && e.getItem().getType().equals(Material.BEACON)) {
+                if (e.getItem().getItemMeta().getDisplayName().equals("§eProteção do Spawn - POSIÇÃO 1")) {
+                    e.setCancelled(true);
+                    UUID uid = p.getUniqueId();
+
+                    if(player.config_menu.get(uid) != null || player.config_menu.get(uid) != false &&  player.config_position_1.get(uid) == null){
+                        player.config_position_1.put(uid, p.getLocation());
+                        p.getInventory().clear();
+
+                        ItemStack protect_item = new ItemStack(Material.BEACON);
+                        ItemMeta protect_item_meta = protect_item.getItemMeta();
+                        protect_item_meta.setDisplayName("§eProteção do Spawn - POSIÇÃO 2");
+                        protect_item.setItemMeta(protect_item_meta);
+                        p.getInventory().setItem(0, protect_item);
+
+                        p.updateInventory();
+                        p.sendMessage(serverinfo.name() + " | §dPosição 1 definida");
+                    }
+
+                    return;
+                }
+                if(e.getItem().getItemMeta().getDisplayName().equals("§eProteção do Spawn - POSIÇÃO 2")){
+                    e.setCancelled(true);
+                    UUID uid = p.getUniqueId();
+                    if(player.config_position_1.get(uid) != null){
+                        player.config_position_2.put(uid, p.getLocation());
+                        p.sendMessage(serverinfo.name() + " | §dPosição 2 definida");
+
+                        Location pos1 = player.config_position_1.get(uid);
+                        Location pos2 = player.config_position_2.get(uid);
+
+                        String pos1_format = pos1.getX() + " " + pos1.getZ();
+                        String pos2_format = pos2.getX() + " " + pos2.getZ();
+
+                        config.get().set("spawn.protection.pos1", pos1_format);
+                        config.get().set("spawn.protection.pos2", pos2_format);
+                        config.save();
+                        config.reload();
+                        player.config_menu.put(uid, false);
+                        com.n3rdydev.kits.Spawn.Receive(p);
+                        p.sendMessage(serverinfo.name() + " | §aProteção definida entre (" + pos1_format + ") e (" + pos2_format +")");
+                    }
+                }
+            }
         }
-        //independente, ele vai cancelar a interação...
+        //independente, ele não vai cancelar a interação...
         e.setCancelled(false);
     }
 

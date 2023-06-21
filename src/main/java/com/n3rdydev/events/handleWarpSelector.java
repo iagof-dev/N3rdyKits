@@ -4,6 +4,9 @@ import com.n3rdydev.gui.Kits;
 import com.n3rdydev.gui.Warps;
 import com.n3rdydev.kits.*;
 import com.n3rdydev.scoreboard.sb_default;
+import com.n3rdydev.settings.config;
+import com.n3rdydev.settings.serverinfo;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -12,6 +15,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.util.UUID;
 
+import static com.n3rdydev.entity.player.*;
 import static com.n3rdydev.entity.player.scoreboard;
 
 public class handleWarpSelector implements Listener {
@@ -26,26 +30,14 @@ public class handleWarpSelector implements Listener {
             e.setCancelled(true);
             p.closeInventory();
             switch (e.getCurrentItem().getType()) {
-                case DIAMOND_SWORD:
-                    PvP.Receive(p);
-                    break;
-                case FIREWORK:
-                    Kangaroo.Receive(p);
-                    break;
-                case STONE_SWORD:
-                    Boxer.Receive(p);
-                    break;
-                case BOW:
-                    Archer.Receive(p);
-                    break;
-                case IRON_BOOTS:
-                    Stomper.Receive(p);
-                    break;
-                case NETHER_STAR:
-                    Ninja.Receive(p);
-                    break;
-                case FEATHER:
-                    Phantom.Receive(p);
+                case GLASS:
+                    if(config.get().getBoolean("warps.fps.active") != false){
+                        Location tp = convert_config_location(p, "warps.fps.spawnpos");
+                        p.teleport(tp);
+                        com.n3rdydev.kits.FPS.Receive(p);
+                        return;
+                    }
+                    p.sendMessage(serverinfo.name() + " | §cWarp em manutenção!");
                     break;
                 default:
                     p.openInventory(Warps.open(p));

@@ -42,8 +42,10 @@ public class main extends JavaPlugin implements Listener {
         Listener player_quit = new handlePlayerQuit();
         Listener handleMotd = new handleMotd();
         Listener handleWarpSelector = new handleWarpSelector();
+        Listener handleConfig = new handleConfig();
 
         //Event Listeners
+        this.getServer().getPluginManager().registerEvents(handleConfig, this);
         this.getServer().getPluginManager().registerEvents(handleWarpSelector, this);
         this.getServer().getPluginManager().registerEvents(blocks, this);
         this.getServer().getPluginManager().registerEvents(placa_sopa, this);

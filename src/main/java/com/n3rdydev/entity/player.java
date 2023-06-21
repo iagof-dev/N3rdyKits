@@ -2,12 +2,14 @@ package com.n3rdydev.entity;
 
 import com.n3rdydev.settings.config;
 import com.n3rdydev.settings.statistics;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import jdk.javadoc.internal.doclets.toolkit.util.NewAPIBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.lang.reflect.Array;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Date;
@@ -24,6 +26,11 @@ public class player {
     public static HashMap<UUID, Boolean> scoreboard = new HashMap();
     public static HashMap<UUID, LocalTime> kit_cooldown = new HashMap();
     public static HashMap<UUID, Boolean> can_build = new HashMap();
+
+    public static HashMap<UUID, Boolean> config_menu = new HashMap();
+    public static HashMap<UUID, Location> config_position_1 = new HashMap();
+    public static HashMap<UUID, Location> config_position_2 = new HashMap();
+
 
     public static void setCooldown(Player p, long Seconds) {
         LocalTime time_now = LocalTime.now();
@@ -179,14 +186,27 @@ public class player {
             spawn[2] = Double.parseDouble(sp_cord_arena[2]);
             Location spawn_loc = new Location(p.getWorld(), spawn[0], spawn[1], spawn[2]);
             p.teleport(spawn_loc);
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             randomTpArena(p);
         }
+    }
+
+    public static Location convert_config_location(Player p, String config_name) {
+        Double[] spawn = new Double[3];
+        String arena = config.get().getString(config_name);
+        if (arena != null) {
+
+            String[] sp_cord_arena = arena.split(" ");
+            spawn[0] = Double.parseDouble(sp_cord_arena[0]);
+            spawn[1] = Double.parseDouble(sp_cord_arena[1]);
+            spawn[2] = Double.parseDouble(sp_cord_arena[2]);
+            Location spawn_loc = new Location(p.getWorld(), spawn[0], spawn[1], spawn[2]);
+            return spawn_loc;
+        }
+        return null;
 
 
     }
-
 
     public static void load() {
 
