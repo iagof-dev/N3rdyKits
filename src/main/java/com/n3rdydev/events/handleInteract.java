@@ -59,9 +59,9 @@ public class handleInteract implements Listener {
             ItemMeta warps_meta = (ItemMeta) gui_warps.getItemMeta();
             warps_meta.setDisplayName("§l§6Warps");
             gui_warps.setItemMeta(warps_meta);
-
             if (e.getItem() != null && e.getItem().equals(gui_warps)) {
-                com.n3rdydev.gui.Warps.open(p);
+                p.openInventory(com.n3rdydev.gui.Warps.open(p));
+                p.sendMessage("§aAbrindo menu de warps...");
                 return;
             }
 

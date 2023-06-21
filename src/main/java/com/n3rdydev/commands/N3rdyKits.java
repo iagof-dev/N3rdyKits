@@ -65,6 +65,9 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 case "teste":
                     MySql.SaveAll();
                     break;
+                case "fps":
+                    com.n3rdydev.kits.FPS.Receive(p);
+                    break;
 
             }
             p.sendMessage(mensagem);

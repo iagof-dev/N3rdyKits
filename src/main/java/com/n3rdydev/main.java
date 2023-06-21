@@ -41,8 +41,10 @@ public class main extends JavaPlugin implements Listener {
         Listener player_shift = new handleTeleport();
         Listener player_quit = new handlePlayerQuit();
         Listener handleMotd = new handleMotd();
+        Listener handleWarpSelector = new handleWarpSelector();
 
         //Event Listeners
+        this.getServer().getPluginManager().registerEvents(handleWarpSelector, this);
         this.getServer().getPluginManager().registerEvents(blocks, this);
         this.getServer().getPluginManager().registerEvents(placa_sopa, this);
         this.getServer().getPluginManager().registerEvents( sopa, this);
@@ -94,39 +96,8 @@ public class main extends JavaPlugin implements Listener {
         statistics.setup();
         statistics.save();
 
-        config.setup();
-        config.get().addDefault("server.name", "§8[§l§2N3rdyKits§8]");
-        config.get().addDefault("server.ip", "§7localhost");
-        config.get().addDefault("server.motd.1.line1", "                §2§l§nN3rdyKits§r §c[1.8.x]");
-        config.get().addDefault("server.motd.1.line2", "                §eAdquira VIP: &§loja.servidor.com");
+        config.start();
 
-        config.get().addDefault("database.mysql.enable", false);
-        config.get().addDefault("database.mysql.address", "localhost");
-        config.get().addDefault("database.mysql.port", 3306);
-        config.get().addDefault("database.mysql.user", "root");
-        config.get().addDefault("database.mysql.password", "132490Kj@br=");
-        config.get().addDefault("database.mysql.database", "N3rdyKits");
-        config.get().addDefault("database.mysql.table", "estatistica");
-
-        config.get().addDefault("spawn.point", "0 0 0");
-        config.get().addDefault("spawn.protection.pos1", "0 0");
-        config.get().addDefault("spawn.protection.pos2", "0 0");
-
-
-        config.get().addDefault("arenas.arena0", "0 0 0");
-        config.get().addDefault("arenas.arena1", "0 0 0");
-        config.get().addDefault("arenas.arena2", "0 0 0");
-        config.get().addDefault("arenas.arena3", "0 0 0");
-        config.get().addDefault("arenas.arena4", "0 0 0");
-        config.get().addDefault("arenas.arena5", "0 0 0");
-        config.get().addDefault("arenas.arena6", "0 0 0");
-        config.get().addDefault("arenas.arena7", "0 0 0");
-        config.get().addDefault("arenas.arena8", "0 0 0");
-        config.get().addDefault("arenas.arena9", "0 0 0");
-
-        config.get().options().copyDefaults(true);
-        config.get().options().copyHeader(true);
-        config.save();
 
         if(config.get().getBoolean("database.mysql.enable") != false){
             Connection DB = MySql.start();

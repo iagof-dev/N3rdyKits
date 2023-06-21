@@ -37,16 +37,16 @@ public class MySql {
             String send = "use N3rdykits;";
             for (Map.Entry<UUID, Integer> kills : player.kills.entrySet()) {
                     send += "insert into deaths values (default, '" + kills.getKey() + "', " + kills.getValue() + ", " + player.deaths.get(kills.getKey()) +");";
-                    System.out.println("UUID: " + kills.getKey() + " | Kills: " + kills.getValue() + "| Mortes: " + player.deaths.get(kills.getKey()));
+                    Bukkit.getConsoleSender().sendMessage("UUID: " + kills.getKey() + " | Kills: " + kills.getValue() + "| Mortes: " + player.deaths.get(kills.getKey()));
             }
 
             //PreparedStatement st = con.prepareStatement(send);
             //st.executeUpdate();
-            System.out.println(com.n3rdydev.settings.serverinfo.name() + " | Estatisticas salvas no mysql");
+            Bukkit.getConsoleSender().sendMessage(com.n3rdydev.settings.serverinfo.name() + " | Estatisticas salvas no mysql");
 
         }
         catch (Exception ex){
-            System.out.println("§cErro!\n" + ex.getMessage());
+            Bukkit.getConsoleSender().sendMessage("§cErro!\n" + ex.getMessage());
         }
     }
 

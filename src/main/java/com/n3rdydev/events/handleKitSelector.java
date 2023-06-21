@@ -20,6 +20,9 @@ public class handleKitSelector implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInventoryClick(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
+
+
+
         if (e.getView().getTitle().equals("Lista de Kits") && e.getCurrentItem() != null) {
             e.setCancelled(true);
             p.closeInventory();
@@ -53,8 +56,7 @@ public class handleKitSelector implements Listener {
             if (scoreboard.get(puid) != false ) {
                 sb_default.Set(p);
             }
-        } else {
-            e.setCancelled(false);
+            return;
         }
     }
 }
