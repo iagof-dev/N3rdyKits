@@ -13,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SoupRefil extends JavaPlugin implements Listener {
+public class SoupRefil {
     public static Inventory open(Player p) {
         //                                  Player | tamanho 3 linhas com 9 colunas | Nome que aparece em cima
         Inventory inv = Bukkit.createInventory(p, 9 * 3, "Refil de sopa");

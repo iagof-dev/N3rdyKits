@@ -13,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecraftRefil extends JavaPlugin implements Listener {
+public class RecraftRefil {
     public static Inventory open(Player p) {
 
 
