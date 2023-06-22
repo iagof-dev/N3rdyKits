@@ -83,6 +83,13 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 case "teste":
                     mensagem+="Pos1: " + player.config_position_1.get(p.getUniqueId()) + "\nPos2: " + player.config_position_2.get(p.getUniqueId()) ;
                     break;
+                case "dfps":
+                    config.get().set("warps.fps.active", false);
+                    config.save();
+                    break;
+                default:
+                    mensagem += "§cDê argumentos...";
+                    break;
 
             }
             p.sendMessage(mensagem);

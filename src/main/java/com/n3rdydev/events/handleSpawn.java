@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 import java.util.UUID;
@@ -27,6 +28,8 @@ public class handleSpawn implements Listener {
         can_build.put(puid, false);
         player.loadStats(p);
         com.n3rdydev.scoreboard.sb_default.Set(p);
+
+        
 
         p.setHealth(20);
         for (PotionEffect effect : p.getActivePotionEffects())

@@ -10,7 +10,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Spawn {
 
     public static void Receive(Player p){
+        ItemStack[] armorContents = p.getInventory().getArmorContents().clone();
         p.getInventory().clear();
+        p.getInventory().setArmorContents(armorContents);
+
         player.selected_kit.put(p.getUniqueId(), "Nenhum");
 
         ItemStack gui_kits = new ItemStack(Material.CHEST);

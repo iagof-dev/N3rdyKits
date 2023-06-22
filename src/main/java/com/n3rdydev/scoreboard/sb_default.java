@@ -29,7 +29,7 @@ public class sb_default {
         Score vazio3 = obj.getScore("   ");
         Score sel_kit = obj.getScore("Kit: §a" + selected_kit);
         Score vazio = obj.getScore(" ");
-        Score title_1 = obj.getScore("§lSTATS");
+        Score title_1 = obj.getScore("STATS");
         Score p_kill = obj.getScore(" Kills: §a" + com.n3rdydev.entity.player.getKills(p));
         Score p_death = obj.getScore(" Mortes: §a" + com.n3rdydev.entity.player.getDeaths(p));
         Score xp = obj.getScore(" XP: §a0");

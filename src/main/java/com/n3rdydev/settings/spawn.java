@@ -23,19 +23,18 @@ public class spawn {
         String[] spawn_sep_1 = spawn_pos1.split(" ");
         String[] spawn_sep_2 = spawn_pos2.split(" ");
 
-        int x1 = Integer.parseInt(spawn_sep_1[0]);
-        int x2 = Integer.parseInt(spawn_sep_2[0]);
+        double x1 = Double.parseDouble(spawn_sep_1[0]);
+        double x2 = Double.parseDouble(spawn_sep_2[0]);
+        double z1 = Double.parseDouble(spawn_sep_1[1]);
+        double z2 = Double.parseDouble(spawn_sep_2[1]);
 
-        int z1 = Integer.parseInt(spawn_sep_1[1]);
-        int z2 = Integer.parseInt(spawn_sep_2[1]);
+        double minX = Math.min(x1, x2);
+        double minZ = Math.min(z1, z2);
+        double maxX = Math.max(x1, x2);
+        double maxZ = Math.max(z1, z2);
 
-        int minX = Math.min(x1, x2);
-        int minZ = Math.min(z1, z2);
-        int maxX = Math.max(x1, x2);
-        int maxZ = Math.max(z1, z2);
-
-        int locX = location.getBlockX();
-        int locZ = location.getBlockZ();
+        double locX = location.getBlockX();
+        double locZ = location.getBlockZ();
 
         return locX >= minX && locX <= maxX && locZ >= minZ && locZ <= maxZ;
     }

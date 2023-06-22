@@ -13,6 +13,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import static org.bukkit.Material.WOOL;
+
 public class handleConfig implements Listener {
 
     //essa classe irá controlar oq o usuário vai definir
@@ -27,11 +29,17 @@ public class handleConfig implements Listener {
         //Pagina inicial
         if (e.getView().getTitle().equals("Configuração") && e.getCurrentItem() != null) {
             e.setCancelled(true);
-            p.closeInventory();
             switch (e.getCurrentItem().getType()) {
                 case BED:
                     p.openInventory(Config.spawn(p));
                     break;
+                case COMPASS:
+                    p.openInventory(Config.warps(p));
+                    break;
+                case BARRIER:
+                    p.closeInventory();
+                    break;
+                case AIR:
                 default:
                     p.openInventory(Config.start(p));
                     break;
@@ -66,11 +74,90 @@ public class handleConfig implements Listener {
                     p.closeInventory();
                     p.openInventory(Config.start(p));
                     break;
+                case BARRIER:
+                    p.closeInventory();
+                    break;
+                case AIR:
+                default:
+                    p.openInventory(Config.spawn(p));
+                    break;
+            }
+
+
+        }
+        //pagina warps
+        if (e.getView().getTitle().equals("Warps Config") && e.getCurrentItem() != null) {
+            e.setCancelled(true);
+            p.closeInventory();
+            switch (e.getCurrentItem().getType()) {
+                case GLASS:
+                    p.openInventory(Config.warp_fps(p));
+                    break;
+                case SIGN:
+                    p.closeInventory();
+                    p.openInventory(Config.start(p));
+                    break;
+                case BARRIER:
+                    p.closeInventory();
+                    break;
+                case AIR:
                 default:
                     p.openInventory(Config.spawn(p));
                     break;
             }
         }
+        //CABOU
+
+        //pagina warp fps
+        if (e.getView().getTitle().equals("FPS CONFIG") && e.getCurrentItem() != null) {
+            e.setCancelled(true);
+            p.closeInventory();
+
+
+            switch (e.getCurrentItem().getType()) {
+
+                case WOOL:
+                    if(com.n3rdydev.settings.config.get().getBoolean("warps.fps.active") != false){
+                        //se tiver true
+                        config.get().set("warps.fps.active", false);
+                        config.save();
+                        p.sendMessage(serverinfo.name() + " | §cWarp fps foi desativada!");
+                    }
+                    else{
+                        config.get().set("warps.fps.active", true);
+                        config.save();
+                        p.sendMessage(serverinfo.name() + " | §aWarp fps foi ativada!");
+                    }
+                    p.closeInventory();
+                    p.openInventory(Config.warp_fps(p));
+                    break;
+
+                case BED:
+                    String format = p.getLocation().getX() + " " + p.getLocation().getY() + " " + p.getLocation().getZ();
+                    config.get().set("warps.fps.active", true);
+                    config.get().set("warps.fps.spawnpos", format);
+                    config.save();
+                    p.sendMessage(serverinfo.name() + " | §aWarp fps foi definida na posição atual!");
+                    break;
+                case SIGN:
+                    p.closeInventory();
+                    p.openInventory(Config.warps(p));
+                    break;
+                case BARRIER:
+                    p.closeInventory();
+                    break;
+                case AIR:
+                default:
+                    p.openInventory(Config.warp_fps(p));
+                    break;
+            }
+        }
+        //CABOU
+
+
+
+
+
     }
 
 }
