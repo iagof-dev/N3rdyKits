@@ -18,6 +18,7 @@ import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class player {
+
     public static HashMap<UUID, UUID> lastplayer_hit = new HashMap();
     public static HashMap<UUID, String> selected_kit = new HashMap();
     public static HashMap<UUID, Integer> kills = new HashMap();
@@ -30,7 +31,6 @@ public class player {
     public static HashMap<UUID, Boolean> config_menu = new HashMap();
     public static HashMap<UUID, Location> config_position_1 = new HashMap();
     public static HashMap<UUID, Location> config_position_2 = new HashMap();
-
 
     public static void setCooldown(Player p, long Seconds) {
         LocalTime time_now = LocalTime.now();

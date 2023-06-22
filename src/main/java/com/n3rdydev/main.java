@@ -11,7 +11,7 @@ import com.n3rdydev.SQL.MySql;
 
 import java.sql.Connection;
 
-public class main extends JavaPlugin implements Listener {
+public class main extends JavaPlugin {
 
     private static main plugin;
 
@@ -63,7 +63,6 @@ public class main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(player_shift, this);
         this.getServer().getPluginManager().registerEvents(player_quit, this);
         this.getServer().getPluginManager().registerEvents(handleMotd, this);
-        this.getServer().getPluginManager().registerEvents(this, this);
 
         getCommand("build").setExecutor(new Build());
         getCommand("kit").setExecutor(new Kit());
