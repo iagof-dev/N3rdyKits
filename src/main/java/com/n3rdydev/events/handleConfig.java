@@ -32,6 +32,9 @@ public class handleConfig implements Listener {
                 case BED:
                     p.openInventory(Config.spawn(p));
                     break;
+                default:
+                    p.openInventory(Config.start(p));
+                    break;
             }
         }
         //pagina spawn
@@ -58,6 +61,13 @@ public class handleConfig implements Listener {
                     p.getInventory().setItem(0, protect_item);
                     p.sendMessage(serverinfo.name()+ " | §ePosicione um ponto x e um ponto contrário do y do spawn para definir a proteção.");
                     p.closeInventory();
+                    break;
+                case SIGN:
+                    p.closeInventory();
+                    p.openInventory(Config.start(p));
+                    break;
+                default:
+                    p.openInventory(Config.spawn(p));
                     break;
             }
         }

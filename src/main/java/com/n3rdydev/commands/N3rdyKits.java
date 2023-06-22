@@ -29,7 +29,7 @@ public class N3rdyKits implements CommandExecutor, Listener {
             switch(strings[0]){
                 case "config":
                     p.openInventory(com.n3rdydev.gui.Config.start(p));
-                    break;
+                    return true;
                 case "reload":
                     config.reload();
                     statistics.reload();

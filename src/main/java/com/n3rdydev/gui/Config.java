@@ -19,7 +19,16 @@ public class Config {
         for (int v = 0; v <= 26; v++) {
             switch (v) {
                 case 10:
-                    inv.setItem(v, createItem(new ItemStack(Material.BED), "§eSpawn", "Configure o Spawn", " ", " "));
+                    inv.setItem(v, createItem(new ItemStack(Material.BED), "§eSpawn", "Configure o Spawn", " ", "[Clique para abrir menu]"));
+                    break;
+                case 13:
+                    inv.setItem(v, createItem(new ItemStack(Material.COMPASS), "§eWarps", "Configure as Warps", " ", "[Clique para abrir menu]"));
+                    break;
+                case 16:
+                    inv.setItem(v, createItem(new ItemStack(Material.CHEST), "§eFeast", "Configure os baús do feast", " ", "[Clique para abrir menu]"));
+                    break;
+                case 26:
+                    inv.setItem(v, createItem(new ItemStack(Material.BARRIER), "§eSair", "", " ", ""));
                     break;
             }
         }
@@ -32,11 +41,17 @@ public class Config {
 
         for (int v = 0; v <= 26; v++) {
             switch (v) {
+                case 18:
+                    inv.setItem(v, createItem(new ItemStack(Material.SIGN), "§eVoltar", "", " ", ""));
+                    break;
                 case 11:
                     inv.setItem(v, createItem(new ItemStack(Material.NETHER_STAR), "§eDefinir Spawn", "Onde o jogador irá spawnar", " ", "[CLIQUE PARA DEFINIR]"));
                     break;
                 case 15:
                     inv.setItem(v, createItem(new ItemStack(Material.DIAMOND_SWORD), "§eProteção", "Definir proteção do spawn", " ", "[CLIQUE PARA DEFINIR]"));
+                    break;
+                case 26:
+                    inv.setItem(v, createItem(new ItemStack(Material.BARRIER), "§eSair", "", " ", ""));
                     break;
             }
         }
