@@ -1,6 +1,6 @@
 package com.n3rdydev.events;
 
-import com.n3rdydev.entity.Chat;
+import com.n3rdydev.entity.chat;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -13,7 +13,7 @@ public class handleChat implements Listener {
     public static void onPlayerChat(PlayerChatEvent e){
         Player p = e.getPlayer();
 
-        if(Chat.active_chat != true){
+        if(chat.active_chat != true){
             e.setCancelled(true);
             p.sendMessage("§cChat está desativado!");
             return;

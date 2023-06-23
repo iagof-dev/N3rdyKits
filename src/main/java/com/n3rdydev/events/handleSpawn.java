@@ -20,39 +20,37 @@ import static com.n3rdydev.entity.player.scoreboard;
 
 public class handleSpawn implements Listener {
 
+
     public static void user_setup(Player p) {
         UUID puid = p.getUniqueId();
         player.selected_kit.put(puid, "Nenhum");
         handleFallDamage.launchpad.put(puid, false);
         scoreboard.put(puid, true);
-        can_build.put(puid, false);
         player.loadStats(p);
         com.n3rdydev.scoreboard.sb_default.Set(p);
-
-        
-
         p.setHealth(20);
         for (PotionEffect effect : p.getActivePotionEffects())
             p.removePotionEffect(effect.getType());
 
-        String prefix = "§7" + p.getName();
+        String name_prefix = "§7" + p.getName();
+        String prefix = "§7";
+
 
         if (p.hasPermission("n3rdydev.cargo.vip")) {
-            prefix = ("§d[VIP] " + p.getName());
+            name_prefix = ("§d[VIP] " + p.getName());
+            prefix="§d[VIP]";
         }
         if (p.hasPermission("n3rdydev.cargo.admin")) {
-            prefix = ("§c[ADMIN] " + p.getName());
+            name_prefix = ("§c[ADMIN] " + p.getName());
+            prefix="§c[ADMIN]";
         }
         if (p.hasPermission("n3rdydev.cargo.developer")) {
-            prefix = ("§6[DEV] " + p.getName());
+            name_prefix = ("§6[DEV] " + p.getName());
+            prefix="§6[DEV]";
         }
 
-        p.setDisplayName(prefix);
-        p.setPlayerListName(prefix);
 
-        if (p.hasPermission("n3rdydev.0000.buildon")) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset n3rdydev.0000.buildon");
-        }
+
         if (p.hasPermission("n3rdydev.command.admin")) {
             Admin.invis.put(p.getUniqueId(), false);
         }

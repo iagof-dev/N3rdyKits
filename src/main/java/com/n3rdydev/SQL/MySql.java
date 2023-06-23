@@ -20,7 +20,7 @@ public class MySql {
     static String db_type = "jdbc:mysql://";
     public static String db = db_type+ip+":"+port+"/"+database+"?jdbcCompliantTruncation=false";
 
-    public static Connection start(){
+    public static Connection Start(){
         try{
             return DriverManager.getConnection(db, user, pass);
 

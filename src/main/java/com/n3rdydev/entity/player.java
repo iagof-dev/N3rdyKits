@@ -25,8 +25,8 @@ public class player {
     public static HashMap<UUID, Integer> deaths = new HashMap();
 
     public static HashMap<UUID, Boolean> scoreboard = new HashMap();
-    public static HashMap<UUID, LocalTime> kit_cooldown = new HashMap();
-    public static HashMap<UUID, Boolean> can_build = new HashMap();
+    private static HashMap<UUID, LocalTime> kit_cooldown = new HashMap();
+    private static HashMap<UUID, Boolean> can_build = new HashMap();
 
     public static HashMap<UUID, Boolean> config_menu = new HashMap();
     public static HashMap<UUID, Location> config_position_1 = new HashMap();

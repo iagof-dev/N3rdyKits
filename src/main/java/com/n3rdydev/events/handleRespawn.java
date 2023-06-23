@@ -37,10 +37,15 @@ public class handleRespawn implements Listener {
                 p.setFireTicks(0);
                 handleFallDamage.launchpad.put(p.getUniqueId(), false);
                 UUID puid = p.getUniqueId();
-
+                player.selected_kit.put(puid, "Nenhum");
                 if (e.getEntity().getKiller() == null) {
                     player.addDeaths(p);
                     p.sendMessage("§cVocê morreu!");
+
+
+                    if(scoreboard.get(puid) != false || scoreboard.get(puid) == null){
+                        sb_default.Set(p);
+                    }
 
 
                 } else {
@@ -51,19 +56,17 @@ public class handleRespawn implements Listener {
                     player.addDeaths(p);
                     UUID pkuid = pk.getUniqueId();
 
-                    if (scoreboard.get(pkuid) != false ) {
+                    if (scoreboard.get(pkuid) != false && pkuid != null) {
                         sb_default.Set(pk);
                     }
-
-
+                    if(scoreboard.get(puid) != false || scoreboard.get(puid) == null){
+                        sb_default.Set(p);
+                    }
                 }
 
                 e.getEntity().spigot().respawn();
 
                 Spawn.Receive(p);
-
-
-
             }
         }.runTaskLater(main.getPlugin(), 1L);
 

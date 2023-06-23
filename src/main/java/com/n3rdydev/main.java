@@ -101,7 +101,7 @@ public class main extends JavaPlugin {
 
 
         if(config.get().getBoolean("database.mysql.enable") != false){
-            Connection DB = MySql.start();
+            Connection DB = MySql.Start();
         }
     }
 

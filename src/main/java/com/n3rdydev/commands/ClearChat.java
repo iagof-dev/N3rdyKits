@@ -1,6 +1,6 @@
 package com.n3rdydev.commands;
 
-import com.n3rdydev.entity.Chat;
+import com.n3rdydev.entity.chat;
 import com.n3rdydev.settings.serverinfo;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -25,11 +25,11 @@ public class ClearChat implements CommandExecutor {
 
         switch (strings[0]) {
             case "desativar":
-                Chat.active_chat = false;
+                chat.active_chat = false;
                 p.sendMessage(serverinfo.name() + " | §aChat Desativado!");
                 return true;
             case "ativar":
-                Chat.active_chat = true;
+                chat.active_chat = true;
                 p.sendMessage(serverinfo.name() + " | §aChat Ativado!");
                 return true;
             case "limpar":
