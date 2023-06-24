@@ -124,11 +124,15 @@ public class player {
     }
 
     public static void toggleBuild(Player p) {
+        String nome = serverinfo.name();
         UUID puid = p.getUniqueId();
         if (can_build(p) != true) {
             can_build.put(puid, true);
+            p.sendMessage(nome + " §aModo Construir HABILITADO!");
+
         } else {
             can_build.put(puid, false);
+            p.sendMessage(nome + " §cModo Construir DESABILITADO!");
         }
     }
 

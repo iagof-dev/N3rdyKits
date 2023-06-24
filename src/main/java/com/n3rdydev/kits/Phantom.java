@@ -9,6 +9,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Phantom {
 
     public static void Receive(Player p){
+        if (!(p.hasPermission("n3rdydev.kit.phantom") || p.hasPermission("n3rdydev.kit.*"))) {
+            p.sendMessage("§cVocê não possui o kit Phantom.");
+            return;
+        }
+
         p.getInventory().clear();
         player.selected_kit.put(p.getUniqueId(), "phantom");
 

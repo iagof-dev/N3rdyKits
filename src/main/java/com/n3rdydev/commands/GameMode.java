@@ -12,7 +12,7 @@ public class GameMode implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
 
-        if (!p.hasPermission("n3rdydev.command.gm") || !p.hasPermission("n3rdydev.*")) {
+        if (!(p.hasPermission("n3rdydev.command.gm") || p.hasPermission("n3rdydev.*"))) {
             p.sendMessage("§cSem permissão!");
             return true;
         }

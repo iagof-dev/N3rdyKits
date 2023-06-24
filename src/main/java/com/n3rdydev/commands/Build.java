@@ -15,22 +15,12 @@ public class Build implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        String nome = serverinfo.name();
         Player p = (Player) sender;
-        if (!p.hasPermission("n3rdydev.command.build") || !p.hasPermission("n3rdydev.*")) {
+        if (!(p.hasPermission("n3rdydev.command.build") || p.hasPermission("n3rdydev.*"))) {
             p.sendMessage("§cSem permissão!");
             return true;
-
         }
-
         toggleBuild(p);
-        if (can_build(p)) {
-            //adiciona
-            p.sendMessage(nome + " §aModo Construir HABILITADO!");
-        } else {
-            //remove
-            p.sendMessage(nome + " §cModo Construir DESABILITADO!");
-        }
         return true;
     }
 }

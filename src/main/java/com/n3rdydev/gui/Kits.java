@@ -2,6 +2,7 @@ package com.n3rdydev.gui;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -13,36 +14,56 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.bukkit.Material.*;
+
 public class Kits {
     public static Inventory list_kits(Player p) {
         //                                  Player | tamanho 3 linhas com 9 colunas | Nome que aparece em cima
         Inventory inv = Bukkit.createInventory(p, 9 * 3, "Lista de Kits");
 
+        ItemStack nao_possui = new ItemStack(STAINED_GLASS_PANE, 1, (byte)14);
+
         for (int v = 0; v <= 26; v++) {
             switch (v) {
                 case 0:
-                    inv.setItem(v, createItem(new ItemStack(Material.DIAMOND_SWORD), "§lPvP", "Kit padrão", " ", "§6Clique para selecionar!"));
+                    inv.setItem(v, createItem(new ItemStack(DIAMOND_SWORD), "§aPvP", "§7Kit padrão", " ", "§eClique para selecionar."));
                     break;
                 case 1:
-                    inv.setItem(v, createItem(new ItemStack(Material.FIREWORK), "§lKangaroo", "Foguetinho", " ", "§6Clique para selecionar!"));
+                    if(p.hasPermission("n3rdydev.kit.kangaroo")){
+                        inv.setItem(v, createItem(new ItemStack(FIREWORK), "§aKangaroo", "§7Foguetinho", " ", "§eClique para selecionar."));
+                    }
+                    else{
+                        inv.setItem(v, createItem(nao_possui, "§cKangaroo", "§7Foguetinho", "\n §cNão possui", "§eClique para selecionar."));
+                    }
                     break;
                 case 2:
-                    inv.setItem(v, createItem(new ItemStack(Material.STONE_SWORD), "§lBoxer", "Kit Boxer", " ", "§6Clique para selecionar!"));
+                    if(p.hasPermission("n3rdydev.kit.boxer")){
+                        inv.setItem(v, createItem(new ItemStack(STONE_SWORD), "§aBoxer", "§7Kit Boxer", " ", "§eClique para selecionar."));
+                    }
+                    else{
+                        inv.setItem(v, createItem(nao_possui, "§aBoxer", "§7Kit Boxer", "\n §cNão possui\n", "§eClique para selecionar."));
+                    }
+
                     break;
                 case 3:
-                    inv.setItem(v, createItem(new ItemStack(Material.BOW), "§lArcher", "Kit Archer", " ", "§6Clique para selecionar!"));
+                    if(p.hasPermission("n3rdydev.kit.archer")){
+                        inv.setItem(v, createItem(new ItemStack(BOW), "§aArcher", "§7Kit Archer", "", "§eClique para selecionar."));
+                    }
+                    else{
+                        inv.setItem(v, createItem(nao_possui, "§aArcher", "§7Kit Archer", "\n §cNão possui\n", "§eClique para selecionar."));
+                    }
                     break;
                 case 4:
-                    inv.setItem(v, createItem(new ItemStack(Material.IRON_BOOTS), "§lStomper", "Kit Stomper", " ", "§6Clique para selecionar!"));
+                    inv.setItem(v, createItem(new ItemStack(IRON_BOOTS), "§aStomper", "§7Kit Stomper", " ", "§eClique para selecionar."));
                     break;
                 case 5:
-                    inv.setItem(v, createItem(new ItemStack(Material.NETHER_STAR), "§lNinja", "Kit Ninja", " ", "§6Clique para selecionar!"));
+                    inv.setItem(v, createItem(new ItemStack(NETHER_STAR), "§aNinja", "Kit Ninja", " ", "§eClique para selecionar."));
                     break;
                 case 6:
-                    inv.setItem(v, createItem(new ItemStack(Material.FEATHER), "§lPhantom", "Kit Phantom", " ", "§6Clique para selecionar!"));
+                    inv.setItem(v, createItem(new ItemStack(FEATHER), "§aPhantom", "Kit Phantom", " ", "§eClique para selecionar."));
                     break;
                 default:
-                    inv.setItem(v, createItem(new ItemStack(Material.THIN_GLASS), "§cVazio", " ", " ", " "));
+                    inv.setItem(v, createItem(new ItemStack(THIN_GLASS), "§aVazio", " ", " ", " "));
                     break;
             }
         }

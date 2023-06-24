@@ -35,23 +35,25 @@ public class handleSpawn implements Listener {
             p.removePotionEffect(effect.getType());
 
 
-
         if (p.hasPermission("n3rdydev.command.admin")) {
             //se um staff entrar, entrar automaticamente no modo admin
             player.toggleInvis(p);
-        }
-        else{
+        } else {
             //
             //se não
             //verificar todos que estão invisiveis
             //e esconder pro jogador que acabou de entrar
             //
-            for(Map.Entry<UUID, Boolean> entry : player.invis.entrySet()) {
-                if(entry.getValue() != false){
-                    Player staff = Bukkit.getPlayer(entry.getKey());
-                    p.hidePlayer(staff);
+            if (!(player.invis.isEmpty() || player.invis.size() == 0)) {
+
+                for (Map.Entry<UUID, Boolean> entry : player.invis.entrySet()) {
+                    if (entry.getValue() != false) {
+                        Player staff = Bukkit.getPlayer(entry.getKey());
+                        p.hidePlayer(staff);
+                    }
                 }
             }
+
         }
     }
 

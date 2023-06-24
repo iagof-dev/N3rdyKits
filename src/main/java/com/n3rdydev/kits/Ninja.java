@@ -7,12 +7,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Ninja {
-
-
-
-    //KIT NINJA
-    //AINDA NÃO ESTÁ FUNCIONANDO :(
     public static void Receive(Player p){
+
+        if (!(p.hasPermission("n3rdydev.kit.ninja") || p.hasPermission("n3rdydev.kit.*"))) {
+            p.sendMessage("§cVocê não possui o kit Ninja.");
+            return;
+        }
+
         p.getInventory().clear();
         player.selected_kit.put(p.getUniqueId(), "ninja");
 
