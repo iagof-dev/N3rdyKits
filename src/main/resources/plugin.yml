@@ -24,10 +24,6 @@ commands:
     description: invisibilidade para outros jogadores.
     permission-message: §cNão possui permissão.
     usage: /admin
-  definir:
-    description: define as cordenadas para ser teleportado
-    permission-message: §cNão possui permissão.
-    usage: /definir [protecao/spawn/arena/warp] values
   gm:
     description: troca de gamemode.
     permission-message: §cNão possui permissão.

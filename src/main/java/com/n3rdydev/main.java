@@ -69,7 +69,6 @@ public class main extends JavaPlugin {
         getCommand("kits").setExecutor(new Kits());
         getCommand("admin").setExecutor(new Admin());
         getCommand("n3rdykits").setExecutor(new N3rdyKits());
-        getCommand("definir").setExecutor(new Definir());
         getCommand("gm").setExecutor(new GameMode());
         getCommand("score").setExecutor(new Score());
         getCommand("chat").setExecutor(new ClearChat());

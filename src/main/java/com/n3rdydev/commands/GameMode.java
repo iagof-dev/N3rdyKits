@@ -11,26 +11,30 @@ public class GameMode implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
-        if(p.hasPermission("n3rdydev.command.gm") || p.hasPermission("n3rdydev.*")){
-            switch(strings[0]){
-                case "1":
-                case "C":
-                case "c":
-                    p.setGameMode(org.bukkit.GameMode.CREATIVE);
-                    p.sendMessage(serverinfo.name() + " §aModo de jogo alterado para CRIATIVO");
-                    return true;
 
-                case "s":
-                case "0":
-                case "S":
-                    p.setGameMode(org.bukkit.GameMode.SURVIVAL);
-                    p.sendMessage(serverinfo.name() + " §aModo de jogo alterado para SURVIVAL");
-                    return true;
-
-            }
-
+        if (!p.hasPermission("n3rdydev.command.gm") || !p.hasPermission("n3rdydev.*")) {
+            p.sendMessage("§cSem permissão!");
+            return true;
         }
 
-        return false;
+        switch (strings[0]) {
+            case "1":
+            case "C":
+            case "c":
+                p.setGameMode(org.bukkit.GameMode.CREATIVE);
+                p.sendMessage(serverinfo.name() + " §aModo de jogo alterado para CRIATIVO");
+                return true;
+
+            case "s":
+            case "0":
+            case "S":
+                p.setGameMode(org.bukkit.GameMode.SURVIVAL);
+                p.sendMessage(serverinfo.name() + " §aModo de jogo alterado para SURVIVAL");
+                return true;
+            default:
+                return false;
+        }
+
+
     }
 }
