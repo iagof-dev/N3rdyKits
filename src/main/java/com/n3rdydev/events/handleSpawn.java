@@ -13,6 +13,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
+import java.util.Collection;
+import java.util.Map;
 import java.util.UUID;
 
 import static com.n3rdydev.entity.player.can_build;
@@ -32,27 +34,24 @@ public class handleSpawn implements Listener {
         for (PotionEffect effect : p.getActivePotionEffects())
             p.removePotionEffect(effect.getType());
 
-        String name_prefix = "§7" + p.getName();
-        String prefix = "§7";
-
-
-        if (p.hasPermission("n3rdydev.cargo.vip")) {
-            name_prefix = ("§d[VIP] " + p.getName());
-            prefix="§d[VIP]";
-        }
-        if (p.hasPermission("n3rdydev.cargo.admin")) {
-            name_prefix = ("§c[ADMIN] " + p.getName());
-            prefix="§c[ADMIN]";
-        }
-        if (p.hasPermission("n3rdydev.cargo.developer")) {
-            name_prefix = ("§6[DEV] " + p.getName());
-            prefix="§6[DEV]";
-        }
-
 
 
         if (p.hasPermission("n3rdydev.command.admin")) {
-            Admin.invis.put(p.getUniqueId(), false);
+            //se um staff entrar, entrar automaticamente no modo admin
+            player.toggleInvis(p);
+        }
+        else{
+            //
+            //se não
+            //verificar todos que estão invisiveis
+            //e esconder pro jogador que acabou de entrar
+            //
+            for(Map.Entry<UUID, Boolean> entry : player.invis.entrySet()) {
+                if(entry.getValue() != false){
+                    Player staff = Bukkit.getPlayer(entry.getKey());
+                    p.hidePlayer(staff);
+                }
+            }
         }
     }
 

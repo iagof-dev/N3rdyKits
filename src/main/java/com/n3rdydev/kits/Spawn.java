@@ -18,16 +18,24 @@ public class Spawn {
 
         ItemStack gui_kits = new ItemStack(Material.CHEST);
         ItemStack gui_warps = new ItemStack(Material.COMPASS);
+        ItemStack gui_loja = new ItemStack(Material.EMERALD);
+        
 
         ItemMeta kits_meta = (ItemMeta) gui_kits.getItemMeta();
         ItemMeta warps_meta = (ItemMeta) gui_warps.getItemMeta();
+        ItemMeta loja_meta = (ItemMeta) gui_loja.getItemMeta();
 
         kits_meta.setDisplayName("§l§eKits");
-        gui_kits.setItemMeta(kits_meta);
         warps_meta.setDisplayName("§l§6Warps");
+        loja_meta.setDisplayName("§l§eLoja");
+
+        gui_kits.setItemMeta(kits_meta);
         gui_warps.setItemMeta(warps_meta);
+        gui_loja.setItemMeta(loja_meta);
+
         p.getInventory().setItem(4, gui_kits);
         p.getInventory().setItem(0, gui_warps);
+        p.getInventory().setItem(8, gui_loja);
 
         p.updateInventory();
     }

@@ -65,7 +65,6 @@ public class handleInteract implements Listener {
             gui_warps.setItemMeta(warps_meta);
             if (e.getItem() != null && e.getItem().equals(gui_warps)) {
                 p.openInventory(com.n3rdydev.gui.Warps.open(p));
-                p.sendMessage("§aAbrindo menu de warps...");
                 return;
             }
 
@@ -78,7 +77,7 @@ public class handleInteract implements Listener {
             p_tracker.setItemMeta(p_tracker_meta);
             //bussola rastreadora:
             if (e.getItem() != null && e.getItem().equals(p_tracker)) {
-                String nickname = "Ninguém";
+                String nickname = "Nenhum";
                 Player target = getNearest(p, 250.0);
                 float distance = 0;
 
@@ -90,7 +89,7 @@ public class handleInteract implements Listener {
                     distance = Math.round(p.getLocation().distanceSquared(target.getLocation()));
                 }
 
-                p.sendMessage("Jogador mais próximo: " + nickname + "! (" + distance + " metros de distancia).");
+                p.sendMessage("Jogador mais próximo: " + nickname + " (" + distance + " metros).");
                 return;
             }
 
@@ -99,7 +98,7 @@ public class handleInteract implements Listener {
             if (e.getItem() != null && e.getItem().getType().equals(Material.FEATHER) && e.getItem().getItemMeta().getDisplayName().equals("§ePhantom")) {
                 if (p.getAllowFlight() != true && player.getCooldown(p) != true) {
                     p.setAllowFlight(true);
-                    p.sendMessage("§aPhantom ativado! desativando em 6 segundos...");
+                    p.sendMessage("§aPhantom ativo! Desativando em 6 segundos...");
                     new BukkitRunnable() {
                         @Override
                         public void run() {

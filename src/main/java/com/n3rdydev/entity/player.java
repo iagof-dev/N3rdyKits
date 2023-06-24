@@ -1,6 +1,8 @@
 package com.n3rdydev.entity;
 
+import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.settings.config;
+import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.settings.statistics;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import jdk.javadoc.internal.doclets.toolkit.util.NewAPIBuilder;
@@ -12,6 +14,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.lang.reflect.Array;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
@@ -31,6 +34,44 @@ public class player {
     public static HashMap<UUID, Boolean> config_menu = new HashMap();
     public static HashMap<UUID, Location> config_position_1 = new HashMap();
     public static HashMap<UUID, Location> config_position_2 = new HashMap();
+    public static HashMap<UUID, Boolean> invis = new HashMap<>();
+
+
+    public static void toggleInvis(Player p){
+
+        UUID puid = p.getUniqueId();
+
+        Collection<? extends Player> players = p.getServer().getOnlinePlayers();
+        if (invis.get(puid) != null && invis.get(puid) != false) {
+            for (Player p_list : players) {
+                if (!p_list.hasPermission("n3rdydev.command.admin")) {
+                    p_list.showPlayer(p);
+                }
+
+            }
+            p.setAllowFlight(false);
+            p.setFlying(false);
+            Spawn.Receive(p);
+            p.sendMessage(serverinfo.name() + " §cVocê saiu do MODO ADMIN e está visivel!");
+            invis.put(p.getUniqueId(), false);
+        } else {
+            for (Player p_list : players) {
+                if (!p_list.hasPermission("n3rdydev.command.admin")) {
+                    p_list.hidePlayer(p);
+                } else {
+                    if (p_list.getName() != p.getName()) {
+                        p_list.sendMessage(serverinfo.name() + " §e " + p.getName() + " entrou no modo ADMIN!");
+                        p_list.showPlayer(p);
+                    }
+                }
+            }
+            com.n3rdydev.kits.Admin.Receive(p);
+            p.setAllowFlight(true);
+            p.setFlying(true);
+            p.sendMessage(serverinfo.name() + " §aVocê entrou no MODO ADMIN e está invisivel!");
+            invis.put(p.getUniqueId(), true);
+        }
+    }
 
     public static void setCooldown(Player p, long Seconds) {
         LocalTime time_now = LocalTime.now();
