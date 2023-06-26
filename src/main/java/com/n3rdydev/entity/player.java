@@ -26,7 +26,7 @@ public class player {
     public static HashMap<UUID, String> selected_kit = new HashMap();
     public static HashMap<UUID, Integer> kills = new HashMap();
     public static HashMap<UUID, Integer> deaths = new HashMap();
-
+    public static HashMap<UUID, Integer> score = new HashMap();
     public static HashMap<UUID, Boolean> scoreboard = new HashMap();
     private static HashMap<UUID, LocalTime> kit_cooldown = new HashMap();
     private static HashMap<UUID, Boolean> can_build = new HashMap();

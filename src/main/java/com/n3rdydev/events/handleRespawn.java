@@ -52,9 +52,26 @@ public class handleRespawn implements Listener {
                     Player pk = (Player) e.getEntity().getKiller().getPlayer();
                     p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
                     pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
+
                     player.addKills(pk);
                     player.addDeaths(p);
                     UUID pkuid = pk.getUniqueId();
+
+                    if(player.score.get(pkuid) != null){
+                        Integer new_value = (player.score.get(pkuid) + 5);
+                        player.score.put(pkuid, new_value);
+                    }
+                    else{
+                        player.score.put(pkuid, 5);
+                    }
+                    if(player.score.get(puid) != null){
+                        Integer new_value = (player.score.get(puid) - 5);
+                        player.score.put(puid, new_value);
+                    }
+                    else{
+                        player.score.put(puid, -5);
+                    }
+
 
                     if (scoreboard.get(pkuid) != false && pkuid != null) {
                         sb_default.Set(pk);

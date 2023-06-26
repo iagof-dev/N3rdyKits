@@ -35,9 +35,7 @@ public class Kangaroo {
         sopa.setDisplayName("§eSopa Mágica");
         soup.setItemMeta(sopa);
 
-
         for (int z = 0; z <= 36; z++) {
-
             switch (z) {
                 case 0:
                     p.getInventory().addItem(sword);

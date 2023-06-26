@@ -1,10 +1,13 @@
 package com.n3rdydev.scoreboard;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.settings.serverinfo;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
+
+import java.util.UUID;
 
 public class sb_default {
 
@@ -13,9 +16,11 @@ public class sb_default {
         Scoreboard sbdefault = sb_manager.getNewScoreboard();
         Objective obj = sbdefault.registerNewObjective("title", "dummy");
 
+        UUID puid = p.getUniqueId();
+
         String selected_kit = "Nenhum";
-        if (player.selected_kit.get(p.getUniqueId()) != null) {
-            selected_kit = (player.selected_kit.get(p.getUniqueId()));
+        if (player.selected_kit.get(puid) != null) {
+            selected_kit = (player.selected_kit.get(puid));
             if(selected_kit == "pvp"){
                 selected_kit = "PvP";
             }
@@ -29,11 +34,11 @@ public class sb_default {
         Score vazio3 = obj.getScore("   ");
         Score sel_kit = obj.getScore("Kit: §a" + selected_kit);
         Score vazio = obj.getScore(" ");
-        Score p_kill = obj.getScore("Kills: §7" + com.n3rdydev.entity.player.getKills(p));
-        Score p_death = obj.getScore("Mortes: §7" + com.n3rdydev.entity.player.getDeaths(p));
-        Score xp = obj.getScore("XP: §60");
+        Score p_kill = obj.getScore("Kills: §7" + player.getKills(p));
+        Score p_death = obj.getScore("Mortes: §7" + player.getDeaths(p));
+        Score xp = obj.getScore("XP: §6" + player.score.get(puid));
         Score vazio2 = obj.getScore("  ");
-        Score serverip = obj.getScore(com.n3rdydev.settings.serverinfo.ip());
+        Score serverip = obj.getScore(serverinfo.ip());
 
         vazio3.setScore(7);
         sel_kit.setScore(6);
