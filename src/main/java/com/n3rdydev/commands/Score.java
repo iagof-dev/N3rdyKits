@@ -23,7 +23,6 @@ public class Score implements CommandExecutor {
             player.updateScoreboard(p);
             p.sendMessage("§aVocê ativou a scoreboard!");
         }
-
         return true;
     }
 }
