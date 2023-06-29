@@ -1,6 +1,8 @@
 # N3rdyKits
 Java | Plugin minigame KitPvP
 
+Status: Not finished
+
 ## Comandos & Permissões
 /admin - n3rdydev.command.admin
 
