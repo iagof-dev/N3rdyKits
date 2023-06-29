@@ -24,7 +24,14 @@ public class handleSpawn implements Listener {
 
 
     public static void user_setup(Player p) {
+        //limpar chat
+        for(int i = 0; i <= 255; i++){
+            p.sendMessage(" ");
+        }
         UUID puid = p.getUniqueId();
+        if(can_build(p)){
+            player.toggleBuild(p);
+        }
         player.selected_kit.put(puid, "Nenhum");
         handleFallDamage.launchpad.put(puid, false);
         scoreboard.put(puid, true);
@@ -34,27 +41,16 @@ public class handleSpawn implements Listener {
         for (PotionEffect effect : p.getActivePotionEffects())
             p.removePotionEffect(effect.getType());
 
+        if (!(player.invis.isEmpty() || player.invis.size() == 0)) {
 
-        if (p.hasPermission("n3rdydev.command.admin")) {
-            //se um staff entrar, entrar automaticamente no modo admin
-            player.toggleInvis(p);
-        } else {
-            //
-            //se não
-            //verificar todos que estão invisiveis
-            //e esconder pro jogador que acabou de entrar
-            //
-            if (!(player.invis.isEmpty() || player.invis.size() == 0)) {
-
-                for (Map.Entry<UUID, Boolean> entry : player.invis.entrySet()) {
-                    if (entry.getValue() != false) {
-                        Player staff = Bukkit.getPlayer(entry.getKey());
-                        p.hidePlayer(staff);
-                    }
+            for (Map.Entry<UUID, Boolean> entry : player.invis.entrySet()) {
+                if (entry.getValue() != false) {
+                    Player staff = Bukkit.getPlayer(entry.getKey());
+                    p.hidePlayer(staff);
                 }
             }
-
         }
+
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)

@@ -3,6 +3,7 @@ package com.n3rdydev.events;
 import com.n3rdydev.gui.Kits;
 import com.n3rdydev.gui.RecraftRefil;
 import com.n3rdydev.gui.SoupRefil;
+import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.settings.spawn;
@@ -35,7 +36,7 @@ public class handleInteract implements Listener {
 
             //se o jogador clicar em QUALQUER baú, ele vai abrir o menu de kit
             //preciso verificar se o baú está nomeado...
-            if (e.getItem() != null && e.getItem().getType().equals(Material.CHEST)) {
+            if (e.getItem() != null && e.getItem().equals(Spawn.gui_kits)) {
                 p.openInventory(Kits.list_kits(p));
                 return;
             }
@@ -59,11 +60,7 @@ public class handleInteract implements Listener {
 
             //Warp
             //Ao clicar na bussola ele vai abrir o gui de warps
-            ItemStack gui_warps = new ItemStack(Material.COMPASS);
-            ItemMeta warps_meta = (ItemMeta) gui_warps.getItemMeta();
-            warps_meta.setDisplayName("§l§6Warps");
-            gui_warps.setItemMeta(warps_meta);
-            if (e.getItem() != null && e.getItem().equals(gui_warps)) {
+            if (e.getItem() != null && e.getItem().equals(Spawn.gui_warps)) {
                 p.openInventory(com.n3rdydev.gui.Warps.open(p));
                 return;
             }

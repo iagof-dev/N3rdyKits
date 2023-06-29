@@ -9,6 +9,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Spawn {
 
+
+    public static ItemStack gui_kits = new ItemStack(Material.CHEST);
+    public static ItemStack gui_warps = new ItemStack(Material.COMPASS);
+    public static ItemStack gui_loja = new ItemStack(Material.EMERALD);
+
     public static void Receive(Player p){
         ItemStack[] armorContents = p.getInventory().getArmorContents().clone();
         p.getInventory().clear();
@@ -16,18 +21,13 @@ public class Spawn {
 
         player.selected_kit.put(p.getUniqueId(), "Nenhum");
 
-        ItemStack gui_kits = new ItemStack(Material.CHEST);
-        ItemStack gui_warps = new ItemStack(Material.COMPASS);
-        ItemStack gui_loja = new ItemStack(Material.EMERALD);
-        
-
         ItemMeta kits_meta = (ItemMeta) gui_kits.getItemMeta();
         ItemMeta warps_meta = (ItemMeta) gui_warps.getItemMeta();
         ItemMeta loja_meta = (ItemMeta) gui_loja.getItemMeta();
 
-        kits_meta.setDisplayName("§l§eKits");
-        warps_meta.setDisplayName("§l§6Warps");
-        loja_meta.setDisplayName("§l§eLoja");
+        kits_meta.setDisplayName("§6§l« Kits »");
+        warps_meta.setDisplayName("§6§l« Warps »");
+        loja_meta.setDisplayName("§6§l« Loja »");
 
         gui_kits.setItemMeta(kits_meta);
         gui_warps.setItemMeta(warps_meta);
