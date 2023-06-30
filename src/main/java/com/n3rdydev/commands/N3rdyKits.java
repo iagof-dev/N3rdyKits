@@ -1,6 +1,7 @@
 package com.n3rdydev.commands;
 
 import com.n3rdydev.SQL.MySql;
+import com.n3rdydev.entity.feast;
 import com.n3rdydev.scoreboard.sb_default;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.entity.player;
@@ -75,6 +76,9 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 break;
             case "teste":
                 mensagem += "Pos1: " + player.config_position_1.get(p.getUniqueId()) + "\nPos2: " + player.config_position_2.get(p.getUniqueId());
+                break;
+            case "feast":
+                feast.generate(p);
                 break;
         }
         p.sendMessage(mensagem);
