@@ -25,9 +25,9 @@ public class Spawn {
         ItemMeta warps_meta = (ItemMeta) gui_warps.getItemMeta();
         ItemMeta loja_meta = (ItemMeta) gui_loja.getItemMeta();
 
-        kits_meta.setDisplayName("§6§l« §rKits »§6§l");
-        warps_meta.setDisplayName("§6§l« §rWarps »§6§l");
-        loja_meta.setDisplayName("§6§l« §rLoja »§6§l");
+        kits_meta.setDisplayName("§6§l« §rKits §6§l»");
+        warps_meta.setDisplayName("§6§l« §rWarps §6§l»");
+        loja_meta.setDisplayName("§6§l« §rLoja §6§l»");
 
         gui_kits.setItemMeta(kits_meta);
         gui_warps.setItemMeta(warps_meta);
