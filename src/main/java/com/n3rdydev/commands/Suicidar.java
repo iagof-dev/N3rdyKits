@@ -9,7 +9,8 @@ public class Suicidar implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
-        p.setHealth(0);
+        double aaaaaaaaaa = 0;
+        p.setHealth(aaaaaaaaaa);
         return true;
     }
 }

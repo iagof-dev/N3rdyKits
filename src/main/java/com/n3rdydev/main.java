@@ -72,7 +72,7 @@ public class main extends JavaPlugin {
         getCommand("gm").setExecutor(new GameMode());
         getCommand("score").setExecutor(new Score());
         getCommand("chat").setExecutor(new ClearChat());
-        getCommand("suicidar").setExecutor(new Suicidar());
+        //getCommand("suicidar").setExecutor(new Suicidar());
 
         com.n3rdydev.settings.spawn.load();
 
