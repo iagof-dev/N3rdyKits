@@ -55,9 +55,6 @@ public class FPS {
             }
 
         }
-
-
-
         p.updateInventory();
     }
 

@@ -35,6 +35,15 @@ public class player {
     public static HashMap<UUID, Location> config_position_2 = new HashMap();
     public static HashMap<UUID, Boolean> invis = new HashMap<>();
 
+    /*
+
+    0 - SPAWN
+    1 - FPS
+    2 - LAVA CHALLENGE
+
+     */
+    public static HashMap<UUID, Integer> warp= new HashMap<>();
+
 
     public static void toggleInvis(Player p){
 

@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class PvP {
-    public static void Receive(Player p){
+    public static boolean Receive(Player p){
         p.getInventory().clear();
         player.selected_kit.put(p.getUniqueId(), "pvp");
 
@@ -51,6 +51,7 @@ public class PvP {
         p.updateInventory();
         player.randomTpArena(p);
 
+        return true;
     }
 
 

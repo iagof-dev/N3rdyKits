@@ -3,6 +3,7 @@ package com.n3rdydev.events;
 import com.n3rdydev.gui.Kits;
 import com.n3rdydev.kits.*;
 import com.n3rdydev.scoreboard.sb_default;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -26,27 +27,28 @@ public class handleKitSelector implements Listener {
         if (e.getView().getTitle().equals("Lista de Kits") && e.getCurrentItem() != null) {
             e.setCancelled(true);
             p.closeInventory();
+            boolean sucess = false;
             switch (e.getCurrentItem().getType()) {
                 case DIAMOND_SWORD:
-                    PvP.Receive(p);
+                    sucess = PvP.Receive(p);
                     break;
                 case FIREWORK:
-                    Kangaroo.Receive(p);
+                    sucess = Kangaroo.Receive(p);
                     break;
                 case STONE_SWORD:
-                    Boxer.Receive(p);
+                    sucess = Boxer.Receive(p);
                     break;
                 case BOW:
-                    Archer.Receive(p);
+                    sucess = Archer.Receive(p);
                     break;
                 case IRON_BOOTS:
-                    Stomper.Receive(p);
+                    sucess = Stomper.Receive(p);
                     break;
                 case NETHER_STAR:
-                    Ninja.Receive(p);
+                    sucess = Ninja.Receive(p);
                     break;
                 case FEATHER:
-                    Phantom.Receive(p);
+                    sucess = Phantom.Receive(p);
                     break;
                 default:
                     p.openInventory(Kits.list_kits(p));
@@ -56,6 +58,14 @@ public class handleKitSelector implements Listener {
             if (scoreboard.get(puid) != false ) {
                 sb_default.Set(p);
             }
+
+            if(sucess != false){
+                p.playSound(p.getLocation(), Sound.SUCCESSFUL_HIT, 1, 1);
+            }
+            else{
+                p.playSound(p.getLocation(), Sound.NOTE_BASS , 1, 1);
+            }
+
             return;
         }
     }

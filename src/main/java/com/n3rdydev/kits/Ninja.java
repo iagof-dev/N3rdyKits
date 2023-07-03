@@ -7,11 +7,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Ninja {
-    public static void Receive(Player p){
+    public static boolean Receive(Player p){
 
         if (!(p.hasPermission("n3rdydev.kit.ninja") || p.hasPermission("n3rdydev.kit.*"))) {
             p.sendMessage("§cVocê não possui o kit Ninja.");
-            return;
+            return false;
         }
 
         p.getInventory().clear();
@@ -56,7 +56,7 @@ public class Ninja {
         }
         p.updateInventory();
         player.randomTpArena(p);
-
+        return true;
     }
 
 }

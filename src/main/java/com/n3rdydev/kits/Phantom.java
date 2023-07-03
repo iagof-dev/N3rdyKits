@@ -8,10 +8,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Phantom {
 
-    public static void Receive(Player p){
+    public static boolean Receive(Player p){
         if (!(p.hasPermission("n3rdydev.kit.phantom") || p.hasPermission("n3rdydev.kit.*"))) {
             p.sendMessage("§cVocê não possui o kit Phantom.");
-            return;
+            return false;
         }
 
         p.getInventory().clear();
@@ -65,10 +65,6 @@ public class Phantom {
         }
         p.updateInventory();
         player.randomTpArena(p);
-
-
-
-
-
+        return true;
     }
 }

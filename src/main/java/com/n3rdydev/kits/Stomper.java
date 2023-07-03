@@ -7,11 +7,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Stomper {
-        public static void Receive(Player p){
+        public static boolean Receive(Player p){
 
             if (!(p.hasPermission("n3rdydev.kit.stomper") || p.hasPermission("n3rdydev.kit.*"))) {
                 p.sendMessage("§cVocê não possui o kit Stomper.");
-                return;
+                return false;
             }
             p.getInventory().clear();
             player.selected_kit.put(p.getUniqueId(), "stomper");
@@ -55,6 +55,6 @@ public class Stomper {
             }
             p.updateInventory();
             player.randomTpArena(p);
-
+            return true;
         }
 }

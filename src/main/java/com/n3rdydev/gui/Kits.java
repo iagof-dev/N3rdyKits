@@ -17,6 +17,7 @@ import java.util.List;
 import static org.bukkit.Material.*;
 
 public class Kits {
+    static String select_kit = "§eClique para selecionar.";
     public static Inventory list_kits(Player p) {
         //                                  Player | tamanho 3 linhas com 9 colunas | Nome que aparece em cima
         Inventory inv = Bukkit.createInventory(p, 9 * 3, "Lista de Kits");
@@ -37,9 +38,9 @@ public class Kits {
                     break;
                 case 2:
                     if (p.hasPermission("n3rdydev.kit.boxer")) {
-                        inv.setItem(v, createItem(new ItemStack(STONE_SWORD), "§aBoxer", "§7Kit Boxer", " ", "§eClique para selecionar."));
+                        inv.setItem(v, createItem(new ItemStack(STONE_SWORD), "§aBoxer", "§7Kit Boxer", " ", select_kit));
                     } else {
-                        inv.setItem(v, createItem(nao_possui, "§aBoxer", "§7Kit Boxer", "§cNão possui", "§eClique para selecionar."));
+                        inv.setItem(v, createItem(nao_possui, "§aBoxer", "§7Kit Boxer", "§cNão possui", select_kit));
                     }
 
                     break;
@@ -68,7 +69,7 @@ public class Kits {
                     if (p.hasPermission("n3rdydev.kit.feather")) {
                         inv.setItem(v, createItem(new ItemStack(FEATHER), "§aPhantom", "§7Kit Phantom", " ", "§eClique para selecionar."));
                     } else {
-                        inv.setItem(v, createItem(nao_possui, "§aPhantom", "§7Kit Phantom", "§cNão possui", "§eClique para selecionar."));
+                        inv.setItem(v, createItem(nao_possui, "§aPhantom", "§7Kit Phantom", "§cNão possui", ""));
                     }
                     break;
                 default:

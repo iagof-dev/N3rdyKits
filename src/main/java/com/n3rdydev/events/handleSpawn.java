@@ -34,6 +34,8 @@ public class handleSpawn implements Listener {
             player.toggleBuild(p);
         }
 
+        player.warp.put(puid, 0);
+
 
         player.selected_kit.put(puid, "Nenhum");
         handleFallDamage.launchpad.put(puid, false);
@@ -61,7 +63,6 @@ public class handleSpawn implements Listener {
 
         PlayerInventory inv = p.getInventory();
         inv.setArmorContents(new ItemStack[inv.getArmorContents().length]);
-
         p.getInventory().clear();
         e.setJoinMessage("");
         user_setup(p);
