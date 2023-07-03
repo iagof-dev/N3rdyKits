@@ -11,6 +11,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 
 import java.util.Collection;
@@ -32,6 +33,8 @@ public class handleSpawn implements Listener {
         if(can_build(p)){
             player.toggleBuild(p);
         }
+
+
         player.selected_kit.put(puid, "Nenhum");
         handleFallDamage.launchpad.put(puid, false);
         scoreboard.put(puid, true);
@@ -42,7 +45,6 @@ public class handleSpawn implements Listener {
             p.removePotionEffect(effect.getType());
 
         if (!(player.invis.isEmpty() || player.invis.size() == 0)) {
-
             for (Map.Entry<UUID, Boolean> entry : player.invis.entrySet()) {
                 if (entry.getValue() != false) {
                     Player staff = Bukkit.getPlayer(entry.getKey());
@@ -56,6 +58,11 @@ public class handleSpawn implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = (Player) e.getPlayer();
+
+        PlayerInventory inv = p.getInventory();
+        inv.setArmorContents(new ItemStack[inv.getArmorContents().length]);
+
+        p.getInventory().clear();
         e.setJoinMessage("");
         user_setup(p);
         Location spawn_loc = new Location(p.getWorld(), com.n3rdydev.settings.spawn.spawn_x, com.n3rdydev.settings.spawn.spawn_y, com.n3rdydev.settings.spawn.spawn_z);

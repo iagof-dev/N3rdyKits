@@ -21,11 +21,12 @@ public class Warps{
             ItemStack vazio = new ItemStack(Material.THIN_GLASS, 1);
             for (int v = 0; v <= 26; v++) {
                 switch (v) {
-                    case 13:
-                        inv.setItem(v, createItem(new ItemStack(Material.GLASS, 1),"§6FPS", "warp pra pc ruim", "[Clique para teleportar]"));
+                    case 11:
+                        inv.setItem(v, createItem(new ItemStack(Material.LAVA_BUCKET, 1),"§6Lava Challenge", "§7warp pra treinar recraft", " " ,"§eClique para teleportar"));
                         break;
-                    default:
-                        inv.setItem(v, createItem(vazio, "§eVazio"));
+
+                    case 13:
+                        inv.setItem(v, createItem(new ItemStack(Material.GLASS, 1),"§6FPS", "§7warp pra pc ruim", " " ,"§eClique para teleportar"));
                         break;
                 }
             }
