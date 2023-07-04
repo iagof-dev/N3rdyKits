@@ -1,20 +1,18 @@
 package com.n3rdydev.commands;
 
 import com.n3rdydev.SQL.MySql;
-import com.n3rdydev.entity.feast;
+import com.n3rdydev.entity.server;
 import com.n3rdydev.scoreboard.sb_default;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.entity.player;
 import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.settings.spawn;
 import com.n3rdydev.settings.statistics;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
@@ -74,11 +72,14 @@ public class N3rdyKits implements CommandExecutor, Listener {
             case "fps":
                 com.n3rdydev.kits.FPS.Receive(p);
                 break;
-            case "teste":
-                mensagem += "Pos1: " + player.config_position_1.get(p.getUniqueId()) + "\nPos2: " + player.config_position_2.get(p.getUniqueId());
-                break;
             case "feast":
-                feast.generate(p);
+                server.feast_generate(p);
+                break;
+            case "ritem":
+                mensagem += server.random_item();
+                break;
+            case "cfeast":
+                server.feast_clear(p);
                 break;
         }
         p.sendMessage(mensagem);

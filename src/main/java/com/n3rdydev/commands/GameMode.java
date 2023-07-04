@@ -31,6 +31,12 @@ public class GameMode implements CommandExecutor {
                 p.setGameMode(org.bukkit.GameMode.SURVIVAL);
                 p.sendMessage(serverinfo.name() + " §aModo de jogo alterado para SURVIVAL");
                 return true;
+            case "3":
+            case "spec":
+            case "SPEC":
+                p.setGameMode(org.bukkit.GameMode.SPECTATOR);
+                p.sendMessage(serverinfo.name() + " §aModo de jogo alterado para Espectador");
+                return true;
             default:
                 return false;
         }

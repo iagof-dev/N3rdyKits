@@ -237,7 +237,7 @@ public class player {
             spawn[0] = Double.parseDouble(sp_cord_arena[0]);
             spawn[1] = Double.parseDouble(sp_cord_arena[1]);
             spawn[2] = Double.parseDouble(sp_cord_arena[2]);
-            Location spawn_loc = new Location(p.getWorld(), spawn[0], spawn[1], spawn[2]);
+            Location spawn_loc = new Location(server.world, spawn[0], spawn[1], spawn[2]);
             p.teleport(spawn_loc);
         } catch (Exception ex) {
             randomTpArena(p);
@@ -253,7 +253,7 @@ public class player {
             spawn[0] = Double.parseDouble(sp_cord_arena[0]);
             spawn[1] = Double.parseDouble(sp_cord_arena[1]);
             spawn[2] = Double.parseDouble(sp_cord_arena[2]);
-            Location spawn_loc = new Location(p.getWorld(), spawn[0], spawn[1], spawn[2]);
+            Location spawn_loc = new Location(server.world, spawn[0], spawn[1], spawn[2]);
             return spawn_loc;
         }
         return null;
