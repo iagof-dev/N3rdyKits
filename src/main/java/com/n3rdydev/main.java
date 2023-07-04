@@ -23,6 +23,8 @@ public class main extends JavaPlugin {
     public void onEnable(){
         plugin = this;
 
+        com.n3rdydev.entity.server.feast_clear();
+
          //Registrando Eventos
 
         Listener drop = new handleDrop();

@@ -73,13 +73,13 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 com.n3rdydev.kits.FPS.Receive(p);
                 break;
             case "feast":
-                server.feast_generate(p);
+                server.feast_generate();
                 break;
             case "ritem":
                 mensagem += server.random_item();
                 break;
             case "cfeast":
-                server.feast_clear(p);
+                server.feast_clear();
                 break;
         }
         p.sendMessage(mensagem);

@@ -19,7 +19,7 @@ public class server {
     public static ItemStack[] gen_items;
     static World world = Bukkit.getWorlds().get(0);
 
-    public static void feast_generate(Player p) {
+    public static void feast_generate() {
         int baus = 0;
         int chance = 25;
 
@@ -50,9 +50,6 @@ public class server {
                 }
             }
         }
-        p.sendMessage("encontrei " + baus + " baús!");
-
-
     }
 
     public static ItemStack random_item() {
@@ -93,7 +90,7 @@ public class server {
 
 
     }
-    public static void feast_clear(Player p){
+    public static void feast_clear(){
         //World world = p.getWorld();
         for (Chunk c : world.getLoadedChunks()) {
             for (BlockState b : c.getTileEntities()) {
