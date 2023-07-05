@@ -81,6 +81,9 @@ public class N3rdyKits implements CommandExecutor, Listener {
             case "cfeast":
                 server.feast_clear();
                 break;
+            case "tfeast":
+                mensagem += "§rFeast Timer: §c" + config.get().getInt("server.feast.timer") + " minutos.";
+                break;
         }
         p.sendMessage(mensagem);
         return true;

@@ -26,19 +26,8 @@ public class main extends JavaPlugin {
         plugin = this;
         com.n3rdydev.entity.server.feast_clear();
 
-        //20 ticks = 1 segundo
-        int config_time = config.get().getInt("server.feast.timer");
-        int timer = ((20*60) * config_time);
-        new BukkitRunnable(){
-            @Override
-            public void run(){
-                for(Player all : Bukkit.getServer().getOnlinePlayers())
-                {
-                    all.sendMessage("§dFeast spawnou!");
-                }
-                com.n3rdydev.entity.server.feast_generate();
-            }
-        }.runTaskTimerAsynchronously(main.getPlugin(), 1L, timer);
+        com.n3rdydev.entity.server.loop_events();
+
 
 
 

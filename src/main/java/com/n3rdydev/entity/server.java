@@ -1,5 +1,7 @@
 package com.n3rdydev.entity;
 
+import com.n3rdydev.main;
+import com.n3rdydev.settings.config;
 import org.bukkit.*;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
@@ -10,6 +12,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,24 @@ import java.util.concurrent.ThreadLocalRandom;
 public class server {
     public static ItemStack[] gen_items;
     static World world = Bukkit.getWorlds().get(0);
+
+
+    public static void loop_events(){
+        //20 ticks = 1 segundo
+        int config_feast_timer = config.get().getInt("server.feast.timer");
+        int timer = ((20*60) * config_feast_timer);
+        new BukkitRunnable(){
+            @Override
+            public void run(){
+                for(Player all : Bukkit.getServer().getOnlinePlayers())
+                {
+                    all.sendMessage("§dFeast spawnou!");
+                }
+                com.n3rdydev.entity.server.feast_generate();
+            }
+        }.runTaskTimerAsynchronously(main.getPlugin(), 1L, timer);
+    }
+
 
     public static void feast_generate() {
         //int baus = 0;
