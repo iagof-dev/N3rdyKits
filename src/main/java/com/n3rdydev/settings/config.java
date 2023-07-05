@@ -53,7 +53,7 @@ public class config {
         get().addDefault("server.ip", "§7localhost");
         get().addDefault("server.motd.1.line1", "                §2§l§nN3rdyKits§r §c[1.8.x]");
         get().addDefault("server.motd.1.line2", "                §eAdquira VIP: &§loja.servidor.com");
-
+        get().addDefault("server.feast.timer", 20);
 
         //DATABASE
         get().addDefault("database.mysql.enable", false);
@@ -63,6 +63,7 @@ public class config {
         get().addDefault("database.mysql.password", "132490Kj@br=");
         get().addDefault("database.mysql.database", "N3rdyKits");
         get().addDefault("database.mysql.table", "estatistica");
+
 
 
         //SPAWN

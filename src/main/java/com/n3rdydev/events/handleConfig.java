@@ -154,6 +154,52 @@ public class handleConfig implements Listener {
         }
         //CABOU
 
+        //pagina warp lava challenge
+        if (e.getView().getTitle().equals("LAVA CHALLENGE CONFIG") && e.getCurrentItem() != null) {
+            e.setCancelled(true);
+            p.closeInventory();
+
+
+            switch (e.getCurrentItem().getType()) {
+
+                case WOOL:
+                    if(com.n3rdydev.settings.config.get().getBoolean("warps.lavachallenge.active") != false){
+                        //se tiver true
+                        config.get().set("warps.lavachallenge.active", false);
+                        config.save();
+                        p.sendMessage(serverinfo.name() + " | §cWarp fps foi desativada!");
+                    }
+                    else{
+                        config.get().set("warps.lavachallenge.active", true);
+                        config.save();
+                        p.sendMessage(serverinfo.name() + " | §aWarp fps foi ativada!");
+                    }
+                    p.closeInventory();
+                    p.openInventory(Config.warp_fps(p));
+                    break;
+
+                case BED:
+                    String format = p.getLocation().getX() + " " + p.getLocation().getY() + " " + p.getLocation().getZ();
+                    config.get().set("warps.lavachallenge.active", true);
+                    config.get().set("warps.lavachallenge.spawnpos", format);
+                    config.save();
+                    p.sendMessage(serverinfo.name() + " | §aWarp fps foi definida na posição atual!");
+                    break;
+                case SIGN:
+                    p.closeInventory();
+                    p.openInventory(Config.warps(p));
+                    break;
+                case BARRIER:
+                    p.closeInventory();
+                    break;
+                case AIR:
+                default:
+                    p.openInventory(Config.warp_fps(p));
+                    break;
+            }
+        }
+        //CABOU
+
 
 
 

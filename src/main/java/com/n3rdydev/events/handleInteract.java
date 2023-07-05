@@ -61,7 +61,7 @@ public class handleInteract implements Listener {
             //Warp
             //Ao clicar na bussola ele vai abrir o gui de warps
             if (e.getItem() != null && e.getItem().equals(Spawn.gui_warps)) {
-                p.openInventory(com.n3rdydev.gui.Warps.open(p));
+                p.openInventory(com.n3rdydev.gui.Warps.open());
                 return;
             }
 

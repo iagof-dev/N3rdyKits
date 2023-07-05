@@ -15,9 +15,9 @@ import java.util.List;
 
 public class Warps{
 
-        public static Inventory open(Player p) {
+        public static Inventory open() {
             //                                  Player | tamanho 3 linhas com 9 colunas | Nome que aparece em cima
-            Inventory inv = Bukkit.createInventory(p, 9 * 3, "Warps");
+            Inventory inv = Bukkit.createInventory(null, 9 * 3, "Warps");
             ItemStack vazio = new ItemStack(Material.THIN_GLASS, 1);
             for (int v = 0; v <= 26; v++) {
                 switch (v) {

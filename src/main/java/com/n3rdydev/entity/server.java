@@ -20,19 +20,20 @@ public class server {
     static World world = Bukkit.getWorlds().get(0);
 
     public static void feast_generate() {
-        int baus = 0;
-        int chance = 25;
+        //int baus = 0;
+        int chance = 18;
 
         //World world = p.getWorld();
         for (Chunk c : world.getLoadedChunks()) {
             for (BlockState b : c.getTileEntities()) {
                 if (b instanceof Chest) {
+                    //baus++;
                     Chest chest = (Chest) b;
 
                     ((Chest) b).getBlockInventory().clear();
                     /*
                         Item Aleatorio que irá aparecer nos baús
-                        12% de chance
+                        18% de chance
                     */
                     for (int slot = 0; slot <= 26; slot++) {
                         int chance_item = ThreadLocalRandom.current().nextInt(0, 100 + 1);
@@ -44,7 +45,6 @@ public class server {
 
 
                     Location bau_loc = b.getLocation();
-                    baus++;
                     world.strikeLightning(bau_loc);
                     b.update();
                 }

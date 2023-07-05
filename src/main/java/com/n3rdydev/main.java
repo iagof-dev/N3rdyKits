@@ -5,9 +5,11 @@ import com.n3rdydev.events.*;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.settings.statistics;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.n3rdydev.SQL.MySql;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.sql.Connection;
 
@@ -22,8 +24,23 @@ public class main extends JavaPlugin {
     @Override
     public void onEnable(){
         plugin = this;
-
         com.n3rdydev.entity.server.feast_clear();
+
+        //20 ticks = 1 segundo
+        int config_time = config.get().getInt("server.feast.timer");
+        int timer = ((20*60) * config_time);
+        new BukkitRunnable(){
+            @Override
+            public void run(){
+                for(Player all : Bukkit.getServer().getOnlinePlayers())
+                {
+                    all.sendMessage("§dFeast spawnou!");
+                }
+                com.n3rdydev.entity.server.feast_generate();
+            }
+        }.runTaskTimerAsynchronously(main.getPlugin(), 1L, timer);
+
+
 
          //Registrando Eventos
 
