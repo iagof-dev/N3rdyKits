@@ -25,7 +25,6 @@ public class handleConfig implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInventoryClick(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
-
         //Pagina inicial
         if (e.getView().getTitle().equals("Configuração") && e.getCurrentItem() != null) {
             e.setCancelled(true);
@@ -38,10 +37,6 @@ public class handleConfig implements Listener {
                     break;
                 case BARRIER:
                     p.closeInventory();
-                    break;
-                case AIR:
-                default:
-                    p.openInventory(Config.start(p));
                     break;
             }
         }
@@ -93,6 +88,9 @@ public class handleConfig implements Listener {
                 case GLASS:
                     p.openInventory(Config.warp_fps(p));
                     break;
+                case LAVA_BUCKET:
+                    p.openInventory(Config.warp_lavac(p));
+                    break;
                 case SIGN:
                     p.closeInventory();
                     p.openInventory(Config.start(p));
@@ -102,7 +100,7 @@ public class handleConfig implements Listener {
                     break;
                 case AIR:
                 default:
-                    p.openInventory(Config.spawn(p));
+                    p.openInventory(Config.warps(p));
                     break;
             }
         }
@@ -112,10 +110,7 @@ public class handleConfig implements Listener {
         if (e.getView().getTitle().equals("FPS CONFIG") && e.getCurrentItem() != null) {
             e.setCancelled(true);
             p.closeInventory();
-
-
             switch (e.getCurrentItem().getType()) {
-
                 case WOOL:
                     if(com.n3rdydev.settings.config.get().getBoolean("warps.fps.active") != false){
                         //se tiver true
@@ -146,10 +141,6 @@ public class handleConfig implements Listener {
                 case BARRIER:
                     p.closeInventory();
                     break;
-                case AIR:
-                default:
-                    p.openInventory(Config.warp_fps(p));
-                    break;
             }
         }
         //CABOU
@@ -158,24 +149,21 @@ public class handleConfig implements Listener {
         if (e.getView().getTitle().equals("LAVA CHALLENGE CONFIG") && e.getCurrentItem() != null) {
             e.setCancelled(true);
             p.closeInventory();
-
-
             switch (e.getCurrentItem().getType()) {
-
                 case WOOL:
                     if(com.n3rdydev.settings.config.get().getBoolean("warps.lavachallenge.active") != false){
                         //se tiver true
                         config.get().set("warps.lavachallenge.active", false);
                         config.save();
-                        p.sendMessage(serverinfo.name() + " | §cWarp fps foi desativada!");
+                        p.sendMessage(serverinfo.name() + " | §cWarp Lava Challenge foi desativada!");
                     }
                     else{
                         config.get().set("warps.lavachallenge.active", true);
                         config.save();
-                        p.sendMessage(serverinfo.name() + " | §aWarp fps foi ativada!");
+                        p.sendMessage(serverinfo.name() + " | §aWarp Lava Challenge foi ativada!");
                     }
                     p.closeInventory();
-                    p.openInventory(Config.warp_fps(p));
+                    p.openInventory(Config.warp_lavac(p));
                     break;
 
                 case BED:
@@ -183,7 +171,7 @@ public class handleConfig implements Listener {
                     config.get().set("warps.lavachallenge.active", true);
                     config.get().set("warps.lavachallenge.spawnpos", format);
                     config.save();
-                    p.sendMessage(serverinfo.name() + " | §aWarp fps foi definida na posição atual!");
+                    p.sendMessage(serverinfo.name() + " | §aWarp Lava Challenge foi definida na posição atual!");
                     break;
                 case SIGN:
                     p.closeInventory();
@@ -194,16 +182,11 @@ public class handleConfig implements Listener {
                     break;
                 case AIR:
                 default:
-                    p.openInventory(Config.warp_fps(p));
+                    p.openInventory(Config.warp_lavac(p));
                     break;
             }
         }
         //CABOU
-
-
-
-
-
     }
 
 }

@@ -11,9 +11,15 @@ import static com.n3rdydev.gui.Kits.*;
 
 public class Kits implements CommandExecutor, Listener {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
 
-        Player p = (Player) sender;
+        if(!(commandSender instanceof Player)) {
+            System.out.println("§cApenas jogadores pode usar este comando!");
+            return true;
+        }
+
+
+        Player p = (Player) commandSender;
 
         String kit = player.selected_kit.get(p.getUniqueId());
         kit = kit.toLowerCase();

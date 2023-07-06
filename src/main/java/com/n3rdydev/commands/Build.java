@@ -13,9 +13,13 @@ import static com.n3rdydev.entity.player.toggleBuild;
 public class Build implements CommandExecutor, Listener {
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
+        if(!(commandSender instanceof Player)) {
+            System.out.println("§cApenas jogadores pode usar este comando!");
+            return true;
+        }
 
-        Player p = (Player) sender;
+        Player p = (Player) commandSender;
         if (!(p.hasPermission("n3rdydev.command.build") || p.hasPermission("n3rdydev.*"))) {
             p.sendMessage("§cSem permissão!");
             return true;

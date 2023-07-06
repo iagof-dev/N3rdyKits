@@ -26,15 +26,25 @@ public class handleWarpSelector implements Listener {
     public void onInventoryClick(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
 
+        Location tp;
         if (e.getView().getTitle().equals("Warps") && e.getCurrentItem() != null) {
             e.setCancelled(true);
             p.closeInventory();
             switch (e.getCurrentItem().getType()) {
                 case GLASS:
                     if(config.get().getBoolean("warps.fps.active") != false){
-                        Location tp = convert_config_location(p, "warps.fps.spawnpos");
+                        tp = convert_config_location(p, "warps.fps.spawnpos");
                         p.teleport(tp);
-                        com.n3rdydev.kits.FPS.Receive(p);
+                        FPS.Receive(p);
+                        return;
+                    }
+                    p.sendMessage(serverinfo.name() + " | §cWarp em manutenção!");
+                    break;
+                case LAVA_BUCKET:
+                    if(config.get().getBoolean("warps.lavachallenge.active") != false){
+                        tp = convert_config_location(p, "warps.lavachallenge.spawnpos");
+                        p.teleport(tp);
+                        LavaChallenge.Receive(p);
                         return;
                     }
                     p.sendMessage(serverinfo.name() + " | §cWarp em manutenção!");

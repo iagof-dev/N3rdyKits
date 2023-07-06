@@ -10,6 +10,11 @@ public class GameMode implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        if(!(commandSender instanceof Player)) {
+            System.out.println("§cApenas jogadores pode usar este comando!");
+            return true;
+        }
+
         Player p = (Player) commandSender;
 
         if (!(p.hasPermission("n3rdydev.command.gm") || p.hasPermission("n3rdydev.*"))) {

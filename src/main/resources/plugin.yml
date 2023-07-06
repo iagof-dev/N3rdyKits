@@ -36,3 +36,15 @@ commands:
     description: limpar mensagem dos chat.
     permission-message: §cNão possui permissão.
     usage: /chat [ativar/desativar/limpar]
+  suicidar:
+    description: morre.
+    permission-message: §cNão possui permissão.
+    usage: /suicidar
+  warps:
+    description: lista de warps.
+    permission-message: §cNão possui permissão.
+    usage: /warps
+  spawn:
+    description: teleporte spawn.
+    permission-message: §cNão possui permissão.
+    usage: /spawn

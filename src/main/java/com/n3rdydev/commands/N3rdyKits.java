@@ -19,6 +19,13 @@ import java.util.UUID;
 public class N3rdyKits implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+
+        if(!(commandSender instanceof Player)) {
+            System.out.println("§cApenas jogadores pode usar este comando!");
+            return true;
+        }
+
+
         Player p = (Player) commandSender;
         if (!(p.hasPermission("n3rdydev.developer.test") || p.hasPermission("n3rdydev.*"))) {
             p.sendMessage("§cSem permissão");
@@ -69,10 +76,8 @@ public class N3rdyKits implements CommandExecutor, Listener {
             case "mysql":
                 MySql.SaveAll();
                 break;
-            case "fps":
-                com.n3rdydev.kits.FPS.Receive(p);
-                break;
             case "feast":
+                mensagem+="§eFeast Gerado!";
                 server.feast_generate();
                 break;
             case "ritem":
@@ -80,9 +85,13 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 break;
             case "cfeast":
                 server.feast_clear();
+                mensagem+="§eFeast Limpo!";
                 break;
             case "tfeast":
                 mensagem += "§rFeast Timer: §c" + config.get().getInt("server.feast.timer") + " minutos.";
+                break;
+            default:
+                mensagem+="§cErro, Argumentos inválidos/inexistente";
                 break;
         }
         p.sendMessage(mensagem);

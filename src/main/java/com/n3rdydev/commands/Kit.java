@@ -12,8 +12,13 @@ import com.n3rdydev.kits.*;
 
 public class Kit implements CommandExecutor, Listener {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player p = (Player) sender;
+    public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
+        if(!(commandSender instanceof Player)) {
+            System.out.println("§cApenas jogadores pode usar este comando!");
+            return true;
+        }
+
+        Player p = (Player) commandSender;
 
         if(args.length == 0){
             p.openInventory(Kits.list_kits(p));

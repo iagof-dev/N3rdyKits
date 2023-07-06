@@ -1,5 +1,6 @@
 package com.n3rdydev.kits;
 
+import com.n3rdydev.entity.player;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -9,6 +10,7 @@ public class FPS {
 
     public static void Receive(Player p) {
         p.getInventory().clear();
+        player.selected_kit.put(p.getUniqueId(), "fps");
 
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);
         ItemStack r_mushroom = new ItemStack(Material.RED_MUSHROOM, 64);

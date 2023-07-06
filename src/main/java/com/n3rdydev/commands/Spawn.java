@@ -1,37 +1,27 @@
 package com.n3rdydev.commands;
 
 import com.n3rdydev.entity.player;
-import com.n3rdydev.kits.Spawn;
-import com.n3rdydev.settings.serverinfo;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.UUID;
-
-public class Admin implements CommandExecutor {
-
-
+public class Spawn implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-
         if(!(commandSender instanceof Player)) {
             System.out.println("§cApenas jogadores pode usar este comando!");
-            return true;
+            return false;
         }
-
         Player p = (Player) commandSender;
 
-        if (!(p.hasPermission("n3rdydev.command.admin") || p.hasPermission("n3rdydev.*"))) {
-            p.sendMessage("§cSem permissão!");
-            return true;
-        }
-        player.toggleInvis(p);
+        p.getInventory().clear();
+        Location spawn_loc = new Location(p.getWorld(), com.n3rdydev.settings.spawn.spawn_x, com.n3rdydev.settings.spawn.spawn_y, com.n3rdydev.settings.spawn.spawn_z);
+        p.teleport(spawn_loc);
+        p.setHealth(20);
+        com.n3rdydev.kits.Spawn.Receive(p);
 
         return true;
     }
-
 }

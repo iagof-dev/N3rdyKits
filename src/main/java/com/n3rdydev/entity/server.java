@@ -23,17 +23,14 @@ public class server {
     static World world = Bukkit.getWorlds().get(0);
 
 
-    public static void loop_events(){
+    public static void loop_events() {
         //20 ticks = 1 segundo
         int config_feast_timer = config.get().getInt("server.feast.timer");
-        int timer = ((20*60) * config_feast_timer);
-        new BukkitRunnable(){
+        int timer = ((20 * 60) * config_feast_timer);
+        new BukkitRunnable() {
             @Override
-            public void run(){
-                for(Player all : Bukkit.getServer().getOnlinePlayers())
-                {
-                    all.sendMessage("§dFeast spawnou!");
-                }
+            public void run() {
+
                 com.n3rdydev.entity.server.feast_generate();
             }
         }.runTaskTimerAsynchronously(main.getPlugin(), 1L, timer);
@@ -41,8 +38,12 @@ public class server {
 
 
     public static void feast_generate() {
+        for (Player all : Bukkit.getServer().getOnlinePlayers()) {
+            all.sendMessage("§eFeast surgiu nas coordenadas 8 72 -62!");
+        }
+
         //int baus = 0;
-        int chance = 18;
+        int chance = 10;
 
         //World world = p.getWorld();
         for (Chunk c : world.getLoadedChunks()) {
@@ -74,44 +75,49 @@ public class server {
     }
 
     public static ItemStack random_item() {
-        int max = 17;
-        List<ItemStack> items = new ArrayList<>();
 
         ItemStack wooden_sword = new ItemStack(Material.GOLD_SWORD, 1);
         wooden_sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 
-        ItemStack potion_speed = new Potion(PotionType.SPEED, 1, false ,false).toItemStack(1);
+        ItemStack potion_speed = new Potion(PotionType.SPEED, 1, false, false).toItemStack(1);
+        ItemStack potion_strenght = new Potion(PotionType.STRENGTH, 1, false, false).toItemStack(1);
 
-        items.add(wooden_sword); //0
-        items.add(new ItemStack(Material.LEATHER_CHESTPLATE, 1));
-        items.add(new ItemStack(Material.LEATHER_HELMET, 1));
-        items.add(new ItemStack(Material.RED_MUSHROOM, 64));
-        items.add(new ItemStack(Material.LEATHER_LEGGINGS, 1));
-        items.add(new ItemStack(Material.LEATHER_BOOTS, 1));
-        items.add(new ItemStack(Material.MUSHROOM_SOUP, 1));  //5
-        items.add(new ItemStack(Material.BROWN_MUSHROOM, 64));
-        items.add(new ItemStack(Material.ARROW, 5));
-        items.add(new ItemStack(Material.BOW, 1));
-        items.add(new ItemStack(Material.WOOD_SWORD, 1));
-        items.add(new ItemStack(Material.COOKED_BEEF, 1));
-        items.add(new ItemStack(Material.BOWL, 64));
-        items.add(potion_speed);
-        items.add(new ItemStack(Material.CHAINMAIL_BOOTS, 1));
-        items.add(new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1));
-        items.add(new ItemStack(Material.CHAINMAIL_LEGGINGS, 1));
-        items.add(new ItemStack(Material.CHAINMAIL_HELMET, 1));
+        ItemStack[] items = {wooden_sword,
+                create_item(Material.LEATHER_CHESTPLATE, 1),
+                create_item(Material.LEATHER_HELMET,1),
+                create_item(Material.RED_MUSHROOM,32),
+                create_item(Material.LEATHER_LEGGINGS,1),
+                create_item(Material.AIR,1),
+                create_item(Material.LEATHER_BOOTS,1),
+                create_item(Material.BOWL,32),
+                create_item(Material.MUSHROOM_SOUP,1),
+                create_item(Material.AIR,1),
+                create_item(Material.BROWN_MUSHROOM,32),
+                create_item(Material.ARROW,5),
+                create_item(Material.BOW,1),
+                create_item(Material.WOOD_SWORD,1),
+                create_item(Material.COOKED_BEEF,5),
+                potion_speed,
+                create_item(Material.CHAINMAIL_BOOTS,1),
+                create_item(Material.CHAINMAIL_CHESTPLATE,1),
+                create_item(Material.CHAINMAIL_LEGGINGS,1),
+                create_item(Material.AIR,1),
+                create_item(Material.CHAINMAIL_HELMET,1),
+                potion_strenght
+                //create_item(Material.,1),
+        };
 
-
-
-
-
-        int rndNumber = ThreadLocalRandom.current().nextInt(0, max + 1);
-
-        return items.get(rndNumber);
-
-
+        int rndNumber = ThreadLocalRandom.current().nextInt(0, items.length - 1);
+        //System.out.println("Numero gerado: " + rndNumber);
+        //System.out.println("Array Size: " + items.length);
+        return items[rndNumber];
     }
-    public static void feast_clear(){
+
+    public static ItemStack create_item(Material material, int quantity) {
+        return new ItemStack(material, quantity);
+    }
+
+    public static void feast_clear() {
         //World world = p.getWorld();
         for (Chunk c : world.getLoadedChunks()) {
             for (BlockState b : c.getTileEntities()) {

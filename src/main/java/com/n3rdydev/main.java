@@ -72,6 +72,12 @@ public class main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(player_quit, this);
         this.getServer().getPluginManager().registerEvents(handleMotd, this);
 
+        //  ===============================================
+        //  | NÃO ESQUECER DE REGISTRAR NO PLUGIN.YML     |
+        //  | ANIMAL.                                     |
+        //  | De: N3rdy                                   |
+        //  | Para: N3rdy                                 |
+        //  ===============================================
         getCommand("build").setExecutor(new Build());
         getCommand("kit").setExecutor(new Kit());
         getCommand("kits").setExecutor(new Kits());
@@ -80,6 +86,10 @@ public class main extends JavaPlugin {
         getCommand("gm").setExecutor(new GameMode());
         getCommand("score").setExecutor(new Score());
         getCommand("chat").setExecutor(new ClearChat());
+        getCommand("warps").setExecutor(new Warps());
+        getCommand("suicidar").setExecutor(new Suicidar());
+        getCommand("spawn").setExecutor(new Spawn());
+
 
         com.n3rdydev.settings.spawn.load();
 
