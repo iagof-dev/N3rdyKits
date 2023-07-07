@@ -40,6 +40,7 @@ public class handleSpawn implements Listener {
         player.selected_kit.put(puid, "Nenhum");
         handleFallDamage.launchpad.put(puid, false);
         scoreboard.put(puid, true);
+        player.warp.put(puid, 0);
         player.loadStats(p);
         com.n3rdydev.scoreboard.sb_default.Set(p);
         p.setHealth(20);

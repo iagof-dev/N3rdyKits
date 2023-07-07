@@ -1,6 +1,8 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.kits.FPS;
+import com.n3rdydev.kits.LavaChallenge;
 import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.main;
 import com.n3rdydev.scoreboard.sb_default;
@@ -16,6 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.UUID;
 
+import static com.n3rdydev.entity.player.convert_config_location;
 import static com.n3rdydev.entity.player.scoreboard;
 
 public class handleRespawn implements Listener {
@@ -41,13 +44,9 @@ public class handleRespawn implements Listener {
                 if (e.getEntity().getKiller() == null) {
                     player.addDeaths(p);
                     p.sendMessage("§cVocê morreu!");
-
-
                     if(scoreboard.get(puid) != false || scoreboard.get(puid) == null){
                         sb_default.Set(p);
                     }
-
-
                 } else {
                     Player pk = (Player) e.getEntity().getKiller().getPlayer();
                     p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
@@ -80,10 +79,28 @@ public class handleRespawn implements Listener {
                         sb_default.Set(p);
                     }
                 }
-
                 e.getEntity().spigot().respawn();
 
-                Spawn.Receive(p);
+                int warp = player.warp.get(puid);
+                Location tp;
+                if( warp != 0){
+                    switch (warp){
+                        case 1:
+                            tp = convert_config_location(p, "warps.fps.spawnpos");
+                            p.teleport(tp);
+                            FPS.Receive(p);
+                            break;
+                        case 2:
+                            tp = convert_config_location(p, "warps.lavachallenge.spawnpos");
+                            p.teleport(tp);
+                            LavaChallenge.Receive(p);
+                            break;
+                    }
+
+                }
+                else{
+                    Spawn.Receive(p);
+                }
             }
         }.runTaskLater(main.getPlugin(), 1L);
 

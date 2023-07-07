@@ -10,7 +10,7 @@ public class LavaChallenge {
     public static void Receive(Player p){
         p.getInventory().clear();
         player.selected_kit.put(p.getUniqueId(), "pvp");
-
+        player.warp.put(p.getUniqueId(), 2);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);
         ItemStack r_mushroom = new ItemStack(Material.RED_MUSHROOM, 64);
         ItemStack b_mushroom = new ItemStack(Material.BROWN_MUSHROOM, 64);
@@ -20,7 +20,6 @@ public class LavaChallenge {
         soup.setItemMeta(sopa);
 
         for (int z = 0; z <= 36; z++){
-
             switch(z){
                 case 13:
                     p.getInventory().addItem(r_mushroom);
@@ -34,7 +33,6 @@ public class LavaChallenge {
                 default:
                     p.getInventory().addItem(soup);
                     break;
-
             }
         }
         p.updateInventory();

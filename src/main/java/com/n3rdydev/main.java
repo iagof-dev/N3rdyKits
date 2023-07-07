@@ -28,11 +28,7 @@ public class main extends JavaPlugin {
 
         com.n3rdydev.entity.server.loop_events();
 
-
-
-
          //Registrando Eventos
-
         Listener drop = new handleDrop();
         Listener inventory = new handleKitSelector();
         Listener pvp = new handlePvP();

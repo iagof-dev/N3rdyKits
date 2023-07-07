@@ -6,20 +6,27 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.UUID;
+
 public class Warps implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
         if(!(commandSender instanceof Player)) {
             System.out.println("§cApenas jogadores pode usar este comando!");
-            return false;
+            return true;
         }
 
         Player p = (Player) commandSender;
+        UUID puid = p.getUniqueId();
 
-        if(player.selected_kit.get(p.getUniqueId()) != null && player.selected_kit.get(p.getUniqueId()) != "nenhum"){
+        if(player.selected_kit.get(puid) != null && player.selected_kit.get(puid) != "nenhum"){
             p.sendMessage("§cErro! Você está com kit!");
-            return false;
+            return true;
+        }
+
+        if (!(command.getName().equalsIgnoreCase(s))) {
+            commandSender.sendMessage("vc mandou comando com alias");
         }
 
         p.openInventory(com.n3rdydev.gui.Warps.open());

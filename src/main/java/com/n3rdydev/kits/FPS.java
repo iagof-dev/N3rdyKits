@@ -12,6 +12,7 @@ public class FPS {
         p.getInventory().clear();
         player.selected_kit.put(p.getUniqueId(), "fps");
 
+        player.warp.put(p.getUniqueId(), 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);
         ItemStack r_mushroom = new ItemStack(Material.RED_MUSHROOM, 64);
         ItemStack b_mushroom = new ItemStack(Material.BROWN_MUSHROOM, 64);
@@ -38,6 +39,9 @@ public class FPS {
                     break;
                 case 14:
                     p.getInventory().setItem(z, bowl);
+                    break;
+                case 15:
+                    p.getInventory().setItem(z, b_mushroom);
                     break;
                 case 36:
                     p.getInventory().setItem(z, boots);

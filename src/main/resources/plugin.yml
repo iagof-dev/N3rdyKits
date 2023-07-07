@@ -44,6 +44,8 @@ commands:
     description: lista de warps.
     permission-message: §cNão possui permissão.
     usage: /warps
+    aliases:
+      - warp
   spawn:
     description: teleporte spawn.
     permission-message: §cNão possui permissão.
