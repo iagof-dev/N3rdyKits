@@ -34,9 +34,9 @@ public class sb_default {
         Score vazio3 = obj.getScore("   ");
         Score sel_kit = obj.getScore("Kit: §a" + selected_kit);
         Score vazio = obj.getScore(" ");
-        Score p_kill = obj.getScore("Kills: §7" + player.getKills(p));
-        Score p_death = obj.getScore("Mortes: §7" + player.getDeaths(p));
-        Score xp = obj.getScore("XP: §6" + player.score.get(puid));
+        Score p_kill = obj.getScore("Kills: §7" + player.getKills(puid));
+        Score p_death = obj.getScore("Mortes: §7" + player.getDeaths(puid));
+        Score xp = obj.getScore("XP: §6" + player.getXP(puid));
         Score vazio2 = obj.getScore("  ");
         Score serverip = obj.getScore(serverinfo.ip());
 

@@ -12,6 +12,6 @@ public class handlePlayerQuit implements Listener {
     public void onPlayerQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
         e.setQuitMessage("");
-        player.saveStats(p);
+        player.saveStats(p.getUniqueId());
     }
 }

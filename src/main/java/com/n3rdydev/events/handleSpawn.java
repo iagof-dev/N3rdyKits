@@ -41,7 +41,7 @@ public class handleSpawn implements Listener {
         handleFallDamage.launchpad.put(puid, false);
         scoreboard.put(puid, true);
         player.warp.put(puid, 0);
-        player.loadStats(p);
+        player.loadStats(puid);
         com.n3rdydev.scoreboard.sb_default.Set(p);
         p.setHealth(20);
         for (PotionEffect effect : p.getActivePotionEffects())

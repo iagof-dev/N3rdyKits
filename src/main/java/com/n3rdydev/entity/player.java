@@ -36,11 +36,9 @@ public class player {
     public static HashMap<UUID, Boolean> invis = new HashMap<>();
 
     /*
-
-    0 - SPAWN
-    1 - FPS
-    2 - LAVA CHALLENGE
-
+        0 - SPAWN
+        1 - FPS
+        2 - LAVA CHALLENGE
      */
     public static HashMap<UUID, Integer> warp= new HashMap<>();
 
@@ -121,6 +119,13 @@ public class player {
         return ("§cVocê só podera utilizar daqui " + segs + " segundos.");
     }
 
+    public static Integer getXP(UUID puid){
+        if(score.get(puid) == null){
+            score.put(puid, 0);
+        }
+        return score.get(puid);
+    }
+
     public static boolean can_build(Player p) {
         UUID puid = p.getUniqueId();
         if (can_build.get(puid) != null) {
@@ -158,24 +163,21 @@ public class player {
 
     }
 
-    public static void loadStats(Player p) {
-        UUID puid = p.getUniqueId();
+    public static void loadStats(UUID puid) {
         player.kills.put(puid, statistics.get().getInt(puid + ".kills"));
         player.deaths.put(puid, statistics.get().getInt(puid + ".deaths"));
+        player.score.put(puid, statistics.get().getInt(puid + ".xp"));
     }
 
-    public static void saveStats(Player p) {
-        UUID puid = p.getUniqueId();
-        statistics.get().set(puid + ".kills", player.getKills(p));
-        statistics.get().set(puid + ".deaths", player.getDeaths(p));
-        statistics.get().set(puid + ".xp", 0);
+    public static void saveStats(UUID puid) {
+        statistics.get().set(puid + ".kills", player.getKills(puid));
+        statistics.get().set(puid + ".deaths", player.getDeaths(puid));
+        statistics.get().set(puid + ".xp", player.getXP(puid));
         statistics.save();
     }
 
     public static void addDeaths(Player p) {
-
         UUID p_uid = p.getUniqueId();
-
         if (deaths.get(p_uid) != null) {
             Integer qnt_deaths = deaths.get(p_uid);
             Integer sum_kills = qnt_deaths + 1;
@@ -185,46 +187,36 @@ public class player {
         }
     }
 
-    public static Integer getKills(Player p) {
-        UUID p_uid = p.getUniqueId();
-        if (kills.get(p_uid) == null) {
-            kills.put(p_uid, 0);
-            return 0;
+    public static Integer getKills(UUID puid) {
+        if (kills.get(puid) == null) {
+            kills.put(puid, 0);
         }
-        Integer p_kills = kills.get(p.getUniqueId());
-        return p_kills;
+        return kills.get(puid);
 
     }
 
-    public static Integer getDeaths(Player p) {
-        UUID p_uid = p.getUniqueId();
-        if (deaths.get(p_uid) == null) {
-            deaths.put(p_uid, 0);
+    public static Integer getDeaths(UUID puid) {
+        if (deaths.get(puid) == null) {
+            deaths.put(puid, 0);
             return 0;
         }
-        Integer p_deaths = deaths.get(p.getUniqueId());
-        return p_deaths;
+        return deaths.get(puid);
     }
 
 
     public static void updateScoreboard(Player p) {
-
         UUID puid = p.getUniqueId();
-
         if (scoreboard.get(puid) != true || scoreboard.get(puid) == null) {
             scoreboard.put(puid, true);
             com.n3rdydev.scoreboard.sb_default.Set(p);
         } else {
             scoreboard.put(puid, false);
             p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
-
         }
     }
 
     public static void randomTpArena(Player p) {
-
         try {
-
             Double[] spawn = new Double[3];
 
             int min = 1;
@@ -257,16 +249,6 @@ public class player {
             return spawn_loc;
         }
         return null;
-
-
-    }
-
-    public static void load() {
-
-    }
-
-    public static void save() {
-
     }
 
 

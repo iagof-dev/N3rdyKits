@@ -68,8 +68,8 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 mensagem += ("§5Você está com o kit: " + kit);
                 break;
             case "save":
-                statistics.get().set(p_uid + ".kills", player.getKills(p));
-                statistics.get().set(p_uid + ".deaths", player.getDeaths(p));
+                statistics.get().set(p_uid + ".kills", player.getKills(p.getUniqueId()));
+                statistics.get().set(p_uid + ".deaths", player.getDeaths(p.getUniqueId()));
                 statistics.get().set(p_uid + ".xp", 0);
                 statistics.save();
                 break;
