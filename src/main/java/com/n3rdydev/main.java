@@ -86,9 +86,7 @@ public class main extends JavaPlugin {
         getCommand("suicidar").setExecutor(new Suicidar());
         getCommand("spawn").setExecutor(new Spawn());
 
-
         com.n3rdydev.settings.spawn.load();
-
         Bukkit.getServer().getMotd();
         Bukkit.getConsoleSender().sendMessage("§a[N3rdyKits] | Plugin Habilitado!");
     }
@@ -97,27 +95,19 @@ public class main extends JavaPlugin {
     public void onDisable(){
         config.save();
         statistics.save();
-
         MySql.SaveAll();
         Bukkit.getConsoleSender().sendMessage("§c[N3rdyKits] | Plugin Desabilitado!");
-
     }
 
     @Override
     public void onLoad(){
         Bukkit.getConsoleSender().sendMessage("§e[N3rdyKits] | Plugin carregando...");
-
         statistics.setup();
         statistics.save();
-
         config.start();
-
-
         if(config.get().getBoolean("database.mysql.enable") != false){
             Connection DB = MySql.Start();
         }
     }
-
-
 
 }

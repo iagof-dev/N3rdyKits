@@ -21,16 +21,13 @@ public class Config {
     static String open_menu = "§eClique para abrir o menu.";
     static String set_menu = "§eClique para definir";
 
-    private static ItemStack getHead(UUID nome){
-
+    private static ItemStack getHead(String nome){
         ItemStack item = new ItemStack(SKULL_ITEM, 1, (byte) 3);
         OfflinePlayer player = Bukkit.getOfflinePlayer(nome);
         SkullMeta meta = (SkullMeta) item.getItemMeta();
-        meta.setOwner("hope_wrld");
+        meta.setOwner(nome);
         item.setItemMeta(meta);
         return item;
-
-
     }
     private static ItemStack createItem(ItemStack item, String nome, String... descricao) {
 
@@ -58,7 +55,7 @@ public class Config {
                     inv.setItem(v, createItem(new ItemStack(COMPASS), "§eWarps", "§7Configure as Warps", " ", open_menu));
                     break;
                 case 16:
-                    inv.setItem(v, createItem(getHead(UUID.fromString("670c09c2-b40f-4fac-838d-0a578c322bd4")), "§eArenas", "§7Configure a arena que o player vai teleportar", " ", open_menu));
+                    inv.setItem(v, createItem(getHead("hope_wrld"), "§eArenas", "§7Configure a arena que o player vai teleportar", " ", open_menu));
                     break;
                 case 26:
                     inv.setItem(v, createItem(new ItemStack(BARRIER), "§eSair", "", " ", ""));
