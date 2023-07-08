@@ -45,7 +45,7 @@ public class handleFallDamage implements Listener {
                             if(health_calc < 1){
                                 target.sendMessage("§cVocê morreu para " + p.getName() + "! (-5 xp)");
                                 p.sendMessage("§a Você matou " + target.getName() + "! (+5 xp)");
-                                com.n3rdydev.entity.player.addKills(p);
+                                com.n3rdydev.entity.player.addKills(p.getUniqueId());
                                 com.n3rdydev.entity.player.addDeaths(target);
                                 com.n3rdydev.scoreboard.sb_default.Set(target);
                             }

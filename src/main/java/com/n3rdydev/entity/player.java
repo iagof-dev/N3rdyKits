@@ -79,41 +79,34 @@ public class player {
         }
     }
 
-    public static void setCooldown(Player p, long Seconds) {
+    public static void setCooldown(UUID player_uuid, long Seconds) {
         LocalTime time_now = LocalTime.now();
         LocalTime finish_cooldown = time_now.plusSeconds(Seconds);
-        UUID player_uuid = p.getUniqueId();
         kit_cooldown.put(player_uuid, finish_cooldown);
     }
 
-    public static Boolean getCooldown(Player p) {
-        UUID p_uid = p.getUniqueId();
-
-        if (player.kit_cooldown.get(p_uid) == null) {
+    public static Boolean getCooldown(UUID puid) {
+        if (player.kit_cooldown.get(puid) == null) {
             return false;
         }
-
         LocalTime atual = LocalTime.now();
-        LocalTime delay_player = player.kit_cooldown.get(p.getUniqueId());
-
+        LocalTime delay_player = player.kit_cooldown.get(puid);
         //se tiver com delay
         //retornar: true
         if (atual.isAfter(delay_player)) {
-            kit_cooldown.put(p_uid, null);
+            kit_cooldown.put(puid, null);
             return false;
         } else {
             return true;
         }
     }
 
-    public static String getCooldownTime(Player p) {
-        UUID p_uid = p.getUniqueId();
-
-        if (player.kit_cooldown.get(p.getUniqueId()) == null) {
+    public static String getCooldownTime(UUID puid) {
+        if (player.kit_cooldown.get(puid) == null) {
             return null;
         }
         LocalTime atual = java.time.LocalTime.now();
-        LocalTime delay_player = player.kit_cooldown.get(p.getUniqueId());
+        LocalTime delay_player = player.kit_cooldown.get(puid);
         Duration tempo_restante = Duration.between(atual, delay_player);
         long segs = tempo_restante.getSeconds();
         return ("§cVocê só podera utilizar daqui " + segs + " segundos.");
@@ -126,8 +119,7 @@ public class player {
         return score.get(puid);
     }
 
-    public static boolean can_build(Player p) {
-        UUID puid = p.getUniqueId();
+    public static boolean can_build(UUID puid) {
         if (can_build.get(puid) != null) {
             return can_build.get(puid);
         } else {
@@ -139,7 +131,7 @@ public class player {
     public static void toggleBuild(Player p) {
         String nome = serverinfo.name();
         UUID puid = p.getUniqueId();
-        if (can_build(p) != true) {
+        if (can_build(p.getUniqueId()) != true) {
             can_build.put(puid, true);
             p.sendMessage(nome + " §aModo Construir HABILITADO!");
 
@@ -149,18 +141,27 @@ public class player {
         }
     }
 
-    public static void addKills(Player p) {
-        UUID p_uid = p.getUniqueId();
-
+    public static void addKills(UUID p_uid) {
+        Integer valor = 1;
         if (kills.get(p_uid) != null) {
             Integer qnt_kills = kills.get(p_uid);
             Integer sum_kills = qnt_kills + 1;
-            kills.put(p_uid, sum_kills);
-        } else {
-            kills.put(p.getUniqueId(), 1);
         }
-
-
+        kills.put(p_uid, valor);
+    }
+    public static void addXP(UUID puid){
+        Integer valor = 5;
+        if(player.score.get(puid) != null){
+            valor = (player.score.get(puid) + 5);
+        }
+        player.score.put(puid, valor);
+    }
+    public static void remXP(UUID puid){
+        Integer valor = 0;
+        if(player.score.get(puid) != null){
+            valor = (player.score.get(puid) - 5);
+        }
+        player.score.put(puid, valor);
     }
 
     public static void loadStats(UUID puid) {
@@ -236,7 +237,7 @@ public class player {
         }
     }
 
-    public static Location convert_config_location(Player p, String config_name) {
+    public static Location convert_config_location(String config_name) {
         Double[] spawn = new Double[3];
         String arena = config.get().getString(config_name);
         if (arena != null) {

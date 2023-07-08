@@ -15,6 +15,6 @@ public class handlePlaceBlocks implements Listener {
     public void onPlayerPlaceBlocks(BlockPlaceEvent e) {
 
         // Havia uma checagem desnecessária  
-        e.setCancelled(!can_build(e.getPlayer()));
+        e.setCancelled(!can_build(e.getPlayer().getUniqueId()));
     }
 }

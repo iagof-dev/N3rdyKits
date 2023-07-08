@@ -22,7 +22,7 @@ public class protections implements Listener {
     public void onPlayerBreak(BlockBreakEvent e) {
         Player p = e.getPlayer();
 
-        if (can_build(p) != false) {
+        if (can_build(p.getUniqueId()) != false) {
             e.setCancelled(false);
 
         } else {

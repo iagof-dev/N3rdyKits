@@ -33,7 +33,7 @@ public class handleWarpSelector implements Listener {
             switch (e.getCurrentItem().getType()) {
                 case GLASS:
                     if(config.get().getBoolean("warps.fps.active") != false){
-                        tp = convert_config_location(p, "warps.fps.spawnpos");
+                        tp = convert_config_location("warps.fps.spawnpos");
                         p.teleport(tp);
                         FPS.Receive(p);
                         return;
@@ -42,7 +42,7 @@ public class handleWarpSelector implements Listener {
                     break;
                 case LAVA_BUCKET:
                     if(config.get().getBoolean("warps.lavachallenge.active") != false){
-                        tp = convert_config_location(p, "warps.lavachallenge.spawnpos");
+                        tp = convert_config_location("warps.lavachallenge.spawnpos");
                         p.teleport(tp);
                         LavaChallenge.Receive(p);
                         return;

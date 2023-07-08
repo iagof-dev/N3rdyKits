@@ -52,25 +52,11 @@ public class handleRespawn implements Listener {
                     p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
                     pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
 
-                    player.addKills(pk);
+                    player.addKills(pk.getUniqueId());
                     player.addDeaths(p);
+                    player.remXP(puid);
                     UUID pkuid = pk.getUniqueId();
-
-                    if(player.score.get(pkuid) != null){
-                        Integer new_value = (player.score.get(pkuid) + 5);
-                        player.score.put(pkuid, new_value);
-                    }
-                    else{
-                        player.score.put(pkuid, 5);
-                    }
-                    if(player.score.get(puid) != null){
-                        Integer new_value = (player.score.get(puid) - 5);
-                        player.score.put(puid, new_value);
-                    }
-                    else{
-                        player.score.put(puid, -5);
-                    }
-
+                    player.addXP(pkuid);
 
                     if (scoreboard.get(pkuid) != false && pkuid != null) {
                         sb_default.Set(pk);
@@ -86,12 +72,12 @@ public class handleRespawn implements Listener {
                 if( warp != 0){
                     switch (warp){
                         case 1:
-                            tp = convert_config_location(p, "warps.fps.spawnpos");
+                            tp = convert_config_location("warps.fps.spawnpos");
                             p.teleport(tp);
                             FPS.Receive(p);
                             break;
                         case 2:
-                            tp = convert_config_location(p, "warps.lavachallenge.spawnpos");
+                            tp = convert_config_location("warps.lavachallenge.spawnpos");
                             p.teleport(tp);
                             LavaChallenge.Receive(p);
                             break;

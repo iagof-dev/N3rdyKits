@@ -4,19 +4,46 @@ import com.n3rdydev.settings.config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.bukkit.Material.*;
 
 public class Config {
     static String open_menu = "§eClique para abrir o menu.";
     static String set_menu = "§eClique para definir";
+
+    private static ItemStack getHead(UUID nome){
+
+        ItemStack item = new ItemStack(SKULL_ITEM, 1, (byte) 3);
+        OfflinePlayer player = Bukkit.getOfflinePlayer(nome);
+        SkullMeta meta = (SkullMeta) item.getItemMeta();
+        meta.setOwner("hope_wrld");
+        item.setItemMeta(meta);
+        return item;
+
+
+    }
+    private static ItemStack createItem(ItemStack item, String nome, String... descricao) {
+
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', nome));
+        List<String> lores = new ArrayList<>();
+        for (String s : descricao) {
+            lores.add(ChatColor.translateAlternateColorCodes('&', s));
+        }
+        meta.setLore(lores);
+        item.setItemMeta(meta);
+        return item;
+    }
 
     public static Inventory start(Player p) {
         //                                  Player | tamanho 3 linhas com 9 colunas | Nome que aparece em cima
@@ -31,7 +58,7 @@ public class Config {
                     inv.setItem(v, createItem(new ItemStack(COMPASS), "§eWarps", "§7Configure as Warps", " ", open_menu));
                     break;
                 case 16:
-                    inv.setItem(v, createItem(new ItemStack(CHEST), "§eArenas", "§7Configure a arena que o player vai teleportar", " ", open_menu));
+                    inv.setItem(v, createItem(getHead(UUID.fromString("670c09c2-b40f-4fac-838d-0a578c322bd4")), "§eArenas", "§7Configure a arena que o player vai teleportar", " ", open_menu));
                     break;
                 case 26:
                     inv.setItem(v, createItem(new ItemStack(BARRIER), "§eSair", "", " ", ""));
@@ -116,18 +143,7 @@ public class Config {
         return inv;
     }
 
-    private static ItemStack createItem(ItemStack item, String nome, String... descricao) {
 
-        ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', nome));
-        List<String> lores = new ArrayList<>();
-        for (String s : descricao) {
-            lores.add(ChatColor.translateAlternateColorCodes('&', s));
-        }
-        meta.setLore(lores);
-        item.setItemMeta(meta);
-        return item;
-    }
 
     public static Inventory warp_lavac(Player p) {
         //                                  Player | tamanho 3 linhas com 9 colunas | Nome que aparece em cima

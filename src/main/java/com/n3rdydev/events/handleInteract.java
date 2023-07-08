@@ -93,7 +93,7 @@ public class handleInteract implements Listener {
             //kit feather:
             //se clicar na pena, ele ativa o fly
             if (e.getItem() != null && e.getItem().getType().equals(Material.FEATHER) && e.getItem().getItemMeta().getDisplayName().equals("§ePhantom")) {
-                if (p.getAllowFlight() != true && player.getCooldown(p) != true) {
+                if (p.getAllowFlight() != true && player.getCooldown(p.getUniqueId()) != true) {
                     p.setAllowFlight(true);
                     p.sendMessage("§aPhantom ativo! Desativando em 6 segundos...");
                     new BukkitRunnable() {
@@ -101,13 +101,13 @@ public class handleInteract implements Listener {
                         public void run() {
                             p.setAllowFlight(false);
                             p.sendMessage("§cPhantom desativado!");
-                            player.setCooldown(p, 6);
+                            player.setCooldown(p.getUniqueId(), 6);
 
                         }
                     }.runTaskLater(com.n3rdydev.main.getPlugin(), 100L);
                 } else {
-                    if (player.getCooldown(p) != false) {
-                        p.sendMessage(player.getCooldownTime(p));
+                    if (player.getCooldown(p.getUniqueId()) != false) {
+                        p.sendMessage(player.getCooldownTime(p.getUniqueId()));
                     } else {
                         p.sendMessage("§cVocê já está com phantom ativado!");
                     }

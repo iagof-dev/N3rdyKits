@@ -53,7 +53,7 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 mensagem += ("§5Recarregado");
                 break;
             case "addkills":
-                player.addKills(p);
+                player.addKills(p.getUniqueId());
                 sb_default.Set(p);
                 mensagem += ("§5Kill adicionada!");
                 break;
@@ -70,7 +70,7 @@ public class N3rdyKits implements CommandExecutor, Listener {
             case "save":
                 statistics.get().set(p_uid + ".kills", player.getKills(p.getUniqueId()));
                 statistics.get().set(p_uid + ".deaths", player.getDeaths(p.getUniqueId()));
-                statistics.get().set(p_uid + ".xp", 0);
+                statistics.get().set(p_uid + ".xp", player.score.get(p.getUniqueId()));
                 statistics.save();
                 break;
             case "mysql":
@@ -90,6 +90,22 @@ public class N3rdyKits implements CommandExecutor, Listener {
             case "tfeast":
                 mensagem += "§rFeast Timer: §c" + config.get().getInt("server.feast.timer") + " minutos.";
                 break;
+            case "arena":
+                if (strings[1].equals("0") || strings[1].equals("1") || strings[1].equals("2") || strings[1].equals("3") || strings[1].equals("4") || strings[1].equals("5") || strings[1].equals("6") || strings[1].equals("7") || strings[1].equals("8") || strings[1].equals("9")) {
+                    double player_x = p.getLocation().getX();
+                    double player_y = p.getLocation().getY();
+                    double player_z = p.getLocation().getZ();
+                    String coords = player_x + " " + player_y + " " + player_z;
+                    config.get().set("arenas.arena" + strings[1], coords);
+                    config.save();
+                    config.reload();
+                    com.n3rdydev.settings.spawn.load();
+                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " §aSucesso! você definiu arena " + strings[0] + "! (" + coords + ")");
+                }
+                else{
+                    p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " você precisa escolher a arena (0-9)!");
+                }
+                return true;
             default:
                 mensagem+="§cErro, Argumentos inválidos/inexistente";
                 break;

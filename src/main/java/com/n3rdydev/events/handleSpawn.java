@@ -27,15 +27,13 @@ public class handleSpawn implements Listener {
     public static void user_setup(Player p) {
         //limpar chat
         for(int i = 0; i <= 255; i++){
-            p.sendMessage(" ");
+            p.sendMessage("\n");
         }
         UUID puid = p.getUniqueId();
-        if(can_build(p)){
+        if(can_build(puid)){
             player.toggleBuild(p);
         }
-
         player.warp.put(puid, 0);
-
 
         player.selected_kit.put(puid, "Nenhum");
         handleFallDamage.launchpad.put(puid, false);
