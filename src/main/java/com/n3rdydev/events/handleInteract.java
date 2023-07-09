@@ -179,6 +179,9 @@ public class handleInteract implements Listener {
                         p.sendMessage(serverinfo.name() + " | §aProteção definida entre (" + pos1_format + ") e (" + pos2_format +")");
                     }
                 }
+                if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getItem() != null && e.getItem().getType().equals(Material.IRON_FENCE)) {
+                    p.sendMessage("Gladiator ta pegando lixoooo");
+                }
             }
         }
         //independente, ele não vai cancelar a interação...

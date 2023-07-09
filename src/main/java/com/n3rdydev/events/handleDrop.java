@@ -18,37 +18,27 @@ public class handleDrop implements Listener {
         Player p = (Player) e.getPlayer();
         Material item_drop = e.getItemDrop().getItemStack().getType();
 
-        boolean is_sword = false;
+        boolean blocked = false;
 
         switch (item_drop) {
             case DIAMOND_SWORD:
-                is_sword = true;
-                break;
             case IRON_SWORD:
-                is_sword = true;
-                break;
             case GOLD_SWORD:
-                is_sword = true;
-                break;
             case STONE_SWORD:
-                is_sword = true;
-                break;
             case WOOD_SWORD:
-                is_sword = true;
-                break;
             case CHEST:
             case FIREWORK:
             case COMPASS:
             case BOW:
+            case IRON_FENCE:
             case FEATHER:
-                e.setCancelled(true);
+                blocked = true;
                 break;
         }
 
-        if (is_sword) {
+        if (blocked) {
             e.setCancelled(true);
             p.playSound(p.getLocation(), Sound.ITEM_BREAK, 1, 1);
-            p.sendMessage("§cCuidado guerreiro, não drope seu armamento...");
             return;
         }
 

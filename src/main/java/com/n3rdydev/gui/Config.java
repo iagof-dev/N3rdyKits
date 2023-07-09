@@ -23,12 +23,13 @@ public class Config {
 
     private static ItemStack getHead(String nome){
         ItemStack item = new ItemStack(SKULL_ITEM, 1, (byte) 3);
-        OfflinePlayer player = Bukkit.getOfflinePlayer(nome);
         SkullMeta meta = (SkullMeta) item.getItemMeta();
         meta.setOwner(nome);
         item.setItemMeta(meta);
         return item;
     }
+
+
     private static ItemStack createItem(ItemStack item, String nome, String... descricao) {
 
         ItemMeta meta = item.getItemMeta();

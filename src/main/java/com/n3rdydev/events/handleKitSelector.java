@@ -50,6 +50,9 @@ public class handleKitSelector implements Listener {
                 case FEATHER:
                     sucess = Phantom.Receive(p);
                     break;
+                case IRON_FENCE:
+                    sucess = Gladiator.Receive(p);
+                    break;
                 default:
                     p.openInventory(Kits.list_kits(p));
                     break;

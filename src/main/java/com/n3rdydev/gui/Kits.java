@@ -72,6 +72,13 @@ public class Kits {
                         inv.setItem(v, createItem(nao_possui, "§aPhantom", "§7Kit Phantom", "§cNão possui", ""));
                     }
                     break;
+                case 7:
+                    if (p.hasPermission("n3rdydev.kit.gladiator")) {
+                        inv.setItem(v, createItem(new ItemStack(IRON_FENCE), "§aGladiator", "§7Kit Gladiator", " ", "§eClique para selecionar."));
+                    } else {
+                        inv.setItem(v, createItem(nao_possui, "§aGladiator", "§7Kit Gladiator", "§cNão possui", ""));
+                    }
+                    break;
                 default:
                     inv.setItem(v, createItem(new ItemStack(THIN_GLASS), "§aVazio", " ", " ", " "));
                     break;
