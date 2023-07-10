@@ -3,6 +3,7 @@ package com.n3rdydev.entity;
 import com.n3rdydev.main;
 import com.n3rdydev.settings.config;
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.enchantments.Enchantment;
@@ -15,12 +16,23 @@ import org.bukkit.potion.PotionType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class server {
     public static ItemStack[] gen_items;
     static World world = Bukkit.getWorlds().get(0);
+
+    public static HashMap<UUID, Location> arena_glad = new HashMap();
+    public static HashMap<UUID, Boolean> arena_glad_players = new HashMap();
+
+
+
+    public static World getWorld(){
+        return world;
+    }
 
 
     public static void loop_events() {
@@ -128,5 +140,57 @@ public class server {
             }
         }
     }
+
+    public static void criarArenaGlad(Player player, Player target, int tamanho) {
+        World world = player.getWorld();
+        int x = player.getLocation().getBlockX();
+        int y = player.getLocation().getBlockY() + 64;
+        int z = player.getLocation().getBlockZ();
+
+        Location loc = new Location(world, x, y,z);
+
+        int metade = tamanho / 2;
+        int raio = metade - 1;
+
+        for (int offsetX = -raio; offsetX <= raio; offsetX++) {
+            for (int offsetY = -raio; offsetY <= raio; offsetY++) {
+                for (int offsetZ = -raio; offsetZ <= raio; offsetZ++) {
+                    if (Math.abs(offsetX) == raio || Math.abs(offsetY) == raio || Math.abs(offsetZ) == raio) {
+                        Block block = world.getBlockAt(x + offsetX, y + offsetY, z + offsetZ);
+                        block.setType(Material.GLASS);
+                    }
+                }
+            }
+        }
+
+        Location player_1 = new Location(getWorld(), player.getLocation().getX() + 5, player.getLocation().getY()+64 , player.getLocation().getZ() + 5);
+        Location player_2 = new Location(getWorld(), player.getLocation().getX() - 5, player.getLocation().getY()+64 , player.getLocation().getZ() - 5);
+        player.teleport(player_1);
+        target.teleport(player_2);
+        arena_glad.put(player.getUniqueId(), loc);
+        arena_glad.put(target.getUniqueId(), loc);
+
+    }
+
+    public static void remArenaGlad(Location loc) {
+        int x = (int) loc.getX();
+        int y = (int) loc.getY();
+        int z = (int) loc.getZ();
+
+        int metade = 17 / 2;
+        int raio = metade - 1;
+
+        for (int offsetX = -raio; offsetX <= raio; offsetX++) {
+            for (int offsetY = -raio; offsetY <= raio; offsetY++) {
+                for (int offsetZ = -raio; offsetZ <= raio; offsetZ++) {
+                    if (Math.abs(offsetX) == raio || Math.abs(offsetY) == raio || Math.abs(offsetZ) == raio) {
+                        Block block = world.getBlockAt(x + offsetX, y + offsetY, z + offsetZ);
+                        block.setType(Material.AIR);
+                    }
+                }
+            }
+        }
+    }
+
 
 }

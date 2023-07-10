@@ -42,6 +42,7 @@ public class player {
      */
     public static HashMap<UUID, Integer> warp= new HashMap<>();
 
+    public static HashMap<UUID, Location>last_pos = new HashMap<>();
 
     public static void toggleInvis(Player p){
 

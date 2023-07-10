@@ -1,5 +1,6 @@
 package com.n3rdydev.events;
 
+import com.n3rdydev.entity.server;
 import com.n3rdydev.gui.Kits;
 import com.n3rdydev.gui.RecraftRefil;
 import com.n3rdydev.gui.SoupRefil;
@@ -10,6 +11,8 @@ import com.n3rdydev.settings.spawn;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -25,6 +28,8 @@ import org.bukkit.util.Vector;
 import com.n3rdydev.entity.player;
 
 import java.util.UUID;
+
+import static com.n3rdydev.entity.server.criarArenaGlad;
 
 public class handleInteract implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -141,7 +146,7 @@ public class handleInteract implements Listener {
                     e.setCancelled(true);
                     UUID uid = p.getUniqueId();
 
-                    if(player.config_menu.get(uid) != null || player.config_menu.get(uid) != false &&  player.config_position_1.get(uid) == null){
+                    if (player.config_menu.get(uid) != null || player.config_menu.get(uid) != false && player.config_position_1.get(uid) == null) {
                         player.config_position_1.put(uid, p.getLocation());
                         p.getInventory().clear();
 
@@ -157,10 +162,10 @@ public class handleInteract implements Listener {
 
                     return;
                 }
-                if(e.getItem().getItemMeta().getDisplayName().equals("§eProteção do Spawn - POSIÇÃO 2")){
+                if (e.getItem().getItemMeta().getDisplayName().equals("§eProteção do Spawn - POSIÇÃO 2")) {
                     e.setCancelled(true);
                     UUID uid = p.getUniqueId();
-                    if(player.config_position_1.get(uid) != null){
+                    if (player.config_position_1.get(uid) != null) {
                         player.config_position_2.put(uid, p.getLocation());
                         p.sendMessage(serverinfo.name() + " | §dPosição 2 definida");
 
@@ -176,12 +181,21 @@ public class handleInteract implements Listener {
                         config.reload();
                         player.config_menu.put(uid, false);
                         com.n3rdydev.kits.Spawn.Receive(p);
-                        p.sendMessage(serverinfo.name() + " | §aProteção definida entre (" + pos1_format + ") e (" + pos2_format +")");
+                        p.sendMessage(serverinfo.name() + " | §aProteção definida entre (" + pos1_format + ") e (" + pos2_format + ")");
                     }
                 }
-                if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getItem() != null && e.getItem().getType().equals(Material.IRON_FENCE)) {
-                    p.sendMessage("Gladiator ta pegando lixoooo");
-                }
+
+            }
+
+            //
+            //KIT GLADIATOR
+            //
+            Player target = getNearest(p, 2.0);
+            if (e.getItem() != null && e.getAction() == Action.RIGHT_CLICK_AIR && target instanceof Player && e.getItem().getType().equals(Material.IRON_FENCE) && e.getItem().getItemMeta().getDisplayName().equals("§eGladiator")) {
+                World wrld = server.getWorld();
+                player.last_pos.put(p.getUniqueId(), p.getLocation());
+                player.last_pos.put(target.getUniqueId(), target.getLocation());
+                criarArenaGlad(p, target ,17);
             }
         }
         //independente, ele não vai cancelar a interação...
@@ -205,5 +219,7 @@ public class handleInteract implements Listener {
         }
         return target;
     }
+
+
 
 }

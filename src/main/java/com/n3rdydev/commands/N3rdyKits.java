@@ -8,6 +8,9 @@ import com.n3rdydev.entity.player;
 import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.settings.spawn;
 import com.n3rdydev.settings.statistics;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -106,6 +109,12 @@ public class N3rdyKits implements CommandExecutor, Listener {
                     p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " você precisa escolher a arena (0-9)!");
                 }
                 return true;
+            case "cglad":
+                //server.criarArenaGlad(p, null,17);
+                break;
+            case "rglad":
+                //server.remArenaGlad(p, 17);
+                break;
             default:
                 mensagem+="§cErro, Argumentos inválidos/inexistente";
                 break;

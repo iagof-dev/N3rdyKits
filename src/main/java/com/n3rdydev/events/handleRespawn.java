@@ -1,6 +1,7 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.entity.server;
 import com.n3rdydev.kits.FPS;
 import com.n3rdydev.kits.LavaChallenge;
 import com.n3rdydev.kits.Spawn;
@@ -58,6 +59,10 @@ public class handleRespawn implements Listener {
                     UUID pkuid = pk.getUniqueId();
                     player.addXP(pkuid);
 
+                    pk.teleport(player.last_pos.get(pk.getUniqueId()));
+
+                    if(server.arena_glad.get(pkuid) != null ) server.arena_glad.put(pkuid, null);
+
                     if (scoreboard.get(pkuid) != false && pkuid != null) {
                         sb_default.Set(pk);
                     }
@@ -65,6 +70,9 @@ public class handleRespawn implements Listener {
                         sb_default.Set(p);
                     }
                 }
+                if(server.arena_glad.get(puid) != null) server.remArenaGlad(server.arena_glad.get(puid));
+                server.arena_glad.put(puid, null);
+
                 e.getEntity().spigot().respawn();
 
                 int warp = player.warp.get(puid);
