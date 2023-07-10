@@ -26,7 +26,8 @@ public class server {
     static World world = Bukkit.getWorlds().get(0);
 
     public static HashMap<UUID, Location> arena_glad = new HashMap();
-    public static HashMap<UUID, Boolean> arena_glad_players = new HashMap();
+    public static HashMap<UUID, UUID> arena_glad_players = new HashMap();
+
 
 
 
@@ -55,7 +56,7 @@ public class server {
         }
 
         //int baus = 0;
-        int chance = 10;
+        int chance = 25;
 
         //World world = p.getWorld();
         for (Chunk c : world.getLoadedChunks()) {
@@ -163,16 +164,15 @@ public class server {
             }
         }
 
-        Location player_1 = new Location(getWorld(), player.getLocation().getX() + 5, player.getLocation().getY()+64 , player.getLocation().getZ() + 5);
-        Location player_2 = new Location(getWorld(), player.getLocation().getX() - 5, player.getLocation().getY()+64 , player.getLocation().getZ() - 5);
+        Location player_1 = new Location(getWorld(), player.getLocation().getX() + 5, player.getLocation().getY()+58 , player.getLocation().getZ() + 5);
+        Location player_2 = new Location(getWorld(), player.getLocation().getX() - 5, player.getLocation().getY()+58 , player.getLocation().getZ() - 5);
         player.teleport(player_1);
         target.teleport(player_2);
         arena_glad.put(player.getUniqueId(), loc);
         arena_glad.put(target.getUniqueId(), loc);
-
     }
 
-    public static void remArenaGlad(Location loc) {
+    public static void remArenaGlad(Location loc, Player p1, Player p2) {
         int x = (int) loc.getX();
         int y = (int) loc.getY();
         int z = (int) loc.getZ();
@@ -190,6 +190,15 @@ public class server {
                 }
             }
         }
+
+        UUID p1uid = p1.getUniqueId();
+        UUID p2uid = p2.getUniqueId();
+
+        player.last_pos.put(p1uid, null);
+        player.last_pos.put(p2uid, null);
+        server.arena_glad_players.put(p1uid, null);
+        server.arena_glad_players.put(p2uid, null);
+
     }
 
 

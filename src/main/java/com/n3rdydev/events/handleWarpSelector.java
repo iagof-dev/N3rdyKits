@@ -50,13 +50,10 @@ public class handleWarpSelector implements Listener {
                     p.sendMessage(serverinfo.name() + " | §cWarp em manutenção!");
                     break;
                 default:
-                    p.openInventory(Warps.open());
-                    break;
+                    return;
             }
             UUID puid = p.getUniqueId();
-            if (scoreboard.get(puid) != false ) {
-                sb_default.Set(p);
-            }
+            if (scoreboard.get(puid) != false ) sb_default.Set(p);
             return;
 
         }

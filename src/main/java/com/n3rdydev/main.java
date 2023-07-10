@@ -76,7 +76,6 @@ public class main extends JavaPlugin {
         //  ===============================================
 
         getCommand("build").setExecutor(new Build());
-        getCommand("kit").setExecutor(new Kit());
         getCommand("kits").setExecutor(new Kits());
         getCommand("admin").setExecutor(new Admin());
         getCommand("n3rdykits").setExecutor(new N3rdyKits());

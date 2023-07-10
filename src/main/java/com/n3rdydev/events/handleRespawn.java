@@ -43,9 +43,9 @@ public class handleRespawn implements Listener {
                 UUID puid = p.getUniqueId();
                 player.selected_kit.put(puid, "Nenhum");
                 if (e.getEntity().getKiller() == null) {
-                    player.addDeaths(p);
+                    player.addDeaths(p.getUniqueId());
                     p.sendMessage("§cVocê morreu!");
-                    if(scoreboard.get(puid) != false || scoreboard.get(puid) == null){
+                    if (scoreboard.get(puid) != false || scoreboard.get(puid) == null) {
                         sb_default.Set(p);
                     }
                 } else {
@@ -54,31 +54,29 @@ public class handleRespawn implements Listener {
                     pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
 
                     player.addKills(pk.getUniqueId());
-                    player.addDeaths(p);
+                    player.addDeaths(p.getUniqueId());
                     player.remXP(puid);
                     UUID pkuid = pk.getUniqueId();
                     player.addXP(pkuid);
 
-                    pk.teleport(player.last_pos.get(pk.getUniqueId()));
+                    if (player.last_pos.get(pkuid) != null) pk.teleport(player.last_pos.get(pkuid));
 
-                    if(server.arena_glad.get(pkuid) != null ) server.arena_glad.put(pkuid, null);
+                    if (server.arena_glad.get(pkuid) != null) server.arena_glad.put(pkuid, null);
 
-                    if (scoreboard.get(pkuid) != false && pkuid != null) {
-                        sb_default.Set(pk);
-                    }
-                    if(scoreboard.get(puid) != false || scoreboard.get(puid) == null){
-                        sb_default.Set(p);
-                    }
+                    if (scoreboard.get(pkuid) != false && pkuid != null) sb_default.Set(pk);
+                    if (scoreboard.get(puid) != false || scoreboard.get(puid) == null) sb_default.Set(p);
+
+                    if (server.arena_glad.get(puid) != null) server.remArenaGlad(server.arena_glad.get(puid), p, pk);
                 }
-                if(server.arena_glad.get(puid) != null) server.remArenaGlad(server.arena_glad.get(puid));
                 server.arena_glad.put(puid, null);
+
 
                 e.getEntity().spigot().respawn();
 
                 int warp = player.warp.get(puid);
                 Location tp;
-                if( warp != 0){
-                    switch (warp){
+                if (warp != 0) {
+                    switch (warp) {
                         case 1:
                             tp = convert_config_location("warps.fps.spawnpos");
                             p.teleport(tp);
@@ -91,8 +89,7 @@ public class handleRespawn implements Listener {
                             break;
                     }
 
-                }
-                else{
+                } else {
                     Spawn.Receive(p);
                 }
             }

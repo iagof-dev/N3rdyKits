@@ -190,11 +190,16 @@ public class handleInteract implements Listener {
             //
             //KIT GLADIATOR
             //
-            Player target = getNearest(p, 2.0);
+            Player target = getNearest(p, 5.0);
             if (e.getItem() != null && e.getAction() == Action.RIGHT_CLICK_AIR && target instanceof Player && e.getItem().getType().equals(Material.IRON_FENCE) && e.getItem().getItemMeta().getDisplayName().equals("§eGladiator")) {
+                UUID puid = p.getUniqueId();
+                if(server.arena_glad.get(puid) != null) return;
+
                 World wrld = server.getWorld();
-                player.last_pos.put(p.getUniqueId(), p.getLocation());
+                player.last_pos.put(puid, p.getLocation());
                 player.last_pos.put(target.getUniqueId(), target.getLocation());
+                server.arena_glad_players.put(puid, target.getUniqueId());
+                server.arena_glad_players.put(target.getUniqueId(), puid);
                 criarArenaGlad(p, target ,17);
             }
         }

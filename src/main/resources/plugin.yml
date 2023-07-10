@@ -4,10 +4,6 @@ description: Plugin de KitPvP
 author: N3rdyDev
 main: com.n3rdydev.main
 commands:
-  kit:
-    description: Selecionar um kit.
-    permission-message: §cNão possui permissão.
-    usage: /kit nome-do-kit
   build:
     description: modo construcao
     permission-message: §cNão possui permissão.
@@ -16,6 +12,8 @@ commands:
     description: abre menu de kits.
     permission-message: §cNão possui permissão.
     usage: /kits
+    aliases:
+      - kit
   n3rdykits:
     description: plugin comandos.
     permission-message: §cNão possui permissão.

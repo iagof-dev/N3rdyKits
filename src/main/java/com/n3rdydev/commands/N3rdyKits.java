@@ -61,9 +61,13 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 mensagem += ("§5Kill adicionada!");
                 break;
             case "addmortes":
-                player.addDeaths(p);
+                player.addDeaths(p_uid);
                 sb_default.Set(p);
                 mensagem += ("§5morte adicionada!");
+                break;
+            case "addxp":
+                player.addXP(p_uid);
+                mensagem += ("§5xp adicionado!");
                 break;
             case "kit":
                 String kit = player.selected_kit.get(p.getUniqueId());

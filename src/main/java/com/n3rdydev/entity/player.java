@@ -145,8 +145,7 @@ public class player {
     public static void addKills(UUID p_uid) {
         Integer valor = 1;
         if (kills.get(p_uid) != null) {
-            Integer qnt_kills = kills.get(p_uid);
-            Integer sum_kills = qnt_kills + 1;
+            valor = kills.get(p_uid) + 1;
         }
         kills.put(p_uid, valor);
     }
@@ -178,14 +177,13 @@ public class player {
         statistics.save();
     }
 
-    public static void addDeaths(Player p) {
-        UUID p_uid = p.getUniqueId();
-        if (deaths.get(p_uid) != null) {
-            Integer qnt_deaths = deaths.get(p_uid);
+    public static void addDeaths(UUID puid) {
+        if (deaths.get(puid) != null) {
+            Integer qnt_deaths = deaths.get(puid);
             Integer sum_kills = qnt_deaths + 1;
-            deaths.put(p_uid, sum_kills);
+            deaths.put(puid, sum_kills);
         } else {
-            deaths.put(p_uid, 1);
+            deaths.put(puid, 1);
         }
     }
 
