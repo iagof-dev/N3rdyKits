@@ -17,7 +17,7 @@ public class handleTeleport implements Listener {
     public static void PlayerShift(PlayerToggleSneakEvent e) {
         Player p = e.getPlayer();
         UUID puid = p.getUniqueId();
-        if (player.selected_kit.get(p.getUniqueId()) == null) {
+        if (player.selected_kit.get(puid) == null) {
             return;
         }
         if (player.lastplayer_hit.get(puid) == null) {
