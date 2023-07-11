@@ -27,22 +27,22 @@ public class handleTeleport implements Listener {
         //kit ninja
         String kit = player.selected_kit.get(puid);
         kit = kit.toLowerCase();
-        if (kit == "ninja") {
+        if (kit != "ninja") {
             return;
         }
         Boolean cooldown = com.n3rdydev.entity.player.getCooldown(puid);
-        if (!(cooldown)) {
+        if (cooldown != true) {
 
             UUID vitima = player.lastplayer_hit.get(puid);
             Player victim = Bukkit.getPlayer(vitima);
             Location tp = victim.getLocation();
             if (com.n3rdydev.settings.spawn.is_safe_zone(tp) != true) {
                 p.teleport(tp);
-                com.n3rdydev.entity.player.setCooldown(p.getUniqueId(), 7);
+                com.n3rdydev.entity.player.setCooldown(puid, 7);
             }
 
         } else if (cooldown) {
-            p.sendMessage(player.getCooldownTime(p.getUniqueId()));
+            p.sendMessage(player.getCooldownTime(puid));
         }
     }
 }

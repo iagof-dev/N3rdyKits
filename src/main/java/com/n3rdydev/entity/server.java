@@ -29,8 +29,6 @@ public class server {
     public static HashMap<UUID, UUID> arena_glad_players = new HashMap();
 
 
-
-
     public static World getWorld(){
         return world;
     }
@@ -192,12 +190,14 @@ public class server {
         }
 
         UUID p1uid = p1.getUniqueId();
-        UUID p2uid = p2.getUniqueId();
 
         player.last_pos.put(p1uid, null);
-        player.last_pos.put(p2uid, null);
+        if(p2 != null){
+            UUID p2uid = p2.getUniqueId();
+            server.arena_glad_players.put(p2uid, null);
+            player.last_pos.put(p2uid, null);
+        }
         server.arena_glad_players.put(p1uid, null);
-        server.arena_glad_players.put(p2uid, null);
 
     }
 

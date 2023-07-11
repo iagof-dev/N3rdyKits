@@ -6,6 +6,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 public class Spawn implements CommandExecutor {
     @Override
@@ -15,7 +17,8 @@ public class Spawn implements CommandExecutor {
             return false;
         }
         Player p = (Player) commandSender;
-
+        PlayerInventory inv = p.getInventory();
+        inv.setArmorContents(new ItemStack[inv.getArmorContents().length]);
         player.warp.put(p.getUniqueId(), 0);
         p.getInventory().clear();
         Location spawn_loc = new Location(p.getWorld(), com.n3rdydev.settings.spawn.spawn_x, com.n3rdydev.settings.spawn.spawn_y, com.n3rdydev.settings.spawn.spawn_z);

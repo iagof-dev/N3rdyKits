@@ -38,6 +38,7 @@ public class handleRespawn implements Listener {
             @Override
             public void run() {
                 Player p = (Player) e.getEntity().getPlayer();
+                Player pk;
                 p.setFireTicks(0);
                 handleFallDamage.launchpad.put(p.getUniqueId(), false);
                 UUID puid = p.getUniqueId();
@@ -49,7 +50,7 @@ public class handleRespawn implements Listener {
                         sb_default.Set(p);
                     }
                 } else {
-                    Player pk = (Player) e.getEntity().getKiller().getPlayer();
+                    pk = (Player) e.getEntity().getKiller().getPlayer();
                     p.sendMessage("§cVocê morreu para " + pk.getName() + "! (-5 xp)");
                     pk.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
 
@@ -65,14 +66,15 @@ public class handleRespawn implements Listener {
 
                     if (scoreboard.get(pkuid) != false && pkuid != null) sb_default.Set(pk);
                     if (scoreboard.get(puid) != false || scoreboard.get(puid) == null) sb_default.Set(p);
-
                     if (server.arena_glad.get(puid) != null) server.remArenaGlad(server.arena_glad.get(puid), p, pk);
                 }
                 server.arena_glad.put(puid, null);
+                if (server.arena_glad.get(puid) != null) server.remArenaGlad(server.arena_glad.get(puid), p, null);
 
 
                 e.getEntity().spigot().respawn();
 
+                player.selected_kit.put(puid, "nenhum");
                 int warp = player.warp.get(puid);
                 Location tp;
                 if (warp != 0) {

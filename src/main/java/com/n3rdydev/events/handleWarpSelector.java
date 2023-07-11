@@ -35,6 +35,7 @@ public class handleWarpSelector implements Listener {
                     if(config.get().getBoolean("warps.fps.active") != false){
                         tp = convert_config_location("warps.fps.spawnpos");
                         p.teleport(tp);
+                        sb_default.Set(p);
                         FPS.Receive(p);
                         return;
                     }
@@ -44,6 +45,7 @@ public class handleWarpSelector implements Listener {
                     if(config.get().getBoolean("warps.lavachallenge.active") != false){
                         tp = convert_config_location("warps.lavachallenge.spawnpos");
                         p.teleport(tp);
+                        sb_default.Set(p);
                         LavaChallenge.Receive(p);
                         return;
                     }
