@@ -8,6 +8,7 @@ import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.main;
 import com.n3rdydev.scoreboard.sb_default;
 import com.n3rdydev.settings.spawn;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -48,6 +49,11 @@ public class handleRespawn implements Listener {
                     p.sendMessage("§cVocê morreu!");
                     if (scoreboard.get(puid) != false || scoreboard.get(puid) == null) {
                         sb_default.Set(p);
+                    }
+                    if(server.arena_glad.get(puid) != null && server.arena_glad_players.get(puid) != null){
+                        Player target = Bukkit.getPlayer(server.arena_glad_players.get(puid));
+                        target.teleport(player.last_pos.get(target.getUniqueId()));
+                        server.remArenaGlad(server.arena_glad.get(puid), p, null);
                     }
                 } else {
                     pk = (Player) e.getEntity().getKiller().getPlayer();

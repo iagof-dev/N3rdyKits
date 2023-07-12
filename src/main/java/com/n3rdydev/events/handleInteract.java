@@ -24,6 +24,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import com.n3rdydev.entity.player;
 
+import java.util.ArrayList;
+import java.util.Set;
 import java.util.UUID;
 
 import static com.n3rdydev.entity.server.criarArenaGlad;
@@ -190,6 +192,9 @@ public class handleInteract implements Listener {
             Player target = null;
             target = getNearest(p, 3.0);
             if (e.getItem() != null && e.getAction() == Action.RIGHT_CLICK_AIR && target instanceof Player && e.getItem().getType().equals(Material.IRON_FENCE) && e.getItem().getItemMeta().getDisplayName().equals("§eGladiator")) {
+
+                target = (Player) getNearestEntityInSight(p, 2);
+
                 UUID puid = p.getUniqueId();
                 if(server.arena_glad.get(puid) != null) return;
 
@@ -221,6 +226,27 @@ public class handleInteract implements Listener {
             target = (Player) e;
         }
         return target;
+    }
+
+
+    public static Entity getNearestEntityInSight(Player player, int range) {
+        ArrayList<Entity> entities = (ArrayList<Entity>) player.getNearbyEntities(range, range, range);
+        ArrayList<Block> sightBlock = (ArrayList<Block>) player.getLineOfSight( (Set<Material>) null, range);
+        ArrayList<Location> sight = new ArrayList<Location>();
+        for (int i = 0;i<sightBlock.size();i++)
+            sight.add(sightBlock.get(i).getLocation());
+        for (int i = 0;i<sight.size();i++) {
+            for (int k = 0;k<entities.size();k++) {
+                if (Math.abs(entities.get(k).getLocation().getX()-sight.get(i).getX())<1.3) {
+                    if (Math.abs(entities.get(k).getLocation().getY()-sight.get(i).getY())<1.5) {
+                        if (Math.abs(entities.get(k).getLocation().getZ()-sight.get(i).getZ())<1.3) {
+                            return entities.get(k);
+                        }
+                    }
+                }
+            }
+        }
+        return null; //Return null/nothing if no entity was found
     }
 
 
