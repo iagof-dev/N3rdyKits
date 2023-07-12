@@ -99,12 +99,18 @@ public class handleInteract implements Listener {
             if (e.getItem() != null && e.getItem().getType().equals(Material.FEATHER) && e.getItem().getItemMeta().getDisplayName().equals("§ePhantom")) {
                 if (p.getAllowFlight() != true && player.getCooldown(p.getUniqueId()) != true) {
                     p.setAllowFlight(true);
-                    p.sendMessage("§aPhantom ativo! Desativando em 6 segundos...");
+                    p.playSound(p.getLocation(), Sound.WITHER_DEATH, 1, 1);
+                    p.sendMessage("§aPhantom ativo! Desativando em 5 segundos...");
+                    p.sendTitle("§fPhantom §aativado§f!", "§7Desativando em 5 segundos...");
+
                     new BukkitRunnable() {
                         @Override
                         public void run() {
+
                             p.setAllowFlight(false);
+                            p.playSound(p.getLocation(), Sound.WITHER_SPAWN, 1, 1);
                             p.sendMessage("§cPhantom desativado!");
+                            p.sendTitle("§fPhantom §cDesativado§f!", "§7Você poderá usar novamente após 6 segundos...");
                             player.setCooldown(p.getUniqueId(), 6);
 
                         }

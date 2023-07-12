@@ -41,6 +41,7 @@ public class Warps implements CommandExecutor {
                         tp = convert_config_location("warps.fps.spawnpos");
                         p.teleport(tp);
                         FPS.Receive(p);
+                        return true;
                     }
                     p.sendMessage(serverinfo.name() + " | §cWarp em manutenção!");
                     break;
@@ -49,6 +50,7 @@ public class Warps implements CommandExecutor {
                         tp = convert_config_location("warps.lavachallenge.spawnpos");
                         p.teleport(tp);
                         LavaChallenge.Receive(p);
+                        return true;
                     }
                     p.sendMessage(serverinfo.name() + " | §cWarp em manutenção!");
                     break;

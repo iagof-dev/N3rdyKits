@@ -7,6 +7,7 @@ import com.n3rdydev.scoreboard.sb_default;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.settings.serverinfo;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -40,6 +41,7 @@ public class handleWarpSelector implements Listener {
                         return;
                     }
                     p.sendMessage(serverinfo.name() + " | §cWarp em manutenção!");
+                    p.playSound(p.getLocation(), Sound.NOTE_BASS , 1, 1);
                     break;
                 case LAVA_BUCKET:
                     if(config.get().getBoolean("warps.lavachallenge.active") != false){
@@ -50,6 +52,7 @@ public class handleWarpSelector implements Listener {
                         return;
                     }
                     p.sendMessage(serverinfo.name() + " | §cWarp em manutenção!");
+                    p.playSound(p.getLocation(), Sound.NOTE_BASS , 1, 1);
                     break;
                 default:
                     return;

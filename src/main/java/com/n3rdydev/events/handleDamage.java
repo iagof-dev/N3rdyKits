@@ -1,5 +1,6 @@
 package com.n3rdydev.events;
 
+import com.n3rdydev.entity.player;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -7,6 +8,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.concurrent.ThreadLocalRandom;
+
+import static com.n3rdydev.entity.player.*;
 
 public class handleDamage implements Listener {
 
@@ -29,7 +34,18 @@ public class handleDamage implements Listener {
                 valor = 1.5;
                 break;
             case STONE_SWORD:
-                valor = 2;
+                if(selected_kit.get(player.getUniqueId()) == "ninja"){
+                    int rndNumber = ThreadLocalRandom.current().nextInt(0, 1 + 1);
+                    if(rndNumber >= 1){
+                        valor = 2.25;
+                    }
+                    else{
+                        valor = 2;
+                    }
+                }
+                else{
+                    valor = 2;
+                }
                 break;
             case GOLD_SWORD:
                 if (player.getItemInHand() == feast_golden_sword) {

@@ -54,6 +54,18 @@ public class handleRespawn implements Listener {
                         Player target = Bukkit.getPlayer(server.arena_glad_players.get(puid));
                         target.teleport(player.last_pos.get(target.getUniqueId()));
                         server.remArenaGlad(server.arena_glad.get(puid), p, null);
+                        player.addKills(target.getUniqueId());
+                        player.addXP(target.getUniqueId());
+                        p.sendMessage("§cVocê morreu para " + target.getName() + "! (-5 xp)");
+                        target.sendMessage("§a Você matou " + p.getName() + "! (+5 xp)");
+
+                        UUID pkuid = target.getUniqueId();
+
+                        if (player.last_pos.get(pkuid) != null) target.teleport(player.last_pos.get(pkuid));
+                        if (server.arena_glad.get(pkuid) != null) server.arena_glad.put(pkuid, null);
+                        if (scoreboard.get(pkuid) != false && pkuid != null) sb_default.Set(target);
+                        if (scoreboard.get(puid) != false || scoreboard.get(puid) == null) sb_default.Set(p);
+
                     }
                 } else {
                     pk = (Player) e.getEntity().getKiller().getPlayer();

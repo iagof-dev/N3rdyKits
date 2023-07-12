@@ -66,7 +66,7 @@ public class Kits {
                     }
                     break;
                 case 6:
-                    if (p.hasPermission("n3rdydev.kit.feather")) {
+                    if (p.hasPermission("n3rdydev.kit.phantom")) {
                         inv.setItem(v, createItem(new ItemStack(FEATHER), "§aPhantom", "§7Kit Phantom", " ", "§eClique para selecionar."));
                     } else {
                         inv.setItem(v, createItem(nao_possui, "§aPhantom", "§7Kit Phantom", "§cNão possui", ""));
