@@ -1,3 +1,7 @@
+<div align="center">
+<img src="https://socialify.git.ci/iagof-dev/N3rdyKits/image?description=1&font=Source%20Code%20Pro&language=1&name=1&owner=1&pattern=Solid&stargazers=1&theme=Auto" alt="N3rdyKits" width="640" height="320" />
+</div>
+
 # N3rdyKits
 Java | Plugin minigame KitPvP
 
