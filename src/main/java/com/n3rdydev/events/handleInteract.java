@@ -8,10 +8,7 @@ import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.settings.spawn;
-import org.bukkit.DyeColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Entity;
@@ -190,7 +187,8 @@ public class handleInteract implements Listener {
             //
             //KIT GLADIATOR
             //
-            Player target = getNearest(p, 5.0);
+            Player target = null;
+            target = getNearest(p, 3.0);
             if (e.getItem() != null && e.getAction() == Action.RIGHT_CLICK_AIR && target instanceof Player && e.getItem().getType().equals(Material.IRON_FENCE) && e.getItem().getItemMeta().getDisplayName().equals("§eGladiator")) {
                 UUID puid = p.getUniqueId();
                 if(server.arena_glad.get(puid) != null) return;

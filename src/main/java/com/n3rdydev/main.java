@@ -5,11 +5,9 @@ import com.n3rdydev.events.*;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.settings.statistics;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.n3rdydev.SQL.MySql;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.sql.Connection;
 
@@ -47,6 +45,7 @@ public class main extends JavaPlugin {
         Listener handleMotd = new handleMotd();
         Listener handleWarpSelector = new handleWarpSelector();
         Listener handleConfig = new handleConfig();
+        Listener handleDamage = new handleDamage();
 
         //Event Listeners
         this.getServer().getPluginManager().registerEvents(handleConfig, this);

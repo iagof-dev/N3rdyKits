@@ -13,8 +13,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import static org.bukkit.Material.WOOL;
-
 public class handleConfig implements Listener {
 
     //essa classe irá controlar oq o usuário vai definir
