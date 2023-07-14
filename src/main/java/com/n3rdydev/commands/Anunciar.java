@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Tpall implements CommandExecutor {
+public class Anunciar implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
@@ -16,18 +16,23 @@ public class Tpall implements CommandExecutor {
         }
         Player p = (Player) commandSender;
 
-        if(!(p.hasPermission("n3rdydev.command.tpall"))){
+        if(!(p.hasPermission("n3rdydev.command.anunciar"))){
             p.sendMessage("§cSem permissão!");
             return true;
         }
 
         for(Player all : Bukkit.getServer().getOnlinePlayers())
         {
-            all.teleport(p.getLocation());
+            p.sendTitle("Anúncio", "Um staff enviou um anúncio no chat!");
+
+
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < strings.length; i++) {
+                if (i > 0) sb.append(" ");
+                sb.append(strings[i]);
+            }
+            p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " - §c§lAnúncio\n§r" + sb.toString());
         }
-
-        p.sendMessage(com.n3rdydev.settings.serverinfo.name() + " | §aVocê teleportou todos os jogadores online para sua localização!");
-
         return true;
     }
 }

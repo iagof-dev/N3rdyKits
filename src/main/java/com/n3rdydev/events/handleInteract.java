@@ -118,8 +118,11 @@ public class handleInteract implements Listener {
                 } else {
                     if (player.getCooldown(p.getUniqueId()) != false) {
                         p.sendMessage(player.getCooldownTime(p.getUniqueId()));
+                        p.playSound(p.getLocation(), Sound.NOTE_BASS , 1, 1);
                     } else {
                         p.sendMessage("§cVocê já está com phantom ativado!");
+                        p.playSound(p.getLocation(), Sound.NOTE_BASS , 1, 1);
+
                     }
                 }
             }
@@ -198,7 +201,6 @@ public class handleInteract implements Listener {
             Player target = null;
             target = getNearest(p, 3.0);
             if (e.getItem() != null && e.getAction() == Action.RIGHT_CLICK_AIR && target instanceof Player && e.getItem().getType().equals(Material.IRON_FENCE) && e.getItem().getItemMeta().getDisplayName().equals("§eGladiator")) {
-
                 target = (Player) getNearestEntityInSight(p, 2);
 
                 UUID puid = p.getUniqueId();
@@ -252,7 +254,7 @@ public class handleInteract implements Listener {
                 }
             }
         }
-        return null; //Return null/nothing if no entity was found
+        return null;
     }
 
 

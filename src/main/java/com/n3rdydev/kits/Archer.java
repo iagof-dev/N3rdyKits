@@ -2,15 +2,15 @@ package com.n3rdydev.kits;
 
 import com.n3rdydev.entity.player;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Archer {
-    public static boolean Receive(Player p) {
 
+
+    public static boolean Receive(Player p) {
         if (!(p.hasPermission("n3rdydev.kit.archer") || p.hasPermission("n3rdydev.kit.*"))) {
             p.sendMessage("§cVocê não possui o kit Archer.");
             return false;

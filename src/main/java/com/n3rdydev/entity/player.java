@@ -111,6 +111,7 @@ public class player {
         Duration tempo_restante = Duration.between(atual, delay_player);
         long segs = tempo_restante.getSeconds();
         return ("§cVocê só podera utilizar daqui " + segs + " segundos.");
+
     }
 
     public static Integer getXP(UUID puid){

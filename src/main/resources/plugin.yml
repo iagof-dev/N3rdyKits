@@ -38,6 +38,8 @@ commands:
     description: morre.
     permission-message: §cNão possui permissão.
     usage: /suicidar
+    aliases:
+      - morrer
   warps:
     description: lista de warps.
     permission-message: §cNão possui permissão.
@@ -48,3 +50,15 @@ commands:
     description: teleporte spawn.
     permission-message: §cNão possui permissão.
     usage: /spawn
+  tpall:
+    description: teleporta todo mundo para a posição do staff.
+    permission-message: §cNão possui permissão.
+    usage: /tpall
+  tphere:
+    description: teleporta um jogador especifico para a posição do staff.
+    permission-message: §cNão possui permissão.
+    usage: /tpall [jogador]
+  anunciar:
+    description: envia um anúncio para todos os jogadores.
+    permission-message: §cNão possui permissão.
+    usage: /anunciar [mensagem]

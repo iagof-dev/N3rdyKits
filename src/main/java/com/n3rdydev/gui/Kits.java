@@ -18,6 +18,7 @@ import static org.bukkit.Material.*;
 
 public class Kits {
     static String select_kit = "§eClique para selecionar.";
+
     public static Inventory list_kits(Player p) {
         //                                  Player | tamanho 3 linhas com 9 colunas | Nome que aparece em cima
         Inventory inv = Bukkit.createInventory(p, 9 * 3, "Lista de Kits");
@@ -90,7 +91,6 @@ public class Kits {
     }
 
     private static ItemStack createItem(ItemStack item, String nome, String... descricao) {
-
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', nome));
         List<String> lores = new ArrayList<>();

@@ -81,7 +81,7 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 statistics.save();
                 break;
             case "mysql":
-                MySql.SaveAll();
+                MySql mysql = new MySql();
                 break;
             case "feast":
                 mensagem+="§eFeast Gerado!";

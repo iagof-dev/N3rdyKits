@@ -84,6 +84,10 @@ public class main extends JavaPlugin {
         getCommand("warps").setExecutor(new Warps());
         getCommand("suicidar").setExecutor(new Suicidar());
         getCommand("spawn").setExecutor(new Spawn());
+        getCommand("tpall").setExecutor(new Tpall());
+        getCommand("tphere").setExecutor(new Tphere());
+        getCommand("anunciar").setExecutor(new Anunciar());
+
 
         com.n3rdydev.settings.spawn.load();
         Bukkit.getServer().getMotd();
@@ -94,7 +98,7 @@ public class main extends JavaPlugin {
     public void onDisable(){
         config.save();
         statistics.save();
-        MySql.SaveAll();
+        new MySql();
         Bukkit.getConsoleSender().sendMessage("§c[N3rdyKits] | Plugin Desabilitado!");
     }
 
@@ -105,7 +109,7 @@ public class main extends JavaPlugin {
         statistics.save();
         config.start();
         if(config.get().getBoolean("database.mysql.enable") != false){
-            Connection DB = MySql.Start();
+            MySql mysql = new MySql();
         }
     }
 
