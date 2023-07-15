@@ -28,6 +28,12 @@ public class MySql {
         return this.con;
     }
 
+    public void saveStatistics() {
+        Bukkit.getConsoleSender().sendMessage("§");
+
+
+    }
+
     /* public Connection Start() {
         try {
             return DriverManager.getConnection(db, this.user, this.pass);

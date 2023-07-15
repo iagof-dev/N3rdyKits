@@ -41,7 +41,6 @@ public class server {
         new BukkitRunnable() {
             @Override
             public void run() {
-
                 com.n3rdydev.entity.server.feast_generate();
             }
         }.runTaskTimerAsynchronously(main.getPlugin(), 1L, timer);
@@ -62,7 +61,6 @@ public class server {
                 if (b instanceof Chest) {
                     //baus++;
                     Chest chest = (Chest) b;
-
                     ((Chest) b).getBlockInventory().clear();
                     /*
                         Item Aleatorio que irá aparecer nos baús
@@ -75,8 +73,6 @@ public class server {
                         }
                     }
                     //((Chest) b).getBlockInventory().setItem(0, new ItemStack(Material.DIAMOND_SWORD));
-
-
                     Location bau_loc = b.getLocation();
                     world.strikeLightning(bau_loc);
                     b.update();
@@ -119,8 +115,6 @@ public class server {
         };
 
         int rndNumber = ThreadLocalRandom.current().nextInt(0, items.length - 1);
-        //System.out.println("Numero gerado: " + rndNumber);
-        //System.out.println("Array Size: " + items.length);
         return items[rndNumber];
     }
 
@@ -162,8 +156,8 @@ public class server {
             }
         }
 
-        Location player_1 = new Location(getWorld(), player.getLocation().getX() + 5, player.getLocation().getY()+58 , player.getLocation().getZ() + 5);
-        Location player_2 = new Location(getWorld(), player.getLocation().getX() - 5, player.getLocation().getY()+58 , player.getLocation().getZ() - 5);
+        Location player_1 = new Location(getWorld(), player.getLocation().getX() + 5, player.getLocation().getY()+58 , player.getLocation().getZ() + 5, 134, 0);
+        Location player_2 = new Location(getWorld(), player.getLocation().getX() - 5, player.getLocation().getY()+58 , player.getLocation().getZ() - 5, -134, 0);
         player.teleport(player_1);
         target.teleport(player_2);
         arena_glad.put(player.getUniqueId(), loc);

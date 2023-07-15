@@ -97,6 +97,14 @@ public class N3rdyKits implements CommandExecutor, Listener {
             case "tfeast":
                 mensagem += "§rFeast Timer: §c" + config.get().getInt("server.feast.timer") + " minutos.";
                 break;
+            case "setpwarp":
+                if(strings.length < 1) return true;
+                player.warp.put(p_uid, Integer.valueOf(strings[1]));
+                mensagem += "§aSucesso! você setou sua warp para " + strings[1];
+                break;
+            case "parkourtest":
+                mensagem+= player.getParkourCheckpoint(p_uid) + "\n" + p.getLocation();
+                break;
             case "arena":
                 if (strings[1].equals("0") || strings[1].equals("1") || strings[1].equals("2") || strings[1].equals("3") || strings[1].equals("4") || strings[1].equals("5") || strings[1].equals("6") || strings[1].equals("7") || strings[1].equals("8") || strings[1].equals("9")) {
                     double player_x = p.getLocation().getX();

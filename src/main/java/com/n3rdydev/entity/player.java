@@ -39,10 +39,29 @@ public class player {
         0 - SPAWN
         1 - FPS
         2 - LAVA CHALLENGE
+        3 - Parkour
      */
     public static HashMap<UUID, Integer> warp= new HashMap<>();
 
     public static HashMap<UUID, Location>last_pos = new HashMap<>();
+
+    static HashMap<UUID, Location> parkour_checkpoint = new HashMap<>();
+
+
+    public static Location getParkourCheckpoint(UUID puid){
+        return parkour_checkpoint.get(puid);
+    }
+
+    public static void setParkourCheckpoint(UUID puid, Location loc){
+        parkour_checkpoint.put(puid, loc);
+    }
+    public static void setFinishParkour(UUID puid){
+        parkour_checkpoint.put(puid, null);
+        player.addMoreXP(puid, 1000);
+        com.n3rdydev.scoreboard.sb_default.Set(Bukkit.getPlayer(puid));
+
+    }
+
 
     public static void toggleInvis(Player p){
 
@@ -155,6 +174,11 @@ public class player {
         if(player.score.get(puid) != null){
             valor = (player.score.get(puid) + 5);
         }
+        player.score.put(puid, valor);
+    }
+    public static void addMoreXP(UUID puid, Integer qnt){
+        Integer valor = qnt;
+        if(player.score.get(puid) != null)  valor = (player.score.get(puid) + qnt);
         player.score.put(puid, valor);
     }
     public static void remXP(UUID puid){

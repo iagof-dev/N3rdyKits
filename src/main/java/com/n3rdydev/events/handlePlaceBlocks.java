@@ -13,8 +13,7 @@ import static com.n3rdydev.entity.player.can_build;
 public class handlePlaceBlocks implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerPlaceBlocks(BlockPlaceEvent e) {
-
-        // Havia uma checagem desnecessária  
+        // Havia uma checagem desnecessária
         e.setCancelled(!can_build(e.getPlayer().getUniqueId()));
     }
 }

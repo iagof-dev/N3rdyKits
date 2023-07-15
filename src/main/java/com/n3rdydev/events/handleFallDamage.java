@@ -23,6 +23,15 @@ public class handleFallDamage implements Listener {
         if (e.getEntity() instanceof Player && e.getCause() == EntityDamageEvent.DamageCause.FALL) {
             Player p = (Player) e.getEntity();
             Location landingLocation = p.getLocation().subtract(0, e.getDamage(), 0);
+
+
+            switch(player.warp.get(p.getUniqueId())){
+                case 3:
+                    e.setCancelled(true);
+                    return;
+            }
+
+
             Block fallblock = landingLocation.getBlock();
             if(launchpad.get(p.getUniqueId()) != false){
                 e.setDamage(0);

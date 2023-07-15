@@ -17,7 +17,6 @@ public class config {
         if (!file.exists()) {
             try {
                 file.createNewFile();
-                Bukkit.getConsoleSender().sendMessage("§a[N3rdyKits] Arquivo de config.yml foi criado!");
             } catch (Exception e) {
                 Bukkit.getConsoleSender().sendMessage("§c[N3rdyKits] Configuracao erro!\n" + e.getMessage());
             }
@@ -30,7 +29,6 @@ public class config {
     }
 
     public static void save() {
-        Bukkit.getConsoleSender().sendMessage("[N3rdyKits] Salvando configurações...");
         try {
             config.save(file);
             Bukkit.getConsoleSender().sendMessage("§a[N3rdyKits] Configurações Salvas!");
@@ -40,9 +38,14 @@ public class config {
     }
 
     public static void reload() {
-        config = YamlConfiguration.loadConfiguration(file);
-        Bukkit.getConsoleSender().sendMessage("§a[N3rdyKits] Configurações foi atualizada!");
+        try {
 
+            config = YamlConfiguration.loadConfiguration(file);
+            Bukkit.getConsoleSender().sendMessage("§a[N3rdyKits] Configurações foi atualizada!");
+        } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage("§c[N3rdyKits] Erro:\n" + e.getMessage());
+
+        }
     }
 
     public static void start() {
@@ -63,7 +66,6 @@ public class config {
         get().addDefault("database.mysql.password", "132490Kj@br=");
         get().addDefault("database.mysql.database", "N3rdyKits");
         get().addDefault("database.mysql.table", "estatistica");
-
 
 
         //SPAWN

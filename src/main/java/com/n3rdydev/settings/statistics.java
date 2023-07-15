@@ -1,10 +1,12 @@
 package com.n3rdydev.settings;
 
+import com.n3rdydev.entity.player;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.util.UUID;
 
 public class statistics {
     public static File file;
@@ -15,7 +17,6 @@ public class statistics {
         if (!file.exists()) {
             try {
                 file.createNewFile();
-                Bukkit.getConsoleSender().sendMessage("§a[N3rdyKits] Arquivo de statistics.yml foi criado!");
             } catch (Exception e) {
                 Bukkit.getConsoleSender().sendMessage("§c[N3rdyKits] Configuracao erro!\n" + e.getMessage());
             }
@@ -28,10 +29,17 @@ public class statistics {
     }
 
     public static void save() {
+
+        for (UUID puid: player.kills.keySet()) {
+            statistics.get().set(puid + ".kills", player.getKills(puid));
+            statistics.get().set(puid + ".deaths", player.getDeaths(puid));
+            statistics.get().set(puid + ".xp", player.getXP(puid));
+        }
+
         Bukkit.getConsoleSender().sendMessage("[N3rdyKits] Salvando Estatisticas...");
         try {
             stats.save(file);
-            Bukkit.getConsoleSender().sendMessage("§a[N3rdyKits] Estatisticas Salvas!");
+            Bukkit.getConsoleSender().sendMessage("[N3rdyKits] Estatisticas Salvas!");
         } catch (Exception e) {
             Bukkit.getConsoleSender().sendMessage("§c[N3rdyKits] Estatisticas não foi salva... erro:\n" + e.getMessage());
         }
