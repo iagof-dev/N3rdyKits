@@ -3,6 +3,7 @@ package com.n3rdydev;
 import com.n3rdydev.commands.*;
 import com.n3rdydev.entity.player;
 import com.n3rdydev.events.*;
+import com.n3rdydev.manager.PlayerManager;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.settings.statistics;
 import org.bukkit.Bukkit;
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class main extends JavaPlugin {
 
     private static main plugin;
+    private PlayerManager manager;
 
     public static main getPlugin() {
         return plugin;
