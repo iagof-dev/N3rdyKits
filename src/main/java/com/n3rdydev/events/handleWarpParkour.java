@@ -18,7 +18,7 @@ import java.util.UUID;
 
 public class handleWarpParkour implements Listener {
 
-    @EventHandler(priority= EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerOverCheckpoint(PlayerMoveEvent e) {
         if (player.warp.get(e.getPlayer().getUniqueId()) != 3) return;
 
@@ -28,37 +28,41 @@ public class handleWarpParkour implements Listener {
                 return;
             }
             Location tp = player.getParkourCheckpoint(e.getPlayer().getUniqueId());
-            e.getPlayer().teleport(new Location(server.getWorld(), tp.getX(), tp.getY()+1, tp.getZ(), tp.getYaw(), tp.getPitch()));
+            e.getPlayer().teleport(new Location(server.getWorld(), tp.getX(), tp.getY() + 1, tp.getZ(), tp.getYaw(), tp.getPitch()));
         }
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                Player p = e.getPlayer();
-                UUID puid = p.getUniqueId();
-                Block b = p.getLocation().getBlock().getRelative(BlockFace.DOWN);
+
+        Player p = e.getPlayer();
+        UUID puid = p.getUniqueId();
+        Block b = p.getLocation().getBlock().getRelative(BlockFace.DOWN);
 
             /*
                 Golden block = CheckPoint
                 Diamond block = Finish and give 1.000xp
             */
 
-                switch (b.getType()) {
-                    case GOLD_BLOCK:
-                        Location checkpoint = player.getParkourCheckpoint(e.getPlayer().getUniqueId());
-                        if (player.getParkourCheckpoint(e.getPlayer().getUniqueId()) != null && b.getLocation() ==  player.getParkourCheckpoint(e.getPlayer().getUniqueId()))
-                            return;
-                        player.setParkourCheckpoint(puid, b.getLocation());
-                        p.playSound(p.getLocation(), Sound.SUCCESSFUL_HIT, 1, 1);
-                        return;
-                    case DIAMOND_BLOCK:
-                        p.sendMessage("Você finalizou o parkour! (+1000 xp)");
-                        player.setFinishParkour(puid);
-                        p.teleport(new Location(p.getWorld(), 216, 99, -1));
-                        p.playSound(p.getLocation(), Sound.FIREWORK_LARGE_BLAST, 1, 1);
-                        return;
+        switch (b.getType()) {
+            case GOLD_BLOCK:
+                boolean pula = false;
+                if(player.getParkourCheckpoint(puid) == null){
+                    p.playSound(p.getLocation(), Sound.SUCCESSFUL_HIT, 1, 1);
+                    p.sendTitle("Checkpoint!", "§7Você alcançou o checkpoint...");
+                    player.setParkourCheckpoint(puid, b.getLocation());
+                    return;
                 }
+                Location LastCheckpoint = player.getParkourCheckpoint(puid);
+                if(b.getLocation().getX() == LastCheckpoint.getX() && b.getLocation().getZ() == LastCheckpoint.getZ()) return;
+                p.playSound(p.getLocation(), Sound.SUCCESSFUL_HIT, 1, 1);
+                p.sendTitle("Checkpoint!", "§7Você alcançou o checkpoint...");
+                player.setParkourCheckpoint(puid, b.getLocation());
+                return;
+            case DIAMOND_BLOCK:
+                p.sendMessage("Você finalizou o parkour! (+1000 xp)");
+                p.sendTitle("§dV§co§ac§9ê§6 §3f§2i§1n§8a§fl§6i§5z§4o§bu§c §do §ep§3a§2r§1k§5o§9u§7r§e!", "§7Você ganhou 1.000 xp");
+                player.setFinishParkour(puid);
+                p.teleport(new Location(p.getWorld(), 216, 99, -1));
+                p.playSound(p.getLocation(), Sound.FIREWORK_LARGE_BLAST, 1, 1);
+                return;
+        }
 
-            }
-        }.runTaskLater(main.getPlugin(), 8L);
     }
 }

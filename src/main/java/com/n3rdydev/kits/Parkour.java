@@ -6,11 +6,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class LavaChallenge {
+public class Parkour {
     public static void Receive(Player p){
         p.getInventory().clear();
-        player.selected_kit.put(p.getUniqueId(), "LC");
-        player.warp.put(p.getUniqueId(), 2);
+        player.selected_kit.put(p.getUniqueId(), "Parkour");
+        player.warp.put(p.getUniqueId(), 3);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);
         ItemStack r_mushroom = new ItemStack(Material.RED_MUSHROOM, 64);
         ItemStack b_mushroom = new ItemStack(Material.BROWN_MUSHROOM, 64);
@@ -19,6 +19,7 @@ public class LavaChallenge {
         sopa.setDisplayName("§eSopa Mágica");
         soup.setItemMeta(sopa);
 
+        /*
         for (int z = 0; z <= 36; z++){
             switch(z){
                 case 13:
@@ -35,6 +36,8 @@ public class LavaChallenge {
                     break;
             }
         }
+
+         */
         p.updateInventory();
     }
 }

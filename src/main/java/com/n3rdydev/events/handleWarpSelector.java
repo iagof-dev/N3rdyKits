@@ -54,6 +54,17 @@ public class handleWarpSelector implements Listener {
                     p.sendMessage(serverinfo.name() + " | §cWarp em manutenção!");
                     p.playSound(p.getLocation(), Sound.NOTE_BASS , 1, 1);
                     break;
+                case IRON_BOOTS:
+                    if(config.get().getBoolean("warps.parkour.active") != false){
+                        tp = convert_config_location("warps.parkour.spawnpos");
+                        p.teleport(tp);
+                        sb_default.Set(p);
+                        Parkour.Receive(p);
+                        return;
+                    }
+                    p.sendMessage(serverinfo.name() + " | §cWarp em manutenção!");
+                    p.playSound(p.getLocation(), Sound.NOTE_BASS , 1, 1);
+                    break;
                 default:
                     return;
             }

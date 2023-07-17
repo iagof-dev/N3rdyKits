@@ -89,6 +89,9 @@ public class handleConfig implements Listener {
                 case LAVA_BUCKET:
                     p.openInventory(Config.warp_lavac(p));
                     break;
+                case IRON_BOOTS:
+                    p.openInventory(Config.warp_parkour(p));
+                    break;
                 case SIGN:
                     p.closeInventory();
                     p.openInventory(Config.start(p));
@@ -181,6 +184,48 @@ public class handleConfig implements Listener {
                 case AIR:
                 default:
                     p.openInventory(Config.warp_lavac(p));
+                    break;
+            }
+        }
+        //CABOU
+        //pagina warp PARKOUR
+        if (e.getView().getTitle().equals("Parkour CONFIG") && e.getCurrentItem() != null) {
+            e.setCancelled(true);
+            p.closeInventory();
+            switch (e.getCurrentItem().getType()) {
+                case WOOL:
+                    if(com.n3rdydev.settings.config.get().getBoolean("warps.parkour.active") != false){
+                        //se tiver true
+                        config.get().set("warps.parkour.active", false);
+                        config.save();
+                        p.sendMessage(serverinfo.name() + " | §cWarp Parkour foi desativada!");
+                    }
+                    else{
+                        config.get().set("warps.parkour.active", true);
+                        config.save();
+                        p.sendMessage(serverinfo.name() + " | §aWarp Parkour foi ativada!");
+                    }
+                    p.closeInventory();
+                    p.openInventory(Config.warp_lavac(p));
+                    break;
+
+                case BED:
+                    String format = p.getLocation().getX() + " " + p.getLocation().getY() + " " + p.getLocation().getZ();
+                    config.get().set("warps.parkour.active", true);
+                    config.get().set("warps.parkour.spawnpos", format);
+                    config.save();
+                    p.sendMessage(serverinfo.name() + " | §aWarp Parkour foi definida na posição atual!");
+                    break;
+                case SIGN:
+                    p.closeInventory();
+                    p.openInventory(Config.warps(p));
+                    break;
+                case BARRIER:
+                    p.closeInventory();
+                    break;
+                case AIR:
+                default:
+                    p.openInventory(Config.warp_parkour(p));
                     break;
             }
         }

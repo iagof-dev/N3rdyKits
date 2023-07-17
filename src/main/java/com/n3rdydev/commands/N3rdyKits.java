@@ -11,6 +11,7 @@ import com.n3rdydev.settings.statistics;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,7 +28,6 @@ public class N3rdyKits implements CommandExecutor, Listener {
             System.out.println("§cApenas jogadores pode usar este comando!");
             return true;
         }
-
 
         Player p = (Player) commandSender;
         if (!(p.hasPermission("n3rdydev.developer.test") || p.hasPermission("n3rdydev.*"))) {
@@ -103,7 +103,8 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 mensagem += "§aSucesso! você setou sua warp para " + strings[1];
                 break;
             case "parkourtest":
-                mensagem+= player.getParkourCheckpoint(p_uid) + "\n" + p.getLocation();
+                Block b = p.getLocation().getBlock().getRelative(BlockFace.DOWN);
+                mensagem+= player.getParkourCheckpoint(p_uid) + "\n" + b.getLocation();
                 break;
             case "arena":
                 if (strings[1].equals("0") || strings[1].equals("1") || strings[1].equals("2") || strings[1].equals("3") || strings[1].equals("4") || strings[1].equals("5") || strings[1].equals("6") || strings[1].equals("7") || strings[1].equals("8") || strings[1].equals("9")) {

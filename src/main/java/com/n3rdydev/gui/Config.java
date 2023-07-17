@@ -105,6 +105,9 @@ public class Config {
                 case 13:
                     inv.setItem(v, createItem(new ItemStack(LAVA_BUCKET), "§eLava Challenge", "§7WARP Lava Challenge", " ", set_menu));
                     break;
+                case 15:
+                    inv.setItem(v, createItem(new ItemStack(IRON_BOOTS), "§eParkour", "§7WARP Parkour", " ", set_menu));
+                    break;
                 case 26:
                     inv.setItem(v, createItem(new ItemStack(BARRIER), "§eSair", "", " ", ""));
                     break;
@@ -141,8 +144,6 @@ public class Config {
         return inv;
     }
 
-
-
     public static Inventory warp_lavac(Player p) {
         //                                  Player | tamanho 3 linhas com 9 colunas | Nome que aparece em cima
         Inventory inv = Bukkit.createInventory(p, 9 * 3, "LAVA CHALLENGE CONFIG");
@@ -171,5 +172,35 @@ public class Config {
         }
         return inv;
     }
+
+    public static Inventory warp_parkour(Player p) {
+        //                                  Player | tamanho 3 linhas com 9 colunas | Nome que aparece em cima
+        Inventory inv = Bukkit.createInventory(p, 9 * 3, "Parkour CONFIG");
+
+        for (int v = 0; v <= 26; v++) {
+            switch (v) {
+                case 18:
+                    inv.setItem(v, createItem(new ItemStack(SIGN), "§eVoltar", "", " ", ""));
+                    break;
+                case 12:
+                    String status = "Desativado";
+                    byte cor = 14;
+                    if(config.get().getBoolean("warps.parkour.active") != false){
+                        cor = 5;
+                        status = "Ativo";
+                    }
+                    inv.setItem(v, createItem(new ItemStack(WOOL, 1, cor), "§eStatus: " + status, "ATIVAR OU DESATIVAR WARP FPS", " ", "[CLIQUE PARA DEFINIR]"));
+                    break;
+                case 14:
+                    inv.setItem(v, createItem(new ItemStack(BED), "§eDefinir SPAWN", "§7DEFINIR SPAWN DA WARP PARKOUR", " ", set_menu));
+                    break;
+                case 26:
+                    inv.setItem(v, createItem(new ItemStack(BARRIER), "§eSair", "", " ", ""));
+                    break;
+            }
+        }
+        return inv;
+    }
+
 
 }

@@ -4,6 +4,7 @@ import com.n3rdydev.entity.player;
 import com.n3rdydev.entity.server;
 import com.n3rdydev.kits.FPS;
 import com.n3rdydev.kits.LavaChallenge;
+import com.n3rdydev.kits.Parkour;
 import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.main;
 import com.n3rdydev.scoreboard.sb_default;
@@ -157,6 +158,11 @@ public class handleRespawn implements Listener {
                             tp = convert_config_location("warps.lavachallenge.spawnpos");
                             p.teleport(tp);
                             LavaChallenge.Receive(p);
+                            break;
+                        case 3:
+                            tp = convert_config_location("warps.parkour.spawnpos");
+                            p.teleport(tp);
+                            Parkour.Receive(p);
                             break;
                     }
 

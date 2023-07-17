@@ -28,6 +28,9 @@ public class Warps{
                     case 13:
                         inv.setItem(v, createItem(new ItemStack(Material.GLASS, 1),"§6FPS", "§7warp pra pc ruim", " " ,"§eClique para teleportar"));
                         break;
+                    case 15:
+                        inv.setItem(v, createItem(new ItemStack(Material.IRON_BOOTS, 1),"§6Parkour", "§7Parkour elegante", " " ,"§eClique para teleportar"));
+                        break;
                 }
             }
             return inv;
