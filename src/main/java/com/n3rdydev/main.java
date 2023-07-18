@@ -20,6 +20,7 @@ public class main extends JavaPlugin {
 
     //Backup
     private PlayerManager manager;
+    //manager.getPlayers().get()
 
     public static main getPlugin() {
         return plugin;

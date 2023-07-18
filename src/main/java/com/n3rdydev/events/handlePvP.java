@@ -1,6 +1,7 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.manager.PlayerManager;
 import com.n3rdydev.settings.config;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -10,6 +11,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class handlePvP implements Listener {
+
+    private PlayerManager manager;
+
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
@@ -21,10 +25,10 @@ public class handlePvP implements Listener {
                 e.setCancelled(true);
             }
 
-            String selected_kit = player.selected_kit.get(attacker.getUniqueId());
+            String selected_kit = manager.getPlayers().get(attacker.getUniqueId()).getKit();
             selected_kit = selected_kit.toLowerCase();
             if(selected_kit == "ninja"){
-                player.lastplayer_hit.put(attacker.getUniqueId(), target.getUniqueId());
+                manager.getPlayers().get(attacker.getUniqueId()).setLastHit(target.getUniqueId());
             }
 
         }

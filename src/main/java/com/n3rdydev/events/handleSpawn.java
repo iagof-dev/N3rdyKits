@@ -3,6 +3,7 @@ package com.n3rdydev.events;
 import com.n3rdydev.commands.Admin;
 import com.n3rdydev.entity.player;
 import com.n3rdydev.kits.Spawn;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -19,12 +20,13 @@ import java.util.Map;
 import java.util.UUID;
 
 import static com.n3rdydev.entity.player.can_build;
-import static com.n3rdydev.entity.player.scoreboard;
 
 public class handleSpawn implements Listener {
 
+    private PlayerManager manager;
 
-    public static void user_setup(Player p) {
+
+    public void user_setup(Player p) {
         //limpar chat
         for(int i = 0; i <= 255; i++){
             p.sendMessage("\n");
@@ -33,12 +35,11 @@ public class handleSpawn implements Listener {
         if(can_build(puid)){
             player.toggleBuild(p);
         }
-        player.warp.put(puid, 0);
+        manager.getPlayers().get(puid).setWarp(0);
 
-        player.selected_kit.put(puid, "Nenhum");
+        manager.getPlayers().get(puid).setKit("Nenhum");
         handleFallDamage.launchpad.put(puid, false);
-        scoreboard.put(puid, true);
-        player.warp.put(puid, 0);
+        manager.getPlayers().get(puid).setScoreboard(true);
         player.loadStats(puid);
         com.n3rdydev.scoreboard.sb_default.Set(p);
         p.setHealth(20);

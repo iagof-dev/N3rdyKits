@@ -2,6 +2,7 @@ package com.n3rdydev.events;
 
 import com.n3rdydev.gui.Kits;
 import com.n3rdydev.kits.*;
+import com.n3rdydev.manager.PlayerManager;
 import com.n3rdydev.scoreboard.sb_default;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -12,11 +13,11 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.util.UUID;
 
-import static com.n3rdydev.entity.player.scoreboard;
 
 public class handleKitSelector implements Listener {
 
     //Essa classe determina qual kit o jogador clica, e oq o jogador irá receber no inventario antes do teleporte
+    private PlayerManager manager;
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInventoryClick(InventoryClickEvent e) {
@@ -58,7 +59,7 @@ public class handleKitSelector implements Listener {
                     break;
             }
             UUID puid = p.getUniqueId();
-            if (scoreboard.get(puid) != false ) {
+            if (manager.getPlayers().get(puid).getScoreboard() != false ) {
                 sb_default.Set(p);
             }
 

@@ -3,6 +3,7 @@ package com.n3rdydev.events;
 import com.n3rdydev.entity.player;
 import com.n3rdydev.entity.server;
 import com.n3rdydev.main;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -17,10 +18,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
 
 public class handleWarpParkour implements Listener {
+    private PlayerManager manager;
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerOverCheckpoint(PlayerMoveEvent e) {
-        if (player.warp.get(e.getPlayer().getUniqueId()) != 3) return;
+        if (manager.getPlayers().get(e.getPlayer().getUniqueId()).getWarp() != 3) return;
 
         if (e.getTo().getBlock().isLiquid()) {
             if (player.getParkourCheckpoint(e.getPlayer().getUniqueId()) == null) {

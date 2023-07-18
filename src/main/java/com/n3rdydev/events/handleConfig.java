@@ -2,6 +2,7 @@ package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
 import com.n3rdydev.gui.Config;
+import com.n3rdydev.manager.PlayerManager;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.settings.serverinfo;
 import org.bukkit.Material;
@@ -14,6 +15,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class handleConfig implements Listener {
+
+
+    private PlayerManager manager;
 
     //essa classe irá controlar oq o usuário vai definir
     //no comando /definir (exemplo: se ele clicar na cama, ele irá pegar a posição X,Y,Z do jogador)
@@ -53,7 +57,7 @@ public class handleConfig implements Listener {
                     break;
                 case DIAMOND_SWORD:
                     //config_menu
-                    player.config_menu.put(p.getUniqueId(), true);
+                    manager.getPlayers().get(p.getUniqueId()).setConfig_menu(true);
                     p.getInventory().clear();
                     ItemStack protect_item = new ItemStack(Material.BEACON);
                     ItemMeta protect_item_meta = protect_item.getItemMeta();

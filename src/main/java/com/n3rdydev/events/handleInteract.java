@@ -5,6 +5,7 @@ import com.n3rdydev.gui.Kits;
 import com.n3rdydev.gui.RecraftRefil;
 import com.n3rdydev.gui.SoupRefil;
 import com.n3rdydev.kits.Spawn;
+import com.n3rdydev.manager.PlayerManager;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.settings.spawn;
@@ -31,6 +32,7 @@ import java.util.UUID;
 import static com.n3rdydev.entity.server.criarArenaGlad;
 
 public class handleInteract implements Listener {
+    private PlayerManager manager;
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerInteractEvent(PlayerInteractEvent e) {
         Player p = e.getPlayer();
@@ -154,8 +156,8 @@ public class handleInteract implements Listener {
                     e.setCancelled(true);
                     UUID uid = p.getUniqueId();
 
-                    if (player.config_menu.get(uid) != null || player.config_menu.get(uid) != false && player.config_position_1.get(uid) == null) {
-                        player.config_position_1.put(uid, p.getLocation());
+                    if (manager.getPlayers().get(uid).getConfig_menu() != null || manager.getPlayers().get(uid).getConfig_menu() != false && manager.getPlayers().get(uid).getConfig_position_1() == null) {
+                        manager.getPlayers().get(uid).setConfig_position_1(p.getLocation());
                         p.getInventory().clear();
 
                         ItemStack protect_item = new ItemStack(Material.BEACON);
@@ -173,12 +175,12 @@ public class handleInteract implements Listener {
                 if (e.getItem().getItemMeta().getDisplayName().equals("§eProteção do Spawn - POSIÇÃO 2")) {
                     e.setCancelled(true);
                     UUID uid = p.getUniqueId();
-                    if (player.config_position_1.get(uid) != null) {
-                        player.config_position_2.put(uid, p.getLocation());
+                    if (manager.getPlayers().get(uid).getConfig_position_1() != null) {
+                        manager.getPlayers().get(uid).setConfig_position_2(p.getLocation());
                         p.sendMessage(serverinfo.name() + " | §dPosição 2 definida");
 
-                        Location pos1 = player.config_position_1.get(uid);
-                        Location pos2 = player.config_position_2.get(uid);
+                        Location pos1 = manager.getPlayers().get(uid).getConfig_position_1();
+                        Location pos2 = manager.getPlayers().get(uid).getConfig_position_2();
 
                         String pos1_format = pos1.getX() + " " + pos1.getZ();
                         String pos2_format = pos2.getX() + " " + pos2.getZ();
@@ -187,7 +189,7 @@ public class handleInteract implements Listener {
                         config.get().set("spawn.protection.pos2", pos2_format);
                         config.save();
                         config.reload();
-                        player.config_menu.put(uid, false);
+                        manager.getPlayers().get(uid).setConfig_menu(false);
                         com.n3rdydev.kits.Spawn.Receive(p);
                         p.sendMessage(serverinfo.name() + " | §aProteção definida entre (" + pos1_format + ") e (" + pos2_format + ")");
                     }
@@ -207,8 +209,8 @@ public class handleInteract implements Listener {
                 if(server.arena_glad.get(puid) != null) return;
 
                 World wrld = server.getWorld();
-                player.last_pos.put(puid, p.getLocation());
-                player.last_pos.put(target.getUniqueId(), target.getLocation());
+                manager.getPlayers().get(puid).setLast_pos(p.getLocation());
+                manager.getPlayers().get(target).setLast_pos(target.getLocation());
                 server.arena_glad_players.put(puid, target.getUniqueId());
                 server.arena_glad_players.put(target.getUniqueId(), puid);
                 criarArenaGlad(p, target ,17);

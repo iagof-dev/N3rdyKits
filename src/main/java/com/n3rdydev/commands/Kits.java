@@ -2,6 +2,7 @@ package com.n3rdydev.commands;
 
 import com.n3rdydev.entity.player;
 import com.n3rdydev.kits.*;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,6 +14,9 @@ import java.util.UUID;
 import static com.n3rdydev.gui.Kits.*;
 
 public class Kits implements CommandExecutor, Listener {
+
+    private static PlayerManager manager;
+
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
 
@@ -23,7 +27,7 @@ public class Kits implements CommandExecutor, Listener {
         Player p = (Player) commandSender;
         UUID puid = p.getUniqueId();
 
-        String kit = player.selected_kit.get(puid).toLowerCase();
+        String kit = manager.getPlayers().get(puid).getKit().toLowerCase();
         if(kit != null || kit != "nenhum"){
             p.sendMessage("§cVocê ja está com kit!");
             return true;

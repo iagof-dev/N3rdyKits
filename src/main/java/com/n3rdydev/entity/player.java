@@ -1,6 +1,7 @@
 package com.n3rdydev.entity;
 
 import com.n3rdydev.kits.Spawn;
+import com.n3rdydev.manager.PlayerManager;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.settings.serverinfo;
 import com.n3rdydev.settings.statistics;
@@ -21,6 +22,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class player {
 
+    private static PlayerManager manager;
+/*
+
     public static HashMap<UUID, UUID> lastplayer_hit = new HashMap();
     public static HashMap<UUID, String> selected_kit = new HashMap();
     public static HashMap<UUID, Integer> kills = new HashMap();
@@ -33,42 +37,39 @@ public class player {
     public static HashMap<UUID, Boolean> config_menu = new HashMap();
     public static HashMap<UUID, Location> config_position_1 = new HashMap();
     public static HashMap<UUID, Location> config_position_2 = new HashMap();
-    public static HashMap<UUID, Boolean> invis = new HashMap<>();
 
-    /*
-        0 - SPAWN
-        1 - FPS
-        2 - LAVA CHALLENGE
-        3 - Parkour
-     */
-    public static HashMap<UUID, Integer> warp= new HashMap<>();
 
-    public static HashMap<UUID, Location>last_pos = new HashMap<>();
+    public static HashMap<UUID, Integer> warp = new HashMap<>();
+
+    public static HashMap<UUID, Location> last_pos = new HashMap<>();
 
     static HashMap<UUID, Location> parkour_checkpoint = new HashMap<>();
+*/
 
+    public static HashMap<UUID, Boolean> invis = new HashMap<>();
 
-    public static Location getParkourCheckpoint(UUID puid){
-        return parkour_checkpoint.get(puid);
+    public static Location getParkourCheckpoint(UUID puid) {
+        return manager.getPlayers().get(puid).getParkour_checkpoint();
     }
 
-    public static void setParkourCheckpoint(UUID puid, Location loc){
-        parkour_checkpoint.put(puid, loc);
+    public static void setParkourCheckpoint(UUID puid, Location loc) {
+        manager.getPlayers().get(puid).setParkour_checkpoint(loc);
     }
-    public static void setFinishParkour(UUID puid){
-        parkour_checkpoint.put(puid, null);
+
+    public static void setFinishParkour(UUID puid) {
+        manager.getPlayers().get(puid).setParkour_checkpoint(null);
         player.addMoreXP(puid, 1000);
         com.n3rdydev.scoreboard.sb_default.Set(Bukkit.getPlayer(puid));
 
     }
 
 
-    public static void toggleInvis(Player p){
+    public static void toggleInvis(Player p) {
 
         UUID puid = p.getUniqueId();
 
         Collection<? extends Player> players = p.getServer().getOnlinePlayers();
-        if (invis.get(puid) != null && invis.get(puid) != false) {
+        if (player.invis.get(puid) != null && player.invis.get(puid) != false) {
             for (Player p_list : players) {
                 if (!p_list.hasPermission("n3rdydev.command.admin")) {
                     p_list.showPlayer(p);
@@ -79,7 +80,7 @@ public class player {
             p.setFlying(false);
             Spawn.Receive(p);
             p.sendMessage(serverinfo.name() + " §cVocê saiu do MODO ADMIN e está visivel!");
-            invis.put(p.getUniqueId(), false);
+            player.invis.put(puid,false);
         } else {
             for (Player p_list : players) {
                 if (!p_list.hasPermission("n3rdydev.command.admin")) {
@@ -95,26 +96,26 @@ public class player {
             p.setAllowFlight(true);
             p.setFlying(true);
             p.sendMessage(serverinfo.name() + " §aVocê entrou no MODO ADMIN e está invisivel!");
-            invis.put(p.getUniqueId(), true);
+            player.invis.put(puid,true);
         }
     }
 
-    public static void setCooldown(UUID player_uuid, long Seconds) {
+    public static void setCooldown(UUID puid, long Seconds) {
         LocalTime time_now = LocalTime.now();
         LocalTime finish_cooldown = time_now.plusSeconds(Seconds);
-        kit_cooldown.put(player_uuid, finish_cooldown);
+        manager.getPlayers().get(puid).setKit_cooldown(finish_cooldown);
     }
 
     public static Boolean getCooldown(UUID puid) {
-        if (player.kit_cooldown.get(puid) == null) {
+        if (manager.getPlayers().get(puid).getKit_cooldown() == null) {
             return false;
         }
         LocalTime atual = LocalTime.now();
-        LocalTime delay_player = player.kit_cooldown.get(puid);
+        LocalTime delay_player = manager.getPlayers().get(puid).getKit_cooldown();
         //se tiver com delay
         //retornar: true
         if (atual.isAfter(delay_player)) {
-            kit_cooldown.put(puid, null);
+            manager.getPlayers().get(puid).setKit_cooldown(null);
             return false;
         } else {
             return true;
@@ -122,29 +123,27 @@ public class player {
     }
 
     public static String getCooldownTime(UUID puid) {
-        if (player.kit_cooldown.get(puid) == null) {
+        if (manager.getPlayers().get(puid).getKit_cooldown() == null) {
             return null;
         }
         LocalTime atual = java.time.LocalTime.now();
-        LocalTime delay_player = player.kit_cooldown.get(puid);
+        LocalTime delay_player = manager.getPlayers().get(puid).getKit_cooldown();
         Duration tempo_restante = Duration.between(atual, delay_player);
         long segs = tempo_restante.getSeconds();
         return ("§cVocê só podera utilizar daqui " + segs + " segundos.");
 
     }
 
-    public static Integer getXP(UUID puid){
-        if(score.get(puid) == null){
-            score.put(puid, 0);
-        }
-        return score.get(puid);
+    public static Integer getXP(UUID puid) {
+        if (manager.getPlayers().get(puid).getScore() == null) manager.getPlayers().get(puid).setScore(0);
+        return manager.getPlayers().get(puid).getScore();
     }
 
     public static boolean can_build(UUID puid) {
-        if (can_build.get(puid) != null) {
-            return can_build.get(puid);
+        if (manager.getPlayers().get(puid).getCan_build() != null) {
+            return manager.getPlayers().get(puid).getCan_build();
         } else {
-            can_build.put(puid, false);
+            manager.getPlayers().get(puid).setCan_build(false);
             return false;
         }
     }
@@ -152,47 +151,51 @@ public class player {
     public static void toggleBuild(Player p) {
         String nome = serverinfo.name();
         UUID puid = p.getUniqueId();
-        if (can_build(p.getUniqueId()) != true) {
-            can_build.put(puid, true);
+        if (can_build(puid) != true) {
+            manager.getPlayers().get(puid).setCan_build(true);
             p.sendMessage(nome + " §aModo Construir HABILITADO!");
 
         } else {
-            can_build.put(puid, false);
+            manager.getPlayers().get(puid).setCan_build(false);
             p.sendMessage(nome + " §cModo Construir DESABILITADO!");
         }
     }
 
     public static void addKills(UUID p_uid) {
         Integer valor = 1;
-        if (kills.get(p_uid) != null) {
-            valor = kills.get(p_uid) + 1;
+        if (manager.getPlayers().get(p_uid).getKills() != null) {
+            valor = manager.getPlayers().get(p_uid).getKills() + 1;
         }
-        kills.put(p_uid, valor);
+        manager.getPlayers().get(p_uid).setKills(valor);
     }
-    public static void addXP(UUID puid){
+
+    public static void addXP(UUID puid) {
         Integer valor = 5;
-        if(player.score.get(puid) != null){
-            valor = (player.score.get(puid) + 5);
+        if (manager.getPlayers().get(puid).getScore() != null) {
+            valor = (manager.getPlayers().get(puid).getScore() + 5);
         }
-        player.score.put(puid, valor);
+        manager.getPlayers().get(puid).setScore(valor);
     }
-    public static void addMoreXP(UUID puid, Integer qnt){
+
+    public static void addMoreXP(UUID puid, Integer qnt) {
         Integer valor = qnt;
-        if(player.score.get(puid) != null)  valor = (player.score.get(puid) + qnt);
-        player.score.put(puid, valor);
+        if (manager.getPlayers().get(puid).getScore() != null)
+            valor = (manager.getPlayers().get(puid).getScore() + qnt);
+        manager.getPlayers().get(puid).setScore(valor);
     }
-    public static void remXP(UUID puid){
+
+    public static void remXP(UUID puid) {
         Integer valor = 0;
-        if(player.score.get(puid) != null){
-            valor = (player.score.get(puid) - 5);
+        if (manager.getPlayers().get(puid).getScore() != null) {
+            valor = (manager.getPlayers().get(puid).getScore() - 5);
         }
-        player.score.put(puid, valor);
+        manager.getPlayers().get(puid).setScore(valor);
     }
 
     public static void loadStats(UUID puid) {
-        player.kills.put(puid, statistics.get().getInt(puid + ".kills"));
-        player.deaths.put(puid, statistics.get().getInt(puid + ".deaths"));
-        player.score.put(puid, statistics.get().getInt(puid + ".xp"));
+        manager.getPlayers().get(puid).setKills(statistics.get().getInt(puid + ".kills"));
+        manager.getPlayers().get(puid).setDeaths(statistics.get().getInt(puid + ".deaths"));
+        manager.getPlayers().get(puid).setScore(statistics.get().getInt(puid + ".xp"));
     }
 
     public static void saveStats(UUID puid) {
@@ -203,39 +206,35 @@ public class player {
     }
 
     public static void addDeaths(UUID puid) {
-        if (deaths.get(puid) != null) {
-            Integer qnt_deaths = deaths.get(puid);
-            Integer sum_kills = qnt_deaths + 1;
-            deaths.put(puid, sum_kills);
-        } else {
-            deaths.put(puid, 1);
-        }
+        Integer valor = 1;
+        if (manager.getPlayers().get(puid).getDeaths() != null) valor = manager.getPlayers().get(puid).getDeaths() + 1;
+        manager.getPlayers().get(puid).setDeaths(valor);
     }
 
     public static Integer getKills(UUID puid) {
-        if (kills.get(puid) == null) {
-            kills.put(puid, 0);
+        if (manager.getPlayers().get(puid).getKills() == null) {
+            manager.getPlayers().get(puid).setKills(0);
         }
-        return kills.get(puid);
+        return manager.getPlayers().get(puid).getKills();
 
     }
 
     public static Integer getDeaths(UUID puid) {
-        if (deaths.get(puid) == null) {
-            deaths.put(puid, 0);
-            return 0;
+        Integer valor = 0;
+        if (manager.getPlayers().get(puid).getDeaths() == null) {
+            manager.getPlayers().get(puid).setDeaths(0);
         }
-        return deaths.get(puid);
+        return manager.getPlayers().get(puid).getDeaths();
     }
 
 
     public static void updateScoreboard(Player p) {
         UUID puid = p.getUniqueId();
-        if (scoreboard.get(puid) != true || scoreboard.get(puid) == null) {
-            scoreboard.put(puid, true);
+        if (manager.getPlayers().get(puid).getScoreboard() == null || manager.getPlayers().get(puid).getScoreboard() != true) {
+            manager.getPlayers().get(puid).setScoreboard(true);
             com.n3rdydev.scoreboard.sb_default.Set(p);
         } else {
-            scoreboard.put(puid, false);
+            manager.getPlayers().get(puid).setScoreboard(false);
             p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
         }
     }

@@ -1,6 +1,7 @@
 package com.n3rdydev.entity;
 
 import com.n3rdydev.main;
+import com.n3rdydev.manager.PlayerManager;
 import com.n3rdydev.settings.config;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -22,6 +23,8 @@ import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class server {
+    private static PlayerManager manager;
+
     public static ItemStack[] gen_items;
     static World world = Bukkit.getWorlds().get(0);
 
@@ -185,12 +188,12 @@ public class server {
 
         UUID p1uid = p1.getUniqueId();
 
-        player.last_pos.put(p1uid, null);
         if(p2 != null){
             UUID p2uid = p2.getUniqueId();
             server.arena_glad_players.put(p2uid, null);
-            player.last_pos.put(p2uid, null);
+            manager.getPlayers().get(p2uid).setLast_pos(null);
         }
+        manager.getPlayers().get(p1uid).setLast_pos(null);
         server.arena_glad_players.put(p1uid, null);
 
     }

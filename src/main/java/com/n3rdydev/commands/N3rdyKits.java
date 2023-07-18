@@ -2,6 +2,7 @@ package com.n3rdydev.commands;
 
 import com.n3rdydev.SQL.MySql;
 import com.n3rdydev.entity.server;
+import com.n3rdydev.manager.PlayerManager;
 import com.n3rdydev.scoreboard.sb_default;
 import com.n3rdydev.settings.config;
 import com.n3rdydev.entity.player;
@@ -21,6 +22,9 @@ import org.bukkit.event.Listener;
 import java.util.UUID;
 
 public class N3rdyKits implements CommandExecutor, Listener {
+
+    private static PlayerManager manager;
+
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
@@ -69,15 +73,10 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 player.addXP(p_uid);
                 mensagem += ("§5xp adicionado!");
                 break;
-            case "kit":
-                String kit = player.selected_kit.get(p.getUniqueId());
-                kit = kit.toLowerCase();
-                mensagem += ("§5Você está com o kit: " + kit);
-                break;
             case "save":
                 statistics.get().set(p_uid + ".kills", player.getKills(p.getUniqueId()));
                 statistics.get().set(p_uid + ".deaths", player.getDeaths(p.getUniqueId()));
-                statistics.get().set(p_uid + ".xp", player.score.get(p.getUniqueId()));
+                //statistics.get().set(p_uid + ".xp", player.get(p.getUniqueId()));
                 statistics.save();
                 break;
             case "mysql":
@@ -99,7 +98,7 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 break;
             case "setpwarp":
                 if(strings.length < 1) return true;
-                player.warp.put(p_uid, Integer.valueOf(strings[1]));
+                manager.getPlayers().get(p_uid).setWarp(Integer.valueOf(strings[1]));
                 mensagem += "§aSucesso! você setou sua warp para " + strings[1];
                 break;
             case "parkourtest":

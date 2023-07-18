@@ -1,16 +1,18 @@
 package com.n3rdydev.kits;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Parkour {
+    private static PlayerManager manager;
     public static void Receive(Player p){
         p.getInventory().clear();
-        player.selected_kit.put(p.getUniqueId(), "Parkour");
-        player.warp.put(p.getUniqueId(), 3);
+        manager.getPlayers().get(p.getUniqueId()).setKit("Parkour");
+        manager.getPlayers().get(p.getUniqueId()).setWarp(3);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);
         ItemStack r_mushroom = new ItemStack(Material.RED_MUSHROOM, 64);
         ItemStack b_mushroom = new ItemStack(Material.BROWN_MUSHROOM, 64);

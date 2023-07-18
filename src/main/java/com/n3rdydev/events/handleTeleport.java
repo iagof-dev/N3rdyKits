@@ -1,6 +1,7 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -13,27 +14,26 @@ import java.util.UUID;
 
 public class handleTeleport implements Listener {
 
+    private PlayerManager manager;
+
     @EventHandler
-    public static void PlayerShift(PlayerToggleSneakEvent e) {
+    public void PlayerShift(PlayerToggleSneakEvent e) {
         Player p = e.getPlayer();
         UUID puid = p.getUniqueId();
-        if (player.selected_kit.get(puid) == null) {
-            return;
-        }
-        if (player.lastplayer_hit.get(puid) == null) {
-            return;
-        }
+        if (manager.getPlayers().get(puid).getKit() == null) return;
+
+        if (manager.getPlayers().get(puid).getLastHit() == null) return;
+
 
         //kit ninja
-        String kit = player.selected_kit.get(puid);
-        kit = kit.toLowerCase();
+        String kit = manager.getPlayers().get(puid).getKit().toLowerCase();
         if (kit != "ninja") {
             return;
         }
         Boolean cooldown = com.n3rdydev.entity.player.getCooldown(puid);
         if (cooldown != true) {
 
-            UUID vitima = player.lastplayer_hit.get(puid);
+            UUID vitima = manager.getPlayers().get(puid).getLastHit();
             Player victim = Bukkit.getPlayer(vitima);
             Location tp = victim.getLocation();
             if (com.n3rdydev.settings.spawn.is_safe_zone(tp) != true) {

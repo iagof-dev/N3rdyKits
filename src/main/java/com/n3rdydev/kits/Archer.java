@@ -1,6 +1,7 @@
 package com.n3rdydev.kits;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -9,6 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Archer {
 
+    private static PlayerManager manager;
 
     public static boolean Receive(Player p) {
         if (!(p.hasPermission("n3rdydev.kit.archer") || p.hasPermission("n3rdydev.kit.*"))) {
@@ -17,7 +19,7 @@ public class Archer {
         }
 
         p.getInventory().clear();
-        player.selected_kit.put(p.getUniqueId(), "archer");
+        manager.getPlayers().get(p.getUniqueId()).setKit("archer");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);

@@ -1,6 +1,7 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -14,6 +15,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import static com.n3rdydev.entity.player.*;
 
 public class handleDamage implements Listener {
+
+    private PlayerManager manager;
 
     @EventHandler
     public void reduceDamage(EntityDamageByEntityEvent e) {
@@ -34,7 +37,7 @@ public class handleDamage implements Listener {
                 valor = 1.5;
                 break;
             case STONE_SWORD:
-                if(selected_kit.get(player.getUniqueId()) == "ninja"){
+                if(manager.getPlayers().get(player.getUniqueId()).getKit() == "ninja"){
                     int rndNumber = ThreadLocalRandom.current().nextInt(0, 1 + 1);
                     if(rndNumber >= 1){
                         valor = 2.25;

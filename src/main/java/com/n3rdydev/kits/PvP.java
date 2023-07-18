@@ -1,15 +1,17 @@
 package com.n3rdydev.kits;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class PvP {
+    private static PlayerManager manager;
     public static boolean Receive(Player p){
         p.getInventory().clear();
-        player.selected_kit.put(p.getUniqueId(), "pvp");
+        manager.getPlayers().get(p.getUniqueId()).setKit("pvp");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);

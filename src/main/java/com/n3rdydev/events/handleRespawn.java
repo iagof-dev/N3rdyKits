@@ -7,6 +7,7 @@ import com.n3rdydev.kits.LavaChallenge;
 import com.n3rdydev.kits.Parkour;
 import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.main;
+import com.n3rdydev.manager.PlayerManager;
 import com.n3rdydev.scoreboard.sb_default;
 import com.n3rdydev.settings.spawn;
 import org.bukkit.Bukkit;
@@ -22,9 +23,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
 
 import static com.n3rdydev.entity.player.convert_config_location;
-import static com.n3rdydev.entity.player.scoreboard;
 
 public class handleRespawn implements Listener {
+
+
+    private PlayerManager manager;
+
+
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerRespawnEvent(PlayerRespawnEvent e) {
         //teleporte para o spawn
@@ -58,7 +63,7 @@ public class handleRespawn implements Listener {
 
                 handleFallDamage.launchpad.put(p.getUniqueId(), false);
                 UUID puid = p.getUniqueId();
-                player.selected_kit.put(puid, "Nenhum");
+                manager.getPlayers().get(puid).setKit("Nenhum");
 
                 if (e.getEntity().getKiller() == null) {
                     //adicionar estatistica
@@ -75,7 +80,7 @@ public class handleRespawn implements Listener {
                     */
                     if(server.arena_glad.get(puid) != null && server.arena_glad_players.get(puid) != null){
                         Player target = Bukkit.getPlayer(server.arena_glad_players.get(puid));
-                        target.teleport(player.last_pos.get(target.getUniqueId()));
+                        target.teleport(manager.getPlayers().get(target.getUniqueId()).getLast_pos());
                         server.remArenaGlad(server.arena_glad.get(puid), p, null);
 
                         //estatisticas caso o jogador estava em um glad e morreu
@@ -89,9 +94,9 @@ public class handleRespawn implements Listener {
 
                         UUID pkuid = target.getUniqueId();
 
-                        if (player.last_pos.get(pkuid) != null) target.teleport(player.last_pos.get(pkuid));
+                        if (manager.getPlayers().get(pkuid).getLast_pos() != null) target.teleport(manager.getPlayers().get(pkuid).getLast_pos());
                         if (server.arena_glad.get(pkuid) != null) server.arena_glad.put(pkuid, null);
-                        if (scoreboard.get(pkuid) != false && pkuid != null) sb_default.Set(target);
+                        if (manager.getPlayers().get(pkuid).getScoreboard() != false && pkuid != null) sb_default.Set(target);
 
                     }
                 } else {
@@ -109,10 +114,10 @@ public class handleRespawn implements Listener {
                     player.addXP(pkuid);
 
                     //atualizando scoreboard do cara q matou
-                    if (scoreboard.get(pkuid) != false && pkuid != null) sb_default.Set(pk);
+                    if (manager.getPlayers().get(pkuid).getScoreboard() != false && pkuid != null) sb_default.Set(pk);
 
 
-                    if (player.last_pos.get(pkuid) != null) pk.teleport(player.last_pos.get(pkuid));
+                    if (manager.getPlayers().get(pkuid) != null) pk.teleport(manager.getPlayers().get(pkuid).getLast_pos());
                     if (server.arena_glad.get(pkuid) != null) server.arena_glad.put(pkuid, null);
 
                     if (server.arena_glad.get(puid) != null) server.remArenaGlad(server.arena_glad.get(puid), p, pk);
@@ -130,22 +135,13 @@ public class handleRespawn implements Listener {
                     se o jogador deu /score para desativar a scoreboard
                     ele não vai atualizar
                 */
-                if (scoreboard.get(puid) != false || scoreboard.get(puid) == null) sb_default.Set(p);
+                if (manager.getPlayers().get(puid).getScoreboard() != false || manager.getPlayers().get(puid).getScoreboard() == null) sb_default.Set(p);
 
                 //definindo o kit selecionado para nenhum
                 //para não ocorrer erro...
-                player.selected_kit.put(puid, "nenhum");
+                manager.getPlayers().get(puid).setKit( "nenhum");
 
-                /*
-                    Local de TP
-                    se o jogador estiver em uma warp, ele irá teleportar
-                    para a arena da warp
-                    exemplo:
-                    0 = spawn
-                    1 = fps
-                    2 = lava challenge
-                 */
-                int warp = player.warp.get(puid);
+                int warp = manager.getPlayers().get(puid).getWarp();
                 Location tp;
                 if (warp != 0) {
                     switch (warp) {

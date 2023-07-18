@@ -118,6 +118,12 @@ public class PlayerData {
         this.invis = invis;
     }
 
+    /*
+            0 - SPAWN
+            1 - FPS
+            2 - LAVA CHALLENGE
+            3 - Parkour
+    */
     public Integer getWarp() {
         return warp;
     }

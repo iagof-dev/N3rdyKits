@@ -1,12 +1,14 @@
 package com.n3rdydev.kits;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Kangaroo {
+    private static PlayerManager manager;
 
     public static boolean Receive(Player p) {
         if (!(p.hasPermission("n3rdydev.kit.kangaroo") || p.hasPermission("n3rdydev.kit.*"))) {
@@ -14,7 +16,7 @@ public class Kangaroo {
             return false;
         }
         p.getInventory().clear();
-        player.selected_kit.put(p.getUniqueId(), "kangaroo");
+        manager.getPlayers().get(p.getUniqueId()).setKit("kangaroo");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);

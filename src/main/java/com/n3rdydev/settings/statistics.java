@@ -1,6 +1,7 @@
 package com.n3rdydev.settings;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -28,9 +29,10 @@ public class statistics {
         return stats;
     }
 
+    private static PlayerManager manager;
     public static void save() {
 
-        for (UUID puid: player.kills.keySet()) {
+        for (UUID puid: manager.getPlayers().keySet()) {
             statistics.get().set(puid + ".kills", player.getKills(puid));
             statistics.get().set(puid + ".deaths", player.getDeaths(puid));
             statistics.get().set(puid + ".xp", player.getXP(puid));

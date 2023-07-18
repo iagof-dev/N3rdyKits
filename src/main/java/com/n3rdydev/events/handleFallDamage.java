@@ -1,6 +1,7 @@
 package com.n3rdydev.events;
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -17,15 +18,16 @@ import java.util.UUID;
 public class handleFallDamage implements Listener {
 
     public static HashMap<UUID,Boolean> launchpad = new HashMap<>();
+    private PlayerManager manager;
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public static void onPlayerFall(EntityDamageEvent e){
+    public void onPlayerFall(EntityDamageEvent e){
         if (e.getEntity() instanceof Player && e.getCause() == EntityDamageEvent.DamageCause.FALL) {
             Player p = (Player) e.getEntity();
             Location landingLocation = p.getLocation().subtract(0, e.getDamage(), 0);
 
 
-            switch(player.warp.get(p.getUniqueId())){
+            switch(manager.getPlayers().get(p.getUniqueId()).getWarp()){
                 case 3:
                     e.setCancelled(true);
                     return;
@@ -41,7 +43,7 @@ public class handleFallDamage implements Listener {
                 e.setCancelled(false);
             }
 
-            if(player.selected_kit.get(p.getUniqueId()) == "stomper"){
+            if(manager.getPlayers().get(p.getUniqueId()).getKit() == "stomper"){
                 e.setDamage(0);
                 for (Entity entity : p.getNearbyEntities(3, 3, 3)) {
                     if (entity instanceof Player) {

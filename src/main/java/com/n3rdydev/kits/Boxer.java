@@ -2,6 +2,7 @@ package com.n3rdydev.kits;
 
 
 import com.n3rdydev.entity.player;
+import com.n3rdydev.manager.PlayerManager;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -9,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Boxer {
+    private static PlayerManager manager;
 
     public static boolean Receive(Player p) {
 
@@ -18,7 +20,7 @@ public class Boxer {
         }
 
         p.getInventory().clear();
-        player.selected_kit.put(p.getUniqueId(), "boxer");
+        manager.getPlayers().get(p.getUniqueId()).setKit("boxer");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);
