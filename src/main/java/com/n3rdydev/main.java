@@ -17,6 +17,8 @@ import java.util.UUID;
 public class main extends JavaPlugin {
 
     private static main plugin;
+
+    //Backup
     private PlayerManager manager;
 
     public static main getPlugin() {
