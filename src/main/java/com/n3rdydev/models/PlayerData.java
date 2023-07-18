@@ -6,21 +6,21 @@ import java.time.LocalTime;
 import java.util.UUID;
 
 public class PlayerData {
-    public UUID lastHit;
-    public String Kit;
-    public Integer kills;
-    public Integer deaths;
-    public Integer score;
-    public Boolean scoreboard;
-    public LocalTime kit_cooldown;
-    public Boolean can_build;
-    public Boolean config_menu;
-    public Location config_position_1;
-    public Location config_position_2;
-    public Boolean invis;
-    public Integer warp;
-    public Location last_pos;
-    public Location parkour_checkpoint;
+    public UUID lastHit = null;
+    public String Kit = "Nenhum";
+    public Integer kills = 0;
+    public Integer deaths = 0;
+    public Integer score = 0;
+    public Boolean scoreboard = true;
+    public LocalTime kit_cooldown = null;
+    public Boolean can_build = false;
+    public Boolean config_menu = false;
+    public Location config_position_1 = null;
+    public Location config_position_2 = null;
+    public Boolean invis = false;
+    public Integer warp = 0;
+    public Location last_pos = null;
+    public Location parkour_checkpoint = null;
 
     public UUID getLastHit() {
         return lastHit;

@@ -22,7 +22,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class player {
 
-    private static PlayerManager manager;
+    private static PlayerManager manager =  new PlayerManager();
 /*
 
     public static HashMap<UUID, UUID> lastplayer_hit = new HashMap();
@@ -45,6 +45,7 @@ public class player {
 
     static HashMap<UUID, Location> parkour_checkpoint = new HashMap<>();
 */
+
 
     public static HashMap<UUID, Boolean> invis = new HashMap<>();
 
@@ -140,12 +141,9 @@ public class player {
     }
 
     public static boolean can_build(UUID puid) {
-        if (manager.getPlayers().get(puid).getCan_build() != null) {
-            return manager.getPlayers().get(puid).getCan_build();
-        } else {
-            manager.getPlayers().get(puid).setCan_build(false);
-            return false;
-        }
+        if (manager.getPlayers().get(puid).getCan_build() != null) return manager.getPlayers().get(puid).getCan_build();
+        manager.getPlayers().get(puid).setCan_build(false);
+        return false;
     }
 
     public static void toggleBuild(Player p) {

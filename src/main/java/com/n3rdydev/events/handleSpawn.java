@@ -4,6 +4,7 @@ import com.n3rdydev.commands.Admin;
 import com.n3rdydev.entity.player;
 import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.manager.PlayerManager;
+import com.n3rdydev.models.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -16,6 +17,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -60,11 +62,14 @@ public class handleSpawn implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = (Player) e.getPlayer();
+        e.setJoinMessage("");
+
+        manager = new PlayerManager();
+        manager.addPlayer(p.getUniqueId());
 
         PlayerInventory inv = p.getInventory();
         inv.setArmorContents(new ItemStack[inv.getArmorContents().length]);
         p.getInventory().clear();
-        e.setJoinMessage("");
         user_setup(p);
         Location spawn_loc = new Location(p.getWorld(), com.n3rdydev.settings.spawn.spawn_x, com.n3rdydev.settings.spawn.spawn_y, com.n3rdydev.settings.spawn.spawn_z);
         p.teleport(spawn_loc);

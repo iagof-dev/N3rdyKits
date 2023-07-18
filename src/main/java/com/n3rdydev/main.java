@@ -30,7 +30,7 @@ public class main extends JavaPlugin {
     public void onEnable(){
         plugin = this;
          //Registrando Eventos
-        this.getServer().getPluginManager().registerEvents(new handleWarpParkour(), this);
+        //this.getServer().getPluginManager().registerEvents(new handleWarpParkour(), this);
         this.getServer().getPluginManager().registerEvents(new handleConfig(), this);
         this.getServer().getPluginManager().registerEvents(new handleWarpSelector(), this);
         this.getServer().getPluginManager().registerEvents(new handleDamage(), this);
@@ -101,7 +101,6 @@ public class main extends JavaPlugin {
     public void onLoad(){
         Bukkit.getConsoleSender().sendMessage("§e[N3rdyKits] | Plugin carregando...");
         statistics.setup();
-        statistics.save();
         config.start();
         if(config.get().getBoolean("database.mysql.enable") != false){
             MySql mysql = new MySql();
