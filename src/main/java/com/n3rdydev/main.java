@@ -29,6 +29,9 @@ public class main extends JavaPlugin {
     @Override
     public void onEnable(){
         plugin = this;
+
+        //desisto
+
          //Registrando Eventos
         //this.getServer().getPluginManager().registerEvents(new handleWarpParkour(), this);
         this.getServer().getPluginManager().registerEvents(new handleConfig(), this);

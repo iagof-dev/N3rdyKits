@@ -11,8 +11,8 @@ public class LavaChallenge {
     private static PlayerManager manager;
     public static void Receive(Player p){
         p.getInventory().clear();
-        manager.getPlayers().get(p.getUniqueId()).setKit("LC");
-        manager.getPlayers().get(p.getUniqueId()).setWarp(2);
+        manager.jogador.get(p.getUniqueId()).setKit("LC");
+        manager.jogador.get(p.getUniqueId()).setWarp(2);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);
         ItemStack r_mushroom = new ItemStack(Material.RED_MUSHROOM, 64);
         ItemStack b_mushroom = new ItemStack(Material.BROWN_MUSHROOM, 64);

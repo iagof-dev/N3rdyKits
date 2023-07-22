@@ -23,7 +23,7 @@ public class Score implements CommandExecutor {
         Player p = (Player) commandSender;
         UUID puid = p.getUniqueId();
 
-        if (manager.getPlayers().get(puid).getScoreboard() != false) {
+        if (manager.jogador.get(puid).getScoreboard() != false) {
             player.updateScoreboard(p);
             p.sendMessage("§cVocê desativou a scoreboard!");
 

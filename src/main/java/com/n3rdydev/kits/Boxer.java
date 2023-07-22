@@ -20,7 +20,7 @@ public class Boxer {
         }
 
         p.getInventory().clear();
-        manager.getPlayers().get(p.getUniqueId()).setKit("boxer");
+        manager.jogador.get(p.getUniqueId()).setKit("boxer");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);

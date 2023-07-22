@@ -5,6 +5,7 @@ import com.n3rdydev.entity.player;
 import com.n3rdydev.kits.Spawn;
 import com.n3rdydev.manager.PlayerManager;
 import com.n3rdydev.models.PlayerData;
+import com.n3rdydev.scoreboard.sb_default;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -29,21 +30,22 @@ public class handleSpawn implements Listener {
 
 
     public void user_setup(Player p) {
+        UUID puid = p.getUniqueId();
+        PlayerData data = PlayerManager.jogador.get(p.getUniqueId());
         //limpar chat
         for(int i = 0; i <= 255; i++){
             p.sendMessage("\n");
         }
-        UUID puid = p.getUniqueId();
         if(can_build(puid)){
             player.toggleBuild(p);
         }
-        manager.getPlayers().get(puid).setWarp(0);
+        data.setWarp(0);
 
-        manager.getPlayers().get(puid).setKit("Nenhum");
+        data.setKit("Nenhum");
         handleFallDamage.launchpad.put(puid, false);
-        manager.getPlayers().get(puid).setScoreboard(true);
+        data.setScoreboard(true);
         player.loadStats(puid);
-        com.n3rdydev.scoreboard.sb_default.Set(p);
+        sb_default.Set(p);
         p.setHealth(20);
         for (PotionEffect effect : p.getActivePotionEffects())
             p.removePotionEffect(effect.getType());
@@ -59,14 +61,15 @@ public class handleSpawn implements Listener {
 
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = (Player) e.getPlayer();
+
+        PlayerManager.jogador.put(p.getUniqueId(), new PlayerData());
+        PlayerData data = PlayerManager.jogador.get(p.getUniqueId());
+        data.setKit("Nenhum");
+
         e.setJoinMessage("");
-
-        manager = new PlayerManager();
-        manager.addPlayer(p.getUniqueId());
-
         PlayerInventory inv = p.getInventory();
         inv.setArmorContents(new ItemStack[inv.getArmorContents().length]);
         p.getInventory().clear();

@@ -37,7 +37,7 @@ public class handleDamage implements Listener {
                 valor = 1.5;
                 break;
             case STONE_SWORD:
-                if(manager.getPlayers().get(player.getUniqueId()).getKit() == "ninja"){
+                if(manager.jogador.get(player.getUniqueId()).getKit() == "ninja"){
                     int rndNumber = ThreadLocalRandom.current().nextInt(0, 1 + 1);
                     if(rndNumber >= 1){
                         valor = 2.25;

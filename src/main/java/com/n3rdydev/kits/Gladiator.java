@@ -11,7 +11,7 @@ public class Gladiator {
     private static PlayerManager manager;
     public static boolean Receive(Player p){
         p.getInventory().clear();
-        manager.getPlayers().get(p.getUniqueId()).setKit("gladiator");
+        manager.jogador.get(p.getUniqueId()).setKit("gladiator");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);

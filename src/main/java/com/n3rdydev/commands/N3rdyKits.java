@@ -98,7 +98,7 @@ public class N3rdyKits implements CommandExecutor, Listener {
                 break;
             case "setpwarp":
                 if(strings.length < 1) return true;
-                manager.getPlayers().get(p_uid).setWarp(Integer.valueOf(strings[1]));
+                manager.jogador.get(p_uid).setWarp(Integer.valueOf(strings[1]));
                 mensagem += "§aSucesso! você setou sua warp para " + strings[1];
                 break;
             case "parkourtest":

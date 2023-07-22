@@ -191,9 +191,9 @@ public class server {
         if(p2 != null){
             UUID p2uid = p2.getUniqueId();
             server.arena_glad_players.put(p2uid, null);
-            manager.getPlayers().get(p2uid).setLast_pos(null);
+            manager.jogador.get(p2uid).setLast_pos(null);
         }
-        manager.getPlayers().get(p1uid).setLast_pos(null);
+        manager.jogador.get(p1uid).setLast_pos(null);
         server.arena_glad_players.put(p1uid, null);
 
     }

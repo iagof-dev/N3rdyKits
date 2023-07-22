@@ -20,20 +20,20 @@ public class handleTeleport implements Listener {
     public void PlayerShift(PlayerToggleSneakEvent e) {
         Player p = e.getPlayer();
         UUID puid = p.getUniqueId();
-        if (manager.getPlayers().get(puid).getKit() == null) return;
+        if (manager.jogador.get(puid).getKit() == null) return;
 
-        if (manager.getPlayers().get(puid).getLastHit() == null) return;
+        if (manager.jogador.get(puid).getLastHit() == null) return;
 
 
         //kit ninja
-        String kit = manager.getPlayers().get(puid).getKit().toLowerCase();
+        String kit = manager.jogador.get(puid).getKit().toLowerCase();
         if (kit != "ninja") {
             return;
         }
         Boolean cooldown = com.n3rdydev.entity.player.getCooldown(puid);
         if (cooldown != true) {
 
-            UUID vitima = manager.getPlayers().get(puid).getLastHit();
+            UUID vitima = manager.jogador.get(puid).getLastHit();
             Player victim = Bukkit.getPlayer(vitima);
             Location tp = victim.getLocation();
             if (com.n3rdydev.settings.spawn.is_safe_zone(tp) != true) {

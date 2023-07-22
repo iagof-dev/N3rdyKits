@@ -57,7 +57,7 @@ public class handleConfig implements Listener {
                     break;
                 case DIAMOND_SWORD:
                     //config_menu
-                    manager.getPlayers().get(p.getUniqueId()).setConfig_menu(true);
+                    manager.jogador.get(p.getUniqueId()).setConfig_menu(true);
                     p.getInventory().clear();
                     ItemStack protect_item = new ItemStack(Material.BEACON);
                     ItemMeta protect_item_meta = protect_item.getItemMeta();

@@ -24,7 +24,7 @@ public class handlePlayerQuit implements Listener {
         if(server.arena_glad.get(puid) != null && server.arena_glad_players.get(puid) != null){
             Player target = Bukkit.getServer().getPlayer(server.arena_glad_players.get(puid));
             UUID target_uid = target.getUniqueId();
-            target.teleport(manager.getPlayers().get(target_uid).getLast_pos());
+            target.teleport(manager.jogador.get(target_uid).getLast_pos());
             server.remArenaGlad(server.arena_glad.get(puid), target, p);
             player.addXP(target_uid);
             player.addKills(target_uid);

@@ -30,7 +30,7 @@ public class Warps implements CommandExecutor {
 
         Player p = (Player) commandSender;
         UUID puid = p.getUniqueId();
-        String skit = manager.getPlayers().get(puid).Kit.toLowerCase();
+        String skit = manager.jogador.get(puid).Kit.toLowerCase();
         if (!skit.equals("nenhum")) {
             p.sendMessage("§cErro! Você está com kit!");
             return true;

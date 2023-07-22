@@ -46,7 +46,7 @@ public class handleRespawn implements Listener {
     public void onPlayerDeath(PlayerDeathEvent e) {
         //sem mensagem de morte desnecessária para todos os jogadores
         e.setDeathMessage("");
-        
+
         //limpar drop
         e.getDrops().clear();
 
@@ -63,7 +63,7 @@ public class handleRespawn implements Listener {
 
                 handleFallDamage.launchpad.put(p.getUniqueId(), false);
                 UUID puid = p.getUniqueId();
-                manager.getPlayers().get(puid).setKit("Nenhum");
+                manager.jogador.get(puid).setKit("Nenhum");
 
                 if (e.getEntity().getKiller() == null) {
                     //adicionar estatistica
@@ -80,7 +80,7 @@ public class handleRespawn implements Listener {
                     */
                     if(server.arena_glad.get(puid) != null && server.arena_glad_players.get(puid) != null){
                         Player target = Bukkit.getPlayer(server.arena_glad_players.get(puid));
-                        target.teleport(manager.getPlayers().get(target.getUniqueId()).getLast_pos());
+                        target.teleport(manager.jogador.get(target.getUniqueId()).getLast_pos());
                         server.remArenaGlad(server.arena_glad.get(puid), p, null);
 
                         //estatisticas caso o jogador estava em um glad e morreu
@@ -94,9 +94,9 @@ public class handleRespawn implements Listener {
 
                         UUID pkuid = target.getUniqueId();
 
-                        if (manager.getPlayers().get(pkuid).getLast_pos() != null) target.teleport(manager.getPlayers().get(pkuid).getLast_pos());
+                        if (manager.jogador.get(pkuid).getLast_pos() != null) target.teleport(manager.jogador.get(pkuid).getLast_pos());
                         if (server.arena_glad.get(pkuid) != null) server.arena_glad.put(pkuid, null);
-                        if (manager.getPlayers().get(pkuid).getScoreboard() != false && pkuid != null) sb_default.Set(target);
+                        if (manager.jogador.get(pkuid).getScoreboard() != false && pkuid != null) sb_default.Set(target);
 
                     }
                 } else {
@@ -114,10 +114,10 @@ public class handleRespawn implements Listener {
                     player.addXP(pkuid);
 
                     //atualizando scoreboard do cara q matou
-                    if (manager.getPlayers().get(pkuid).getScoreboard() != false && pkuid != null) sb_default.Set(pk);
+                    if (manager.jogador.get(pkuid).getScoreboard() != false && pkuid != null) sb_default.Set(pk);
 
 
-                    if (manager.getPlayers().get(pkuid) != null) pk.teleport(manager.getPlayers().get(pkuid).getLast_pos());
+                    if (manager.jogador.get(pkuid) != null) pk.teleport(manager.jogador.get(pkuid).getLast_pos());
                     if (server.arena_glad.get(pkuid) != null) server.arena_glad.put(pkuid, null);
 
                     if (server.arena_glad.get(puid) != null) server.remArenaGlad(server.arena_glad.get(puid), p, pk);
@@ -135,13 +135,13 @@ public class handleRespawn implements Listener {
                     se o jogador deu /score para desativar a scoreboard
                     ele não vai atualizar
                 */
-                if (manager.getPlayers().get(puid).getScoreboard() != false || manager.getPlayers().get(puid).getScoreboard() == null) sb_default.Set(p);
+                if (manager.jogador.get(puid).getScoreboard() != false || manager.jogador.get(puid).getScoreboard() == null) sb_default.Set(p);
 
                 //definindo o kit selecionado para nenhum
                 //para não ocorrer erro...
-                manager.getPlayers().get(puid).setKit( "nenhum");
+                manager.jogador.get(puid).setKit( "nenhum");
 
-                int warp = manager.getPlayers().get(puid).getWarp();
+                int warp = manager.jogador.get(puid).getWarp();
                 Location tp;
                 if (warp != 0) {
                     switch (warp) {

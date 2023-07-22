@@ -59,7 +59,7 @@ public class handleKitSelector implements Listener {
                     break;
             }
             UUID puid = p.getUniqueId();
-            if (manager.getPlayers().get(puid).getScoreboard() != false ) {
+            if (manager.jogador.get(puid).getScoreboard() != false ) {
                 sb_default.Set(p);
             }
 

@@ -73,7 +73,7 @@ public class handleWarpSelector implements Listener {
                     return;
             }
             UUID puid = p.getUniqueId();
-            if (manager.getPlayers().get(puid).getScoreboard() != false ) sb_default.Set(p);
+            if (manager.jogador.get(puid).getScoreboard() != false ) sb_default.Set(p);
             return;
 
         }

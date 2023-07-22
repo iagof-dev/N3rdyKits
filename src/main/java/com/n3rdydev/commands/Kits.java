@@ -27,7 +27,7 @@ public class Kits implements CommandExecutor, Listener {
         Player p = (Player) commandSender;
         UUID puid = p.getUniqueId();
 
-        String kit = manager.getPlayers().get(puid).getKit().toLowerCase();
+        String kit = manager.jogador.get(puid).getKit().toLowerCase();
         if(kit != null || kit != "nenhum"){
             p.sendMessage("§cVocê ja está com kit!");
             return true;

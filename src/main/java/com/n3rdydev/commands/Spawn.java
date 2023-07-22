@@ -21,7 +21,7 @@ public class Spawn implements CommandExecutor {
         Player p = (Player) commandSender;
         PlayerInventory inv = p.getInventory();
         inv.setArmorContents(new ItemStack[inv.getArmorContents().length]);
-        manager.getPlayers().get(p.getUniqueId()).setWarp(0);
+        manager.jogador.get(p.getUniqueId()).setWarp(0);
         p.getInventory().clear();
         Location spawn_loc = new Location(p.getWorld(), com.n3rdydev.settings.spawn.spawn_x, com.n3rdydev.settings.spawn.spawn_y, com.n3rdydev.settings.spawn.spawn_z);
         p.teleport(spawn_loc);

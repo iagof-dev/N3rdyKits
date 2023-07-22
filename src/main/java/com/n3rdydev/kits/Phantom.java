@@ -17,7 +17,7 @@ public class Phantom {
         }
 
         p.getInventory().clear();
-        manager.getPlayers().get(p.getUniqueId()).setKit("phantom");
+        manager.jogador.get(p.getUniqueId()).setKit("phantom");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);

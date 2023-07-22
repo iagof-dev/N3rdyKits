@@ -12,8 +12,8 @@ public class FPS {
 
     public static void Receive(Player p) {
         p.getInventory().clear();
-        manager.getPlayers().get(p.getUniqueId()).setKit("fps");
-        manager.getPlayers().get(p.getUniqueId()).setWarp(1);
+        manager.jogador.get(p.getUniqueId()).setKit("fps");
+        manager.jogador.get(p.getUniqueId()).setWarp(1);
 
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);
         ItemStack r_mushroom = new ItemStack(Material.RED_MUSHROOM, 64);

@@ -32,7 +32,7 @@ public class statistics {
     private static PlayerManager manager;
     public static void save() {
 
-        for (UUID puid: manager.getPlayers().keySet()) {
+        for (UUID puid: PlayerManager.jogador.keySet()) {
             statistics.get().set(puid + ".kills", player.getKills(puid));
             statistics.get().set(puid + ".deaths", player.getDeaths(puid));
             statistics.get().set(puid + ".xp", player.getXP(puid));

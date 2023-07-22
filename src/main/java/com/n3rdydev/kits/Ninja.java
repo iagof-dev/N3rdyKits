@@ -17,7 +17,7 @@ public class Ninja {
         }
 
         p.getInventory().clear();
-        manager.getPlayers().get(p.getUniqueId()).setKit("ninja");
+        manager.jogador.get(p.getUniqueId()).setKit("ninja");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);

@@ -156,8 +156,8 @@ public class handleInteract implements Listener {
                     e.setCancelled(true);
                     UUID uid = p.getUniqueId();
 
-                    if (manager.getPlayers().get(uid).getConfig_menu() != null || manager.getPlayers().get(uid).getConfig_menu() != false && manager.getPlayers().get(uid).getConfig_position_1() == null) {
-                        manager.getPlayers().get(uid).setConfig_position_1(p.getLocation());
+                    if (manager.jogador.get(uid).getConfig_menu() != null || manager.jogador.get(uid).getConfig_menu() != false && manager.jogador.get(uid).getConfig_position_1() == null) {
+                        manager.jogador.get(uid).setConfig_position_1(p.getLocation());
                         p.getInventory().clear();
 
                         ItemStack protect_item = new ItemStack(Material.BEACON);
@@ -175,12 +175,12 @@ public class handleInteract implements Listener {
                 if (e.getItem().getItemMeta().getDisplayName().equals("§eProteção do Spawn - POSIÇÃO 2")) {
                     e.setCancelled(true);
                     UUID uid = p.getUniqueId();
-                    if (manager.getPlayers().get(uid).getConfig_position_1() != null) {
-                        manager.getPlayers().get(uid).setConfig_position_2(p.getLocation());
+                    if (manager.jogador.get(uid).getConfig_position_1() != null) {
+                        manager.jogador.get(uid).setConfig_position_2(p.getLocation());
                         p.sendMessage(serverinfo.name() + " | §dPosição 2 definida");
 
-                        Location pos1 = manager.getPlayers().get(uid).getConfig_position_1();
-                        Location pos2 = manager.getPlayers().get(uid).getConfig_position_2();
+                        Location pos1 = manager.jogador.get(uid).getConfig_position_1();
+                        Location pos2 = manager.jogador.get(uid).getConfig_position_2();
 
                         String pos1_format = pos1.getX() + " " + pos1.getZ();
                         String pos2_format = pos2.getX() + " " + pos2.getZ();
@@ -189,7 +189,7 @@ public class handleInteract implements Listener {
                         config.get().set("spawn.protection.pos2", pos2_format);
                         config.save();
                         config.reload();
-                        manager.getPlayers().get(uid).setConfig_menu(false);
+                        manager.jogador.get(uid).setConfig_menu(false);
                         com.n3rdydev.kits.Spawn.Receive(p);
                         p.sendMessage(serverinfo.name() + " | §aProteção definida entre (" + pos1_format + ") e (" + pos2_format + ")");
                     }
@@ -209,8 +209,8 @@ public class handleInteract implements Listener {
                 if(server.arena_glad.get(puid) != null) return;
 
                 World wrld = server.getWorld();
-                manager.getPlayers().get(puid).setLast_pos(p.getLocation());
-                manager.getPlayers().get(target).setLast_pos(target.getLocation());
+                manager.jogador.get(puid).setLast_pos(p.getLocation());
+                manager.jogador.get(target).setLast_pos(target.getLocation());
                 server.arena_glad_players.put(puid, target.getUniqueId());
                 server.arena_glad_players.put(target.getUniqueId(), puid);
                 criarArenaGlad(p, target ,17);

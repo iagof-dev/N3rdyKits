@@ -16,7 +16,7 @@ public class Kangaroo {
             return false;
         }
         p.getInventory().clear();
-        manager.getPlayers().get(p.getUniqueId()).setKit("kangaroo");
+        manager.jogador.get(p.getUniqueId()).setKit("kangaroo");
 
         ItemStack sword = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP, 1);

@@ -3,6 +3,7 @@ package com.n3rdydev.kits;
 
 import com.n3rdydev.entity.player;
 import com.n3rdydev.manager.PlayerManager;
+import com.n3rdydev.models.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -20,8 +21,6 @@ public class Spawn {
         ItemStack[] armorContents = p.getInventory().getArmorContents().clone();
         p.getInventory().clear();
         p.getInventory().setArmorContents(armorContents);
-
-        manager.getPlayers().get(p.getUniqueId()).setKit("Nenhum");
 
         ItemMeta kits_meta = (ItemMeta) gui_kits.getItemMeta();
         ItemMeta warps_meta = (ItemMeta) gui_warps.getItemMeta();

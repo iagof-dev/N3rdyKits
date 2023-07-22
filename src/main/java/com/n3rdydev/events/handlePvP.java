@@ -25,10 +25,10 @@ public class handlePvP implements Listener {
                 e.setCancelled(true);
             }
 
-            String selected_kit = manager.getPlayers().get(attacker.getUniqueId()).getKit();
+            String selected_kit = manager.jogador.get(attacker.getUniqueId()).getKit();
             selected_kit = selected_kit.toLowerCase();
             if(selected_kit == "ninja"){
-                manager.getPlayers().get(attacker.getUniqueId()).setLastHit(target.getUniqueId());
+                manager.jogador.get(attacker.getUniqueId()).setLastHit(target.getUniqueId());
             }
 
         }

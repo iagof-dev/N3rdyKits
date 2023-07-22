@@ -27,7 +27,7 @@ public class handleFallDamage implements Listener {
             Location landingLocation = p.getLocation().subtract(0, e.getDamage(), 0);
 
 
-            switch(manager.getPlayers().get(p.getUniqueId()).getWarp()){
+            switch(manager.jogador.get(p.getUniqueId()).getWarp()){
                 case 3:
                     e.setCancelled(true);
                     return;
@@ -43,7 +43,7 @@ public class handleFallDamage implements Listener {
                 e.setCancelled(false);
             }
 
-            if(manager.getPlayers().get(p.getUniqueId()).getKit() == "stomper"){
+            if(manager.jogador.get(p.getUniqueId()).getKit() == "stomper"){
                 e.setDamage(0);
                 for (Entity entity : p.getNearbyEntities(3, 3, 3)) {
                     if (entity instanceof Player) {

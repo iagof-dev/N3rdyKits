@@ -22,7 +22,7 @@ public class handleWarpParkour implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerOverCheckpoint(PlayerMoveEvent e) {
-        if (manager.getPlayers().get(e.getPlayer().getUniqueId()).getWarp() != 3) return;
+        if (manager.jogador.get(e.getPlayer().getUniqueId()).getWarp() != 3) return;
 
         if (e.getTo().getBlock().isLiquid()) {
             if (player.getParkourCheckpoint(e.getPlayer().getUniqueId()) == null) {

@@ -2,12 +2,14 @@ package com.n3rdydev.scoreboard;
 
 import com.n3rdydev.entity.player;
 import com.n3rdydev.manager.PlayerManager;
+import com.n3rdydev.models.PlayerData;
 import com.n3rdydev.settings.serverinfo;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 public class sb_default {
@@ -18,16 +20,14 @@ public class sb_default {
         Scoreboard sbdefault = sb_manager.getNewScoreboard();
         Objective obj = sbdefault.registerNewObjective("title", "dummy");
 
-        UUID puid = p.getUniqueId();
 
+        UUID puid = p.getUniqueId();
+        PlayerData data = PlayerManager.jogador.get(puid);
         String selected_kit = "Nenhum";
-        if (manager.getPlayers().get(puid).getKit() != null) {
-            selected_kit = (manager.getPlayers().get(puid).getKit());
-            if(selected_kit == "pvp") selected_kit = "PvP";
-            else{
-                selected_kit = selected_kit.substring(0, 1).toUpperCase() + selected_kit.substring(1);
-            }
-        }
+        if (data.getKit() != null)
+            selected_kit = data.getKit().substring(0, 1).toUpperCase() + data.getKit().substring(1);
+
+
 
         obj.setDisplayName(" §7§l« §6§lKitPvP §7§l» ");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
